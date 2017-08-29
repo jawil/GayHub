@@ -25,7 +25,7 @@ function tableOfContent() {
     // initStyle(tableOfContentWrap)
     clickStyle(tableOfContentWrap)
     parentNotRoll('.table-of-content-wrap')
-        // syncScroll(tableOfContentWrap)
+    syncScroll(tableOfContentWrap)
 }
 
 
@@ -60,12 +60,11 @@ function syncScroll(element) {
 
             if (scrollY >= preHeight && scrollY < nextHeight) {
                 scrollStyle(element, index)
+
+
+            } else if (!nextHeight) {} else {
                 console.log(index)
-
-            } else if (!nextHeight) {
-
-            } else {
-
+                scrollStyle(element, index)
             }
         })
     }
@@ -149,10 +148,10 @@ function scrollStyle(element, index) {
 
             /* 设置a标签样式 */
             element.style.cssText = `
-        border-left: 3px solid #563d7c;
-        color: #563d7c;
-        padding-left: calc(1em - 3px);
-        text-decoration: none;`
+            border-left: 3px solid #563d7c;
+            color: #563d7c;
+            padding-left: calc(1em - 3px);
+            text-decoration: none;`
             return
 
         } else {
@@ -162,10 +161,10 @@ function scrollStyle(element, index) {
 
             /* 设置a标签样式 */
             element.style.cssText = `
-        border-left: 2px solid #563d7c;
-        color: #563d7c;
-        padding-left: calc(${2 + cascad - flag}em - 2px);
-        text-decoration: none;`
+            border-left: 2px solid #563d7c;
+            color: #563d7c;
+            padding-left: calc(${2 + cascad - flag}em - 2px);
+            text-decoration: none;`
             arguments.callee(element.parentNode.parentNode.parentNode.firstChild)
         }
     })(A[index])
