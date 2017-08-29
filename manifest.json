@@ -1,0 +1,48 @@
+{
+    "name": "GayHub",
+    "version": "0.1.0",
+    "manifest_version": 2,
+    "description": "GayHub is useful",
+    "icons": {
+        "16": "images/icon-16.png",
+        "128": "images/icon-128.png"
+    },
+    "homepage_url": "http://github.com/jawil",
+    "permissions": [
+        "tabs",
+        "*://github.com/*"
+    ],
+    "background": {
+        "scripts": [
+            "chrome/background.js"
+        ]
+    },
+    "web_accessible_resources": [],
+
+    "browser_action": {
+        "default_icon": "images/icon-16.png",
+        "default_popup": "popup.html"
+    },
+
+    "content_scripts": [{
+        "matches": [
+            "*://github.com/*",
+            "*://gist.github.com/*"
+        ],
+        "css": [
+            "styles/main.css"
+        ],
+        "js": [
+            "scripts/libs/axios.js",
+            "scripts/libs/clipboard.js",
+            "scripts/utils/throttle.js",
+            "scripts/utils/parentNotRoll.js",
+            "scripts/components/copySnippet.js",
+            "scripts/components/showAvatar.js",
+            "scripts/index.js",
+            "chrome/contentscript.js"
+        ],
+        "run_at": "document_end",
+        "all_frames": false
+    }]
+}

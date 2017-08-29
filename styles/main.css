@@ -1,0 +1,233 @@
+@charset 'utf-8';
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* TOC模块 */
+
+.table-of-content-wrap {
+    position: fixed;
+    padding: 1em;
+    top: 10%;
+    right: 70px;
+    color: #fff;
+    background-color: #fff;
+    z-index: 1000;
+    width: 300px;
+    height: 600px;
+    overflow: auto;
+    border: 1px solid green;
+}
+
+.table-of-content-wrap::-webkit-scrollbar {
+    display: none;
+    /* 隐藏滚动条 */
+}
+
+
+/* 所有LI共同的样式 */
+
+.table-of-content-wrap li {
+    list-style: none;
+    cursor: pointer;
+    line-height: 22px;
+    max-height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: all 1s ease-out;
+    font-size: 12px;
+}
+
+.table-of-content-wrap li:hover {
+    max-height: 600px;
+    transition: all 3s ease-out;
+}
+
+
+/* 一级LI的样式 */
+
+.table-of-content-wrap>li {
+    line-height: 26px;
+    max-height: 26px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* 一级LI下面所有A标签的样式 */
+
+.table-of-content-wrap>li>a:hover {
+    border-left: 3px solid rgba(86, 61, 124, 0.5);
+    color: #563d7c;
+    padding-left: calc(1em - 3px);
+    text-decoration: none;
+}
+
+
+/* 所有A标签的样式 */
+
+.table-of-content-wrap a {
+    color: gray;
+    text-decoration: none;
+    padding-left: 1em;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+
+/* 所有二级LI下A标签样式 */
+
+.table-of-content-wrap li>ul>li>a {
+    padding-left: 3em;
+}
+
+.table-of-content-wrap li>ul>li>a:hover {
+    border-left: 2px solid rgba(86, 61, 124, 0.5);
+    color: #563d7c;
+    padding-left: calc(3em - 2px);
+    text-decoration: none;
+}
+
+
+/* LI两层嵌套UL */
+
+.table-of-content-wrap li>ul>li>ul>li>a {
+    padding-left: 4em;
+}
+
+.table-of-content-wrap li>ul>li>ul>li>a:hover {
+    border-left: 2px solid rgba(86, 61, 124, 0.5);
+    color: #563d7c;
+    padding-left: calc(4em - 2px);
+    text-decoration: none;
+}
+
+
+/* LI三层嵌套UL */
+
+.table-of-content-wrap li>ul>li>ul>li>ul>li>a {
+    padding-left: 5em;
+}
+
+.table-of-content-wrap li>ul>li>ul>li>ul>li>a:hover {
+    border-left: 2px solid rgba(86, 61, 124, 0.5);
+    color: #563d7c;
+    padding-left: calc(5em - 2px);
+    text-decoration: none;
+}
+
+
+/* LI四层嵌套UL */
+
+.table-of-content-wrap li>ul>li>ul>li>ul>li>ul>li>a {
+    padding-left: 6em;
+}
+
+.table-of-content-wrap li>ul>li>ul>li>ul>li>ul>li>a:hover {
+    border-left: 2px solid rgba(86, 61, 124, 0.5);
+    color: #563d7c;
+    padding-left: calc(6em - 2px);
+    text-decoration: none;
+}
+
+
+/* LI五层嵌套UL */
+
+.table-of-content-wrap li>ul>li>ul>li>ul>li>ul>li>ul>li>a {
+    padding-left: 7em;
+}
+
+.table-of-content-wrap li>ul>li>ul>li>ul>li>ul>li>ul>li>a:hover {
+    border-left: 2px solid rgba(86, 61, 124, 0.5);
+    color: #563d7c;
+    padding-left: calc(7em - 2px);
+    text-decoration: none;
+}
+
+
+/* 图像模块 */
+
+.title .github-avatar {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    border-radius: 4px;
+    width: 32px;
+    height: 32px;
+}
+
+.news .alert .simple>.octicon {
+    left: 27px !important;
+    z-index: 10;
+    top: 27px;
+    text-shadow: #FFF -1px -1px 0px;
+}
+
+.news .alert:first-child .dashboard-event-icon {
+    top: 27px!important;
+}
+
+.news .alert:first-child .body {
+    padding: 1em 0 0!important;
+}
+
+
+/* 复制模块 */
+
+pre {
+    position: relative
+}
+
+.copy-wrap {
+    position: relative;
+}
+
+.copy-wrap .copy-icon {
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    opacity: 0.7
+}
+
+.copy-wrap .copy-icon:hover {
+    opacity: 1
+}
+
+.copy-wrap .copy-icon:hover+.msg-tips {
+    display: block;
+    content: '复制到剪切板'
+}
+
+.copy-wrap span.msg-tips::before {
+    position: absolute;
+    border: 5px solid transparent;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.7);
+    content: '';
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.copy-wrap .msg-tips {
+    position: absolute;
+    width: 115px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border: 1px solid #aaa;
+    right: -43px;
+    top: 36px;
+    font-size: 13px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    display: none;
+}
