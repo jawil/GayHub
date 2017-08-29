@@ -25,7 +25,7 @@ function tableOfContent() {
     // initStyle(tableOfContentWrap)
     clickStyle(tableOfContentWrap)
     parentNotRoll('.table-of-content-wrap')
-    syncScroll(tableOfContentWrap)
+    // syncScroll(tableOfContentWrap)
 }
 
 
