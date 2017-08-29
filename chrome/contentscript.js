@@ -3,7 +3,9 @@ let count = 0,
     titleArr
 
 if (document.querySelector('.edit-comment-hide')) {
-    titleArr = document.querySelector('.edit-comment-hide').querySelectorAll('h1,h2,h3,h4,h5,h6')
+    titleArr = document.querySelector('.edit-comment-hide').
+    querySelectorAll('h1,h2,h3,h4,h5,h6')
+
     tableOfContent()
 }
 
@@ -78,9 +80,7 @@ function syncScroll(element) {
 
 
     document.addEventListener('scroll', throttle(e => {
-
         scrollHeight.Y = document.body.scrollTop
-
     }, 300), false)
 }
 
@@ -88,7 +88,6 @@ function scrollStyle(element, index) {
 
     let A = element.querySelectorAll('a')
     let Li = element.querySelectorAll('li')
-
 
     element.querySelectorAll('a,li').forEach(ele => {
         if (ele.parentNode.nodeName === 'table-of-content-wrap') {
@@ -144,7 +143,9 @@ function scrollStyle(element, index) {
         if (element.parentNode.parentNode.className === 'table-of-content-wrap') {
 
             /* 设置a标签父集li的样式 */
-            element.parentNode.style.cssText = element.parentNode.toggle ? `max-height: 600px;` : 'max-height: 26px;transition: all 0.5s ease-out;'
+            element.parentNode.style.cssText = element.parentNode.toggle ?
+                `max-height: 600px;` :
+                'max-height: 26px;transition: all 0.5s ease-out;'
 
             /* 设置a标签样式 */
             element.style.cssText = `
@@ -166,12 +167,10 @@ function scrollStyle(element, index) {
             padding-left: calc(${2 + cascad - flag}em - 2px);
             text-decoration: none;`
             arguments.callee(element.parentNode.parentNode.parentNode.firstChild)
-
         }
     })(A[index])
 
 }
-
 
 /* 点击之后的样式 */
 function clickStyle(element) {
@@ -215,7 +214,6 @@ function clickStyle(element) {
             return count
         })(e.target)
 
-
         /* 如果是第一层的li，这个才能控制菜单栏的展开与收缩*/
         if (cascad === 1) {
             e.target.parentNode.toggle = !e.target.parentNode.toggle
@@ -240,7 +238,9 @@ function clickStyle(element) {
             if (element.parentNode.parentNode.className === 'table-of-content-wrap') {
 
                 /* 设置a标签父集li的样式 */
-                element.parentNode.style.cssText = element.parentNode.toggle ? `max-height: 600px;` : 'max-height: 26px;transition: all 0.5s ease-out;'
+                element.parentNode.style.cssText = element.parentNode.toggle ?
+                    `max-height: 600px;` :
+                    'max-height: 26px;transition: all 0.5s ease-out;'
 
                 /* 设置a标签样式 */
                 element.style.cssText = `
