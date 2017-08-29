@@ -18,7 +18,7 @@ function showAvatar() {
         let uniqueUser = [...new Set(userArr)]
         fetch(generateUrl(uniqueUser, 50), {
             method: 'get'
-        }).then(function(response) {
+        }).then(response => {
             return response.json()
         }).then(data => {
             data.items.forEach(ele => {
