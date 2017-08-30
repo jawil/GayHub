@@ -4,6 +4,7 @@ document.querySelector('.markdown-body')
 if (container) {
 
 let current = { index: 0, Li: '' },
+    isClick = false,
     titleArr = container.querySelectorAll('h1,h2,h3,h4,h5,h6'),
     tableOfContent = document.createElement('ul'),
     initScrollHeight = titleArr[0].getBoundingClientRect().top / 1.3
@@ -91,14 +92,18 @@ function syncScroll(element) {
     Object.defineProperty(current, 'index', {
         set(value) {
             scrollStyle(element, value)
-            TOCAutoScroll(value)
         }
 
     })
 
     /* 函数节流监听滚动事件 */
     document.addEventListener('scroll', throttle(e => {
-        calculateCurrentIndex(document.body.scrollTop)
+        /* 点击时候也会触发滚动条事件 */
+        if (!isClick) {
+            calculateCurrentIndex(document.body.scrollTop)
+        }
+        isClick = false
+
     }, 200), false)
 
     /* TOC出现滚动条时候，焦点始终在正当中 */
@@ -170,8 +175,8 @@ function clickStyle(element) {
 
         /* 隐式转换 */
         document.body.scrollTop = listHeight[+e.target.getAttribute('index')] + initScrollHeight
-
-        /* 求出LI里面嵌套了几层UL */
+        isClick = true
+            /* 求出LI里面嵌套了几层UL */
         const cascad = getCascad()(e.target)
 
         /* 如果是第一层的li，这个才能控制菜单栏的展开与收缩*/
@@ -275,6 +280,5 @@ function setStyle() {
         }
     }
 }
-}
-
 tableOfContentStart()
+}
