@@ -9,17 +9,20 @@
 
 .table-of-content-wrap {
     position: fixed;
-    padding: 1em;
-    padding-top: 40px;
     top: 10%;
     right: 60px;
-    color: #fff;
+    z-index: 999;
     background-color: #fff;
-    z-index: 1000;
     width: 300px;
-    height: 640px;
+    border: 1px solid #aaa;
+}
+
+.table-of-content {
+    padding: 1em;
+    color: #fff;
+    height: 550px;
     overflow: auto;
-    border: 1px solid gray;
+    cursor: move;
 }
 
 .table-of-content-header {
@@ -27,19 +30,12 @@
     font-weight: bold;
     font-size: 18px;
     line-height: 40px;
-    height: 40px;
-    width: 300px;
-    border: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
     text-align: center;
-    position: fixed;
-    top: 10%;
-    right: 60px;
-    z-index: 9999;
     cursor: move;
-    background-color: #fff;
 }
 
-.table-of-content-wrap::-webkit-scrollbar {
+.table-of-content::-webkit-scrollbar {
     display: none;
     /* 隐藏滚动条 */
 }
@@ -47,7 +43,7 @@
 
 /* 所有LI共同的样式 */
 
-.table-of-content-wrap li {
+.table-of-content li {
     list-style: none;
     cursor: pointer;
     line-height: 22px;
@@ -59,7 +55,7 @@
     font-size: 12px;
 }
 
-.table-of-content-wrap li:hover {
+.table-of-content li:hover {
     max-height: 600px;
     transition: all 3s ease-out;
 }
@@ -67,7 +63,7 @@
 
 /* 一级LI的样式 */
 
-.table-of-content-wrap>li {
+.table-of-content>li {
     line-height: 26px;
     max-height: 26px;
     font-size: 14px;
@@ -77,7 +73,7 @@
 
 /* 一级LI下面所有A标签的样式 */
 
-.table-of-content-wrap>li>span:hover {
+.table-of-content>li>span:hover {
     border-left: 3px solid rgba(86, 61, 124, 0.5);
     color: #563d7c;
     padding-left: calc(1em - 3px);
@@ -87,7 +83,7 @@
 
 /* 所有A标签的样式 */
 
-.table-of-content-wrap span {
+.table-of-content span {
     color: gray;
     text-decoration: none;
     padding-left: 1em;
@@ -100,11 +96,11 @@
 
 /* 所有二级LI下A标签样式 */
 
-.table-of-content-wrap li>ul>li>span {
+.table-of-content li>ul>li>span {
     padding-left: 3em;
 }
 
-.table-of-content-wrap li>ul>li>span:hover {
+.table-of-content li>ul>li>span:hover {
     border-left: 2px solid rgba(86, 61, 124, 0.5);
     color: #563d7c;
     padding-left: calc(3em - 2px);
@@ -114,11 +110,11 @@
 
 /* LI两层嵌套UL */
 
-.table-of-content-wrap li>ul>li>ul>li>span {
+.table-of-content li>ul>li>ul>li>span {
     padding-left: 4em;
 }
 
-.table-of-content-wrap li>ul>li>ul>li>span:hover {
+.table-of-content li>ul>li>ul>li>span:hover {
     border-left: 2px solid rgba(86, 61, 124, 0.5);
     color: #563d7c;
     padding-left: calc(4em - 2px);
@@ -128,11 +124,11 @@
 
 /* LI三层嵌套UL */
 
-.table-of-content-wrap li>ul>li>ul>li>ul>li>span {
+.table-of-content li>ul>li>ul>li>ul>li>span {
     padding-left: 5em;
 }
 
-.table-of-content-wrap li>ul>li>ul>li>ul>li>span:hover {
+.table-of-content li>ul>li>ul>li>ul>li>span:hover {
     border-left: 2px solid rgba(86, 61, 124, 0.5);
     color: #563d7c;
     padding-left: calc(5em - 2px);
@@ -142,11 +138,11 @@
 
 /* LI四层嵌套UL */
 
-.table-of-content-wrap li>ul>li>ul>li>ul>li>ul>li>span {
+.table-of-content li>ul>li>ul>li>ul>li>ul>li>span {
     padding-left: 6em;
 }
 
-.table-of-content-wrap li>ul>li>ul>li>ul>li>ul>li>span:hover {
+.table-of-content li>ul>li>ul>li>ul>li>ul>li>span:hover {
     border-left: 2px solid rgba(86, 61, 124, 0.5);
     color: #563d7c;
     padding-left: calc(6em - 2px);
@@ -156,11 +152,11 @@
 
 /* LI五层嵌套UL */
 
-.table-of-content-wrap li>ul>li>ul>li>ul>li>ul>li>ul>li>span {
+.table-of-content li>ul>li>ul>li>ul>li>ul>li>ul>li>span {
     padding-left: 7em;
 }
 
-.table-of-content-wrap li>ul>li>ul>li>ul>li>ul>li>ul>li>span:hover {
+.table-of-content li>ul>li>ul>li>ul>li>ul>li>ul>li>span:hover {
     border-left: 2px solid rgba(86, 61, 124, 0.5);
     color: #563d7c;
     padding-left: calc(7em - 2px);

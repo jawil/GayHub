@@ -1,29 +1,34 @@
-if (document.querySelector('.edit-comment-hide')) {
+let container =
+    document.querySelector('.markdown-body')
+
+if (container) {
 
     let current = { index: 0, Li: '' },
-        titleArr = document.querySelector('.edit-comment-hide').querySelectorAll('h1,h2,h3,h4,h5,h6'),
-        tableOfContentWrap = document.createElement('ul')
+        titleArr = container.querySelectorAll('h1,h2,h3,h4,h5,h6'),
+        tableOfContent = document.createElement('ul'),
+        initScrollHeight = titleArr[0].getBoundingClientRect().top / 1.3
 
-    tableOfContentWrap.className = 'table-of-content-wrap'
+    tableOfContent.className = 'table-of-content'
 
-    function tableOfContent() {
-
+    function tableOfContentStart() {
         const titleStr = getTitleStr(titleArr)
 
         /* 生成TOC的HTML结构 */
-        generatetableOfContentHTML(titleArr, tableOfContentWrap)(titleStr, tableOfContentWrap)
+        generatetableOfContentHTML(titleArr, tableOfContent)(titleStr, tableOfContent)
 
         /* 点击TOC目录样式变化 */
-        clickStyle(tableOfContentWrap)
+        clickStyle(tableOfContent)
 
         /* 父集不随子集元素滚动而滚动 */
-        parentNotRoll('.table-of-content-wrap')
+        parentNotRoll('.table-of-content')
 
         /* 页面内容和TOC目录同步滚动 */
-        syncScroll(tableOfContentWrap)
+        syncScroll(tableOfContent)
 
         /* 初始化样式 */
         calculateCurrentIndex(document.body.scrollTop) // 初始化 
+
+        new Drag('.table-of-content-wrap')
 
     }
 
@@ -45,6 +50,8 @@ if (document.querySelector('.edit-comment-hide')) {
 
     const listHeight = calculateHeight()
 
+    console.log(listHeight)
+
     /* 计算当前滚动内容可视区域的index */
     const calculateCurrentIndex = scrollY => {
 
@@ -52,12 +59,15 @@ if (document.querySelector('.edit-comment-hide')) {
             let preHeight = listHeight[i]
             let nextHeight = listHeight[i + 1]
 
+            if (scrollY < listHeight[0]) {
+                current.index = 0
+                return
+            }
             if ((!nextHeight) || (scrollY >= preHeight && scrollY < nextHeight)) {
+                console.log(i)
                 current.index = i
                 return
             }
-
-            current.index = 0
         }
     }
 
@@ -81,6 +91,7 @@ if (document.querySelector('.edit-comment-hide')) {
         Object.defineProperty(current, 'index', {
             set(value) {
                 scrollStyle(element, value)
+                TOCAutoScroll(value)
             }
 
         })
@@ -89,6 +100,20 @@ if (document.querySelector('.edit-comment-hide')) {
         document.addEventListener('scroll', throttle(e => {
             calculateCurrentIndex(document.body.scrollTop)
         }, 200), false)
+
+        /* TOC出现滚动条时候，焦点始终在正当中 */
+        function TOCAutoScroll(index) {
+
+            let Li = element.querySelectorAll('li')
+            let currentTop = Li[index].getBoundingClientRect().top
+
+            if (tableOfContent.scrollHeight !== tableOfContent.clientHeight) { // 此时有滚动条出现
+                if (currentTop > tableOfContent.clientHeight / 2) {
+                    tableOfContent.scrollTop = currentTop - tableOfContent.clientHeight / 2
+                }
+            }
+
+        }
     }
 
     function scrollStyle(element, index) {
@@ -102,7 +127,7 @@ if (document.querySelector('.edit-comment-hide')) {
         /* 重置所有style */
         element.querySelectorAll('span,li').forEach(ele => {
 
-            if (ele.parentNode.className === 'table-of-content-wrap') {
+            if (ele.parentNode.className === 'table-of-content') {
                 ele.toggle = false
             }
             ele.style.cssText = ''
@@ -121,7 +146,7 @@ if (document.querySelector('.edit-comment-hide')) {
 
             while (flag) {
                 ele = ele.parentNode.parentNode // li的父集ul的父集li
-                if (ele.parentNode.className === 'table-of-content-wrap') {
+                if (ele.parentNode.className === 'table-of-content') {
                     flag = false
                 }
             }
@@ -144,7 +169,7 @@ if (document.querySelector('.edit-comment-hide')) {
             }
 
             /* 隐式转换 */
-            document.body.scrollTop = listHeight[+e.target.getAttribute('index')] + 300
+            document.body.scrollTop = listHeight[+e.target.getAttribute('index')] + initScrollHeight
 
             /* 求出LI里面嵌套了几层UL */
             const cascad = getCascad()(e.target)
@@ -158,7 +183,7 @@ if (document.querySelector('.edit-comment-hide')) {
                     flag = true
                 while (flag) {
                     ele = ele.parentNode.parentNode // li的父集ul的父集li
-                    if (ele.parentNode.className === 'table-of-content-wrap') {
+                    if (ele.parentNode.className === 'table-of-content') {
                         flag = false
                     }
                 }
@@ -168,7 +193,7 @@ if (document.querySelector('.edit-comment-hide')) {
 
             /* 重置所有style */
             element.querySelectorAll('span,li').forEach(ele => {
-                if (ele.parentNode.className === 'table-of-content-wrap') {
+                if (ele.parentNode.className === 'table-of-content') {
                     /* 上次点击和这次点击还是同一个目标，就过滤掉 */
                     if (ele.firstChild.getAttribute('index') !== current.Li.firstChild.getAttribute('index')) {
                         ele.toggle = false
@@ -206,7 +231,7 @@ if (document.querySelector('.edit-comment-hide')) {
         let count = 0
         return function(element) {
             count++
-            if (element.parentNode.parentNode.className === 'table-of-content-wrap') {
+            if (element.parentNode.parentNode.className === 'table-of-content') {
                 return count
             } else {
                 arguments.callee(element.parentNode.parentNode.parentNode.firstChild)
@@ -222,7 +247,7 @@ if (document.querySelector('.edit-comment-hide')) {
         return function(element, cascad) {
             flag++
             // 容器第一层的Li
-            if (element.parentNode.parentNode.className === 'table-of-content-wrap') {
+            if (element.parentNode.parentNode.className === 'table-of-content') {
 
                 /* 设置span标签父集li的样式 */
                 element.parentNode.style.cssText = element.parentNode.toggle ?
@@ -252,4 +277,4 @@ if (document.querySelector('.edit-comment-hide')) {
     }
 }
 
-tableOfContent()
+tableOfContentStart()

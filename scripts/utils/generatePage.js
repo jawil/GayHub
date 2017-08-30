@@ -1,11 +1,18 @@
 /* 生成tableOfContent的HTML */
 const generatetableOfContentHTML = function(titleArr, root) {
     let count = 0
-    headerHTML = `<div class="table-of-content-header">
-   Table of Content
-    </div>`
-    root.innerHTML = headerHTML
-    document.body.appendChild(root)
+
+    const tableOfContentWrap = document.createElement('div'),
+        tableOfContentHeader = document.createElement('div')
+
+    tableOfContentWrap.className = 'table-of-content-wrap'
+    tableOfContentHeader.className = 'table-of-content-header'
+    tableOfContentHeader.textContent = 'Table of Content'
+
+    tableOfContentWrap.appendChild(tableOfContentHeader)
+    tableOfContentWrap.appendChild(root)
+    document.body.appendChild(tableOfContentWrap)
+
     return function(str, parent) {
         let h = str[1] - 1,
             reg = [
