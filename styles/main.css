@@ -12,7 +12,7 @@
     padding: 1em;
     padding-top: 40px;
     top: 10%;
-    right: 70px;
+    right: 60px;
     color: #fff;
     background-color: #fff;
     z-index: 1000;
@@ -29,13 +29,14 @@
     line-height: 40px;
     height: 40px;
     width: 300px;
-    border-bottom: 1px solid #aaa;
+    border: 1px solid #aaa;
     text-align: center;
     position: fixed;
     top: 10%;
-    right: 70px;
+    right: 60px;
     z-index: 9999;
     cursor: move;
+    background-color: #fff;
 }
 
 .table-of-content-wrap::-webkit-scrollbar {
