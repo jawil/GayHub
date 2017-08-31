@@ -1,5 +1,59 @@
-let container =
-    document.querySelectorAll('.markdown-body,.wiki-wrapper')[0]
+const webClassContainer = {
+    github: ['.markdown-body', '.wiki-wrapper'],
+    juejin: ['.entry-content']
+}
+
+const options = {
+    title: 'h1,h2,h3,h4,h5,h6',
+    classWrap: 'table-of-content-wrap',
+    class: 'table-of-content'
+}
+
+const styles = {
+    childSpan(cascad, flag) {
+        return `border-left: 2px solid #563d7c;
+                color: #563d7c;
+                padding-left: calc(${2 + cascad - flag}em - 2px);
+                text-decoration: none;`
+    },
+
+    rootSpan: ` border-left: 3px solid #563d7c;
+                color: #563d7c;
+                padding-left: calc(1em - 3px);
+                text-decoration: none;`,
+
+    childLi: `max-height: 26px;
+                transition: all 0.5s ease-out;`,
+
+    rootLi: `max-height: 600px;`
+}
+
+const selectorStr = function(obj) {
+    let selectorArr = []
+
+    for (let attr in obj) {
+        selectorArr = selectorArr.concat(obj[attr])
+    }
+
+    return selectorArr.join(',')
+
+}(webClassContainer)
+
+
+let container = document.querySelectorAll(selectorStr)[0]
+
+/* 兼容掘金，掘金网站的dom元素只能用load事件才能正确获取到 */
+window.addEventListener('load', e => {
+
+    container = document.querySelectorAll(selectorStr)[0]
+
+    if (container) {
+        TOC(container)
+    }
+
+}, false)
+
+
 
 function TOC(container) {
 
@@ -7,11 +61,11 @@ function TOC(container) {
         isClick = false,
         listHeight = [],
         calculateCurrentIndex,
-        titleArr = container.querySelectorAll('h1,h2,h3,h4,h5,h6'),
+        titleArr = container.querySelectorAll(options.title),
         tableOfContent = document.createElement('ul'),
         initScrollHeight = titleArr[0].getBoundingClientRect().top - document.querySelector('div').getBoundingClientRect().top - 200
 
-    tableOfContent.className = 'table-of-content'
+    tableOfContent.className = options.class
 
     function tableOfContentStart() {
         const titleStr = getTitleStr(titleArr)
@@ -26,12 +80,12 @@ function TOC(container) {
         setClickStyle(tableOfContent)
 
         /* 父集不随子集元素滚动而滚动 */
-        parentNotRoll('.table-of-content')
+        parentNotRoll(`.${options.class}`)
 
         /* 页面内容和TOC目录同步滚动 */
         syncRoll(tableOfContent)
 
-        new Drag('.table-of-content-wrap')
+        new Drag(`.${options.classWrap}`)
 
     }
 
@@ -96,7 +150,7 @@ function TOC(container) {
         /* 重置所有style */
         element.querySelectorAll('span,li').forEach(ele => {
 
-            if (ele.parentNode.className === 'table-of-content') {
+            if (ele.parentNode.className === options.class) {
                 ele.toggle = false
             }
             ele.style.cssText = ''
@@ -115,7 +169,7 @@ function TOC(container) {
 
             while (flag) {
                 ele = ele.parentNode.parentNode // li的父集ul的父集li
-                if (ele.parentNode.className === 'table-of-content') {
+                if (ele.parentNode.className === options.class) {
                     flag = false
                 }
             }
@@ -154,7 +208,7 @@ function TOC(container) {
                     flag = true
                 while (flag) {
                     ele = ele.parentNode.parentNode // li的父集ul的父集li
-                    if (ele.parentNode.className === 'table-of-content') {
+                    if (ele.parentNode.className === options.class) {
                         flag = false
                     }
                 }
@@ -164,7 +218,7 @@ function TOC(container) {
 
             /* 重置所有style */
             element.querySelectorAll('span,li').forEach(ele => {
-                if (ele.parentNode.className === 'table-of-content') {
+                if (ele.parentNode.className === options.class) {
                     /* 上次点击和这次点击还是同一个目标，就过滤掉 */
                     if (ele.firstChild.getAttribute('index') !== current.Li.firstChild.getAttribute('index')) {
                         ele.toggle = false
@@ -202,7 +256,7 @@ function TOC(container) {
         let count = 0
         return function(element) {
             count++
-            if (element.parentNode.parentNode.className === 'table-of-content') {
+            if (element.parentNode.parentNode.className === options.class) {
                 return count
             } else {
                 arguments.callee(element.parentNode.parentNode.parentNode.firstChild)
@@ -219,30 +273,23 @@ function TOC(container) {
             let cascadIndex = cascad
             flag++
             // 容器第一层的Li
-            if (element.parentNode.parentNode.className === 'table-of-content') {
+            if (element.parentNode.parentNode.className === options.class) {
 
                 /* 设置span标签父集li的样式 */
                 element.parentNode.style.cssText = element.parentNode.toggle ?
-                    `max-height: 600px;` :
-                    'max-height: 26px;transition: all 0.5s ease-out;'
+                    styles.rootLi :
+                    styles.childLi
 
                 /* 设置span标签样式 */
-                element.style.cssText = `
-        border-left: 3px solid #563d7c;
-        color: #563d7c;
-        padding-left: calc(1em - 3px);
-        text-decoration: none;`
+                element.style.cssText = styles.rootSpan
                 return
             } else {
                 /* 设置span标签父集li的样式 */
-                element.parentNode.style.cssText = `max-height: 600px;`
+                element.parentNode.style.cssText = styles.rootLi
 
                 /* 设置span标签样式 */
-                element.style.cssText = `
-        border-left: 2px solid #563d7c;
-        color: #563d7c;
-        padding-left: calc(${2 + cascad - flag}em - 2px);
-        text-decoration: none;`
+                element.style.cssText = styles.childSpan(cascad, flag)
+
                 arguments.callee(element.parentNode.parentNode.parentNode.firstChild, cascadIndex)
             }
         }
@@ -302,7 +349,7 @@ function TOC(container) {
 
         /* TOC显示与隐藏 */
         const toggleTOC = function() {
-            const wrap = document.querySelector('.table-of-content-wrap')
+            const wrap = document.querySelector(`.${options.classWrap}`)
 
             if (document.body.scrollTop >= window.screen.height / 1.5) {
                 wrap.style.display = 'block'
@@ -320,23 +367,20 @@ function TOC(container) {
 
 }
 
-if (container) {
-    TOC(container)
-}
 
 /* github进入issue界面并不会刷新页面，所以js不会重新加载 */
 const hackGithub = function() {
     let count = 0
     document.addEventListener('scroll', throttle(e => {
 
-        if (document.querySelectorAll('.markdown-body,.wiki-wrapper').length) {
+        if (document.querySelectorAll(selectorStr).length) {
 
-            if (container.innerHTML !== document.querySelectorAll('.markdown-body,.wiki-wrapper')[0].innerHTML) {
+            if (container.innerHTML !== document.querySelectorAll(selectorStr)[0].innerHTML) {
 
-                container = document.querySelectorAll('.markdown-body,.wiki-wrapper')[0]
+                container = document.querySelectorAll(selectorStr)[0]
 
-                if (document.querySelector('.table-of-content-wrap')) {
-                    document.body.removeChild(document.querySelector('.table-of-content-wrap'))
+                if (document.querySelector(`.${options.classWrap}`)) {
+                    document.body.removeChild(document.querySelector(`.${options.classWrap}`))
                 }
 
                 TOC(container)
@@ -344,8 +388,8 @@ const hackGithub = function() {
 
         } else {
 
-            if (document.querySelector('.table-of-content-wrap')) {
-                count++ == 1 ? document.body.removeChild(document.querySelector('.table-of-content-wrap')) : ''
+            if (document.querySelector(`.${options.classWrap}`)) {
+                count++ == 1 ? document.body.removeChild(document.querySelector(`.${options.classWrap}`)) : ''
             }
         }
 
