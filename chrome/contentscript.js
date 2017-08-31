@@ -320,22 +320,20 @@ if (container) {
 
 }
 
-
-
 let count = 0
 document.addEventListener('scroll', e => {
 
     if (document.querySelectorAll('.markdown-body,.wiki-wrapper').length) {
 
         if (container.innerHTML !== document.querySelectorAll('.markdown-body,.wiki-wrapper')[0].innerHTML) {
-            console.log(2222)
+
             container = document.querySelectorAll('.markdown-body,.wiki-wrapper')[0]
             window.location.reload()
             count++ == 1 ? document.body.removeChild(document.querySelector('.table-of-content-wrap')) : ''
         }
 
     } else {
-        console.log(3333)
+
         if (document.querySelector('.table-of-content-wrap')) {
             count++ == 1 ? document.body.removeChild(document.querySelector('.table-of-content-wrap')) : ''
         }

@@ -16,7 +16,6 @@
     width: 300px;
     border: 1px solid #aaa;
     display: none;
-    font-size: 0;
 }
 
 .table-of-content-wrap:hover {
@@ -25,20 +24,9 @@
 
 .table-of-content {
     padding: 1em;
-    border:1px solid red;
     color: #fff;
     height: 550px;
     overflow: auto;
-    cursor: move;
-}
-
-.table-of-content-header {
-    color: #333;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 40px;
-    border-bottom: 1px solid #aaa;
-    text-align: center;
     cursor: move;
 }
 
@@ -57,6 +45,16 @@
     opacity: 1
 }
 
+.table-of-content-header {
+    color: #333;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 40px;
+    border-bottom: 1px solid #aaa;
+    text-align: center;
+    cursor: move;
+}
+
 .table-of-content::-webkit-scrollbar {
     display: none;
     /* 隐藏滚动条 */
@@ -71,9 +69,10 @@
     line-height: 22px;
     max-height: 22px;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     transition: all 1s ease-out;
     font-size: 12px;
-    width: 100%;
 }
 
 .table-of-content li:hover {
