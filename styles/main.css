@@ -25,6 +25,7 @@
 
 .table-of-content {
     padding: 1em;
+    border:1px solid red;
     color: #fff;
     height: 550px;
     overflow: auto;
@@ -70,8 +71,6 @@
     line-height: 22px;
     max-height: 22px;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     transition: all 1s ease-out;
     font-size: 12px;
     width: 100%;
