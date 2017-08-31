@@ -3,12 +3,16 @@ const generatetableOfContentHTML = function(titleArr, root) {
     let count = 0
 
     const tableOfContentWrap = document.createElement('div'),
-        tableOfContentHeader = document.createElement('div')
+        tableOfContentHeader = document.createElement('div'),
+        tableOfContentLink = document.createElement('a')
 
     tableOfContentWrap.className = 'table-of-content-wrap'
     tableOfContentHeader.className = 'table-of-content-header'
+    tableOfContentLink.href = 'https://github.com/jawil'
+    tableOfContentLink.textContent = 'by jawil'
+    tableOfContentLink.target='_blank'
     tableOfContentHeader.textContent = 'Table of Content'
-
+    tableOfContentHeader.appendChild(tableOfContentLink)
     tableOfContentWrap.appendChild(tableOfContentHeader)
     tableOfContentWrap.appendChild(root)
     document.body.appendChild(tableOfContentWrap)

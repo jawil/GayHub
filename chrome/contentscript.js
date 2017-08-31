@@ -3,7 +3,7 @@ let container =
 
 if (container) {
 
-    let current = { index: 0, Li: '' },
+    let current = { index: 0, preIndex: -1, Li: '' },
         isClick = false,
         listHeight = [],
         calculateCurrentIndex,
@@ -11,7 +11,6 @@ if (container) {
         tableOfContent = document.createElement('ul'),
         initScrollHeight = titleArr[0].getBoundingClientRect().top - document.querySelector('div').getBoundingClientRect().top - 200
 
-    console.log('initScrollHeight', initScrollHeight)
     tableOfContent.className = 'table-of-content'
 
     function tableOfContentStart() {
@@ -54,8 +53,8 @@ if (container) {
         /* 数据监测 */
         Object.defineProperty(current, 'index', {
             set(value) {
-                console.log('value', value)
                 scrollStyle(element, value)
+                TOCAutoScroll(value)
             }
 
         })
@@ -77,9 +76,7 @@ if (container) {
             let currentTop = Li[index].getBoundingClientRect().top
 
             if (tableOfContent.scrollHeight !== tableOfContent.clientHeight) { // 此时有滚动条出现
-                if (currentTop > tableOfContent.clientHeight / 2) {
-                    tableOfContent.scrollTop = currentTop - tableOfContent.clientHeight / 2
-                }
+                tableOfContent.scrollTop = currentTop - tableOfContent.clientHeight / 2
             }
 
         }
@@ -216,6 +213,7 @@ if (container) {
     function setStyle() {
         let flag = 0
         return function(element, cascad) {
+            let cascadIndex = cascad
             flag++
             // 容器第一层的Li
             if (element.parentNode.parentNode.className === 'table-of-content') {
@@ -242,7 +240,7 @@ if (container) {
                 color: #563d7c;
                 padding-left: calc(${2 + cascad - flag}em - 2px);
                 text-decoration: none;`
-                arguments.callee(element.parentNode.parentNode.parentNode.firstChild)
+                arguments.callee(element.parentNode.parentNode.parentNode.firstChild, cascadIndex)
             }
         }
     }
@@ -280,8 +278,11 @@ if (container) {
                     return
                 }
                 if ((!nextHeight) || (scrollY >= preHeight && scrollY < nextHeight)) {
-                    console.log('current.index', i)
-                    current.index = i
+                    /* 微微提高性能，只有当index改变时候才去监听，然后调用函数 */
+                    if (i !== current.preIndex) {
+                        current.index = i
+                        current.preIndex = i
+                    }
                     return
                 }
             }
@@ -293,13 +294,20 @@ if (container) {
         /* 如果当前滚动条超过页面一半，显示TOC目录导航 */
         tableOfContentStart()
 
-        document.addEventListener('scroll', throttle(e => {
-            let displayStatus = (document.body.scrollTop >= window.screen.height) ?
-                'block' : 'none'
+        /* TOC显示与隐藏 */
+        const toggleTOC = function() {
+            const wrap = document.querySelector('.table-of-content-wrap')
 
-            document.querySelector('.table-of-content-wrap').style.display = displayStatus
-        }, 500), false)
+            if (document.body.scrollTop >= window.screen.height / 1.5) {
+                wrap.style.display = 'block'
+            }
+            document.addEventListener('scroll', throttle(e => {
+                let displayStatus = (document.body.scrollTop >= window.screen.height / 1.5) ?
+                    'block' : 'none'
 
+                wrap.style.display = displayStatus
+            }, 500), false)
+        }()
 
     })
 

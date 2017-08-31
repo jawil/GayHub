@@ -16,6 +16,7 @@
     width: 300px;
     border: 1px solid #aaa;
     display: none;
+    font-size: 0;
 }
 
 .table-of-content-wrap:hover {
@@ -40,6 +41,21 @@
     cursor: move;
 }
 
+.table-of-content-header a {
+    color: green;
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: 12px;
+    text-decoration: none;
+    font-style: italic;
+    opacity: 0.7
+}
+
+.table-of-content-header a:hover {
+    opacity: 1
+}
+
 .table-of-content::-webkit-scrollbar {
     display: none;
     /* 隐藏滚动条 */
@@ -58,6 +74,7 @@
     white-space: nowrap;
     transition: all 1s ease-out;
     font-size: 12px;
+    width: 100%;
 }
 
 .table-of-content li:hover {
