@@ -19,6 +19,9 @@ function tableOfContentStart() {
     /* 生成TOC的HTML结构 */
     generatetableOfContentHTML(titleArr, tableOfContent)(titleStr, tableOfContent)
 
+    /* 计算需要的一些index */
+    calculate()
+
     /* 点击TOC目录样式变化 */
     clickStyle(tableOfContent)
 
@@ -134,9 +137,9 @@ function clickStyle(element) {
             return
         }
 
-        /* 隐式转换 */
         isClick = true
 
+        /* 一元运算符+隐式转换 */
         document.body.scrollTop = listHeight[+e.target.getAttribute('index')] + initScrollHeight
 
         /* 求出LI里面嵌套了几层UL */
@@ -245,9 +248,7 @@ function setStyle() {
     }
 }
 
-/* 等图片全部加载完成再加载TOC，防止图片未加载完成造成内容坍塌 */
-imagesLoaded(container, { background: true }, function() {
-
+function calculate() {
     /* 把两个标题之间的内容长度算出来 */
     const calculateHeight = f => {
         let listHeight = []
@@ -290,6 +291,11 @@ imagesLoaded(container, { background: true }, function() {
 
     /* 初始化样式 */
     calculateCurrentIndex(document.body.scrollTop)
+}
+
+
+/* 等图片全部加载完成再加载TOC，防止图片未加载完成造成内容坍塌 */
+imagesLoaded(container, { background: true }, function() {
 
     /* 如果当前滚动条超过页面一半，显示TOC目录导航 */
     tableOfContentStart()
