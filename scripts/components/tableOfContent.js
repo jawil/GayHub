@@ -2,12 +2,16 @@ let container =
 document.querySelector('.markdown-body')
 
 if (container) {
+
 let current = { index: 0, Li: '' },
     isClick = false,
+    listHeight = [],
+    calculateCurrentIndex,
     titleArr = container.querySelectorAll('h1,h2,h3,h4,h5,h6'),
     tableOfContent = document.createElement('ul'),
-    initScrollHeight = titleArr[0].getBoundingClientRect().top / 1.3
+    initScrollHeight = titleArr[0].getBoundingClientRect().top - document.querySelector('div').getBoundingClientRect().top - 200
 
+console.log('initScrollHeight', initScrollHeight)
 tableOfContent.className = 'table-of-content'
 
 function tableOfContentStart() {
@@ -25,50 +29,8 @@ function tableOfContentStart() {
     /* 页面内容和TOC目录同步滚动 */
     syncScroll(tableOfContent)
 
-    /* 初始化样式 */
-    calculateCurrentIndex(document.body.scrollTop) // 初始化 
-
     new Drag('.table-of-content-wrap')
 
-}
-
-/* 把两个标题之间的内容长度算出来 */
-const calculateHeight = f => {
-    let listHeight = []
-    let height = 0
-    let oldReactTop = titleArr[0].getBoundingClientRect().top
-
-    titleArr.forEach(ele => {
-        let react = ele.getBoundingClientRect()
-        height += react.top - oldReactTop
-        oldReactTop = react.top
-        listHeight.push(height)
-    })
-
-    return listHeight
-}
-
-const listHeight = calculateHeight()
-
-console.log(listHeight)
-
-/* 计算当前滚动内容可视区域的index */
-const calculateCurrentIndex = scrollY => {
-
-    for (let i = 0; i < listHeight.length; i++) {
-        let preHeight = listHeight[i]
-        let nextHeight = listHeight[i + 1]
-
-        if (scrollY < listHeight[0]) {
-            current.index = 0
-            return
-        }
-        if ((!nextHeight) || (scrollY >= preHeight && scrollY < nextHeight)) {
-            console.log(i)
-            current.index = i
-            return
-        }
-    }
 }
 
 /* 获取页面所有的标题然后拼接成字符串 */
@@ -86,10 +48,13 @@ const getTitleStr = element => {
 
 /* 页面滚动时候，tableOfContent也跟随者滚动，同步滚动 */
 function syncScroll(element) {
+    /* 初始化当前样式，默认是第一个 */
+    scrollStyle(element, current.index)
 
     /* 数据监测 */
     Object.defineProperty(current, 'index', {
         set(value) {
+            console.log('value', value)
             scrollStyle(element, value)
         }
 
@@ -99,7 +64,7 @@ function syncScroll(element) {
     document.addEventListener('scroll', throttle(e => {
         /* 点击时候也会触发滚动条事件 */
         if (!isClick) {
-            calculateCurrentIndex(document.body.scrollTop)
+            calculateCurrentIndex(document.body.scrollTop - initScrollHeight)
         }
         isClick = false
 
@@ -173,9 +138,11 @@ function clickStyle(element) {
         }
 
         /* 隐式转换 */
-        document.body.scrollTop = listHeight[+e.target.getAttribute('index')] + initScrollHeight
         isClick = true
-            /* 求出LI里面嵌套了几层UL */
+
+        document.body.scrollTop = listHeight[+e.target.getAttribute('index')] + initScrollHeight
+
+        /* 求出LI里面嵌套了几层UL */
         const cascad = getCascad()(e.target)
 
         /* 如果是第一层的li，这个才能控制菜单栏的展开与收缩*/
@@ -279,5 +246,52 @@ function setStyle() {
         }
     }
 }
-tableOfContentStart()
+
+/* 等图片全部加载完成再加载TOC，防止图片未加载完成造成内容坍塌 */
+imagesLoaded(container, { background: true }, function() {
+
+    /* 把两个标题之间的内容长度算出来 */
+    const calculateHeight = f => {
+        let listHeight = []
+        let height = 0
+        let oldReactTop = titleArr[0].getBoundingClientRect().top
+
+        titleArr.forEach(ele => {
+            let react = ele.getBoundingClientRect()
+            height += react.top - oldReactTop
+            oldReactTop = react.top
+            listHeight.push(height)
+        })
+
+        return listHeight
+    }
+
+    listHeight = calculateHeight()
+
+    /* 计算当前滚动内容可视区域的index */
+    calculateCurrentIndex = scrollY => {
+
+        for (let i = 0; i < listHeight.length; i++) {
+            let preHeight = listHeight[i]
+            let nextHeight = listHeight[i + 1]
+
+            if (scrollY < listHeight[0]) {
+                current.index = 0
+                return
+            }
+            if ((!nextHeight) || (scrollY >= preHeight && scrollY < nextHeight)) {
+                console.log('current.index', i)
+                current.index = i
+                return
+            }
+        }
+    }
+
+    /* 初始化样式 */
+    calculateCurrentIndex(document.body.scrollTop)
+
+    /* 显示TOC目录导航 */
+    tableOfContentStart()
+})
+
 }

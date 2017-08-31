@@ -1,5 +1,4 @@
-;
-(function() {
+!(function() {
     // 这是一个私有属性，不需要被实例访问
     var transform = getTransform();
 
@@ -31,10 +30,10 @@
 
         // 用来获取当前元素的位置信息，注意与之前的不同之处
         getPosition: function() {
-            var pos = {x: 0, y: 0};
-            if(transform) {
+            var pos = { x: 0, y: 0 };
+            if (transform) {
                 var transformValue = this.getStyle(transform);
-                if(transformValue == 'none') {
+                if (transformValue == 'none') {
                     this.elem.style[transform] = 'translate(0, 0)';
                 } else {
                     var temp = transformValue.match(/-?\d+/g);
@@ -44,7 +43,7 @@
                     }
                 }
             } else {
-                if(this.getStyle('position') == 'static') {
+                if (this.getStyle('position') == 'static') {
                     this.elem.style.position = 'relative';
                 } else {
                     pos = {
@@ -59,8 +58,8 @@
 
         // 用来设置当前元素的位置
         setPostion: function(pos) {
-            if(transform) {
-                this.elem.style[transform] = 'translate('+ pos.x +'px, '+ pos.y +'px)';
+            if (transform) {
+                this.elem.style[transform] = 'translate(' + pos.x + 'px, ' + pos.y + 'px)';
             } else {
                 this.elem.style.left = pos.x + 'px';
                 this.elem.style.top = pos.y + 'px';
@@ -71,6 +70,7 @@
         setDrag: function() {
             var self = this;
             this.elem.addEventListener('mousedown', start, false);
+
             function start(event) {
                 self.startX = event.pageX;
                 self.startY = event.pageY;
@@ -114,8 +114,8 @@
             i = 0,
             len = transformArr.length;
 
-        for(; i < len; i++)  {
-            if(transformArr[i] in divStyle) {
+        for (; i < len; i++) {
+            if (transformArr[i] in divStyle) {
                 return transform = transformArr[i];
             }
         }
@@ -126,4 +126,3 @@
     // 一种对外暴露的方式
     window.Drag = Drag;
 })();
-

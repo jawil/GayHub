@@ -36,6 +36,7 @@
             "scripts/libs/axios.js",
             "scripts/libs/clipboard.js",
             "scripts/libs/draggabilly.js",
+            "scripts/libs/imagesloaded.js",
             "scripts/utils/throttle.js",
             "scripts/utils/parentNotRoll.js",
             "scripts/utils/generatePage.js",
