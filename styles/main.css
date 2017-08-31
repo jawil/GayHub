@@ -15,6 +15,11 @@
     background-color: #fff;
     width: 300px;
     border: 1px solid #aaa;
+    display: none;
+}
+
+.table-of-content-wrap:hover {
+    display: block!important;
 }
 
 .table-of-content {

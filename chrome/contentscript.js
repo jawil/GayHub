@@ -1,5 +1,5 @@
 let container =
-    document.querySelector('.markdown-body')
+    document.querySelectorAll('.markdown-body,.wiki-wrapper')[0]
 
 if (container) {
 
@@ -290,8 +290,17 @@ if (container) {
         /* 初始化样式 */
         calculateCurrentIndex(document.body.scrollTop)
 
-        /* 显示TOC目录导航 */
+        /* 如果当前滚动条超过页面一半，显示TOC目录导航 */
         tableOfContentStart()
+
+        document.addEventListener('scroll', throttle(e => {
+            let displayStatus = (document.body.scrollTop >= window.screen.height) ?
+                'block' : 'none'
+
+            document.querySelector('.table-of-content-wrap').style.display = displayStatus
+        }, 500), false)
+
+
     })
 
 }
