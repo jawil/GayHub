@@ -40,16 +40,19 @@ const selectorStr = function(obj) {
 }(webClassContainer)
 
 
-let container = document.querySelectorAll(selectorStr)[0]
 
 /* 兼容掘金，掘金网站的dom元素只能用load事件才能正确获取到 */
 window.addEventListener('load', e => {
 
-    container = document.querySelectorAll(selectorStr)[0]
+    let container = document.querySelectorAll(selectorStr)[0]
 
-    if (container.querySelectorAll(options.title).length) {
+    if (container && container.querySelectorAll(options.title).length) {
+
         TOC(container)
+
     }
+
+
 
     /* github进入issue界面并不会刷新页面，ajax异步局部渲染都存在这个问题 */
     const hackGithub = function() {
