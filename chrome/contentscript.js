@@ -47,9 +47,38 @@ window.addEventListener('load', e => {
 
     container = document.querySelectorAll(selectorStr)[0]
 
-    if (container) {
+    if (container.querySelectorAll(options.title).length) {
         TOC(container)
     }
+
+    /* github进入issue界面并不会刷新页面，ajax异步局部渲染都存在这个问题 */
+    const hackGithub = function() {
+        let count = 0
+        document.addEventListener('scroll', throttle(e => {
+
+            if (document.querySelectorAll(selectorStr).length) {
+
+                if (container.innerHTML !== document.querySelectorAll(selectorStr)[0].innerHTML) {
+
+                    container = document.querySelectorAll(selectorStr)[0]
+
+                    if (document.querySelector(`.${options.classWrap}`)) {
+                        document.body.removeChild(document.querySelector(`.${options.classWrap}`))
+                    }
+
+                    TOC(container)
+                }
+
+            } else {
+
+                if (document.querySelector(`.${options.classWrap}`)) {
+                    count++ == 1 ? document.body.removeChild(document.querySelector(`.${options.classWrap}`)) : ''
+                }
+            }
+
+        }, 200), false)
+
+    }()
 
 }, false)
 
@@ -366,33 +395,3 @@ function TOC(container) {
     })
 
 }
-
-
-/* github进入issue界面并不会刷新页面，所以js不会重新加载 */
-const hackGithub = function() {
-    let count = 0
-    document.addEventListener('scroll', throttle(e => {
-
-        if (document.querySelectorAll(selectorStr).length) {
-
-            if (container.innerHTML !== document.querySelectorAll(selectorStr)[0].innerHTML) {
-
-                container = document.querySelectorAll(selectorStr)[0]
-
-                if (document.querySelector(`.${options.classWrap}`)) {
-                    document.body.removeChild(document.querySelector(`.${options.classWrap}`))
-                }
-
-                TOC(container)
-            }
-
-        } else {
-
-            if (document.querySelector(`.${options.classWrap}`)) {
-                count++ == 1 ? document.body.removeChild(document.querySelector(`.${options.classWrap}`)) : ''
-            }
-        }
-
-    }, 200), false)
-
-}()
