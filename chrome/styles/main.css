@@ -3,6 +3,11 @@
 /* github */
 
 
+/* 文件模块 */
+
+.js-file-line-container {
+    border: 1px solid red;
+}
 
 
 /* TOC模块 */
@@ -14,8 +19,8 @@
     z-index: 999;
     background-color: #fff;
     width: 300px;
-    border:  1px solid rgba(27,31,35,0.15);
-    box-shadow: 0 3px 12px rgba(27,31,35,0.15);
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    box-shadow: 0 3px 12px rgba(27, 31, 35, 0.15);
     border-radius: 5px;
     display: none;
 }

@@ -1,0 +1,16 @@
+{
+    "presets": ["es2015", "stage-2"],
+    "plugins": [
+        "transform-runtime",
+        /* 移除默认的严格模式 */
+        "transform-remove-strict-mode"
+
+    ],
+    "comments": false
+}
+
+/*
+什么是.babelrc文件呢？熟悉linux的同学一定知道，rc结尾的文件通常代表运行时自动加载的文件，配置等等的，类似bashrc,zshrc。同样babelrc在这里也是有同样的作用的，而且在babel6中，这个文件必不可少。
+里面可以对babel命令进行配置，以后在使用babel的cli的时候，可以少写一些配置
+还有一个env字段，可以对BABEL_ENV或者NODE_ENV指定的不同的环境变量，进行不同的编译操作
+*/

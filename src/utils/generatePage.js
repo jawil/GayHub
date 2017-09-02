@@ -1,5 +1,5 @@
 /* 生成tableOfContent的HTML */
-const generatetableOfContentHTML = function(titleArr, root) {
+export default function(titleArr, root) {
     let count = 0
 
     const tableOfContentWrap = document.createElement('div'),
@@ -10,7 +10,7 @@ const generatetableOfContentHTML = function(titleArr, root) {
     tableOfContentHeader.className = 'table-of-content-header'
     tableOfContentLink.href = 'https://github.com/jawil'
     tableOfContentLink.textContent = 'by jawil'
-    tableOfContentLink.target='_blank'
+    tableOfContentLink.target = '_blank'
     tableOfContentHeader.textContent = 'Table of Content'
     tableOfContentHeader.appendChild(tableOfContentLink)
     tableOfContentWrap.appendChild(tableOfContentHeader)

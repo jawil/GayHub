@@ -15,10 +15,10 @@
     ],
     "background": {
         "scripts": [
-            "chrome/background.js"
+            "scripts/background.js"
         ]
     },
-    "web_accessible_resources": [],
+    "web_accessible_resources": ["../package/dev/vs/editor/editor.main.js"],
 
     "browser_action": {
         "default_icon": "images/icon-16.png",
@@ -35,17 +35,8 @@
             "styles/main.css"
         ],
         "js": [
-            "scripts/libs/axios.js",
-            "scripts/libs/clipboard.js",
-            "scripts/libs/draggabilly.js",
-            "scripts/libs/imagesloaded.js",
-            "scripts/utils/throttle.js",
-            "scripts/utils/parentNotRoll.js",
-            "scripts/utils/generatePage.js",
-            "scripts/components/copySnippet.js",
-            "scripts/components/showAvatar.js",
-            "scripts/index.js",
-            "chrome/contentscript.js"
+            /* "package/dev/vs/loader.js", */
+            "scripts/contentscript.js"
         ],
         "run_at": "document_end",
         "all_frames": false

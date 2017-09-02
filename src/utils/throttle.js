@@ -1,6 +1,6 @@
 
 // 函数节流防抖
-function throttle(fn, interval = 250) {
+export default  function (fn, interval = 250) {
   let timer,
       firstTime = true
   return function() {

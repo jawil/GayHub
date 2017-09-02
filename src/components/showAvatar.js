@@ -1,4 +1,4 @@
-function showAvatar() {
+module.exports = function showAvatar() {
     let index = 0,
         userArr = [],
         userAvatar = {},

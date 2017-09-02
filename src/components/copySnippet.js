@@ -1,4 +1,6 @@
-function copySnippet() {
+import Clipboard from 'clipboard'
+
+module.exports = function copySnippet() {
 
     let copySnippets = document.querySelectorAll('pre')
 

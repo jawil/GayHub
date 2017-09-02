@@ -1,3 +1,9 @@
+import Drag from 'utils/draggabilly'
+import throttle from 'utils/throttle'
+import parentNotRoll from 'utils/parentNotRoll'
+import generatetableOfContentHTML from 'utils/generatePage'
+import imagesLoaded from 'imagesloaded'
+
 const webClassContainer = {
     github: ['.markdown-body', '.wiki-wrapper'],
     juejin: ['.entry-content']
@@ -39,8 +45,6 @@ const selectorStr = function(obj) {
 
 }(webClassContainer)
 
-
-
 /* 兼容掘金，掘金网站的dom元素只能用load事件才能正确获取到 */
 window.addEventListener('load', e => {
 
@@ -52,14 +56,12 @@ window.addEventListener('load', e => {
 
     }
 
-
-
     /* github进入issue界面并不会刷新页面，ajax异步局部渲染都存在这个问题 */
     const hackGithub = function() {
         let count = 0
         document.addEventListener('scroll', throttle(e => {
 
-            if (document.querySelectorAll(selectorStr).length) {
+            if (container && document.querySelectorAll(selectorStr).length) {
 
                 if (container.innerHTML !== document.querySelectorAll(selectorStr)[0].innerHTML) {
 
@@ -86,8 +88,7 @@ window.addEventListener('load', e => {
 }, false)
 
 
-
-function TOC(container) {
+export default function TOC(container) {
 
     let current = { index: 0, preIndex: -1, Li: '' },
         isClick = false,

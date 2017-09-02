@@ -1,91 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>1</title>
-    <meta charset="UTF-8">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        
-        h2 {
-            padding-left: 10px;
-        }
-        
-        h3 {
-            padding-left: 20px;
-        }
-        
-        h4 {
-            padding-left: 30px;
-        }
-        
-        h5 {
-            padding-left: 40px;
-        }
-    </style>
-</head>
-
-<body>
-    <script>
-        var str = 'h1h2h3h2h3h4h1h2h3h1h2h3h4h5h3h4h5h1h2h3h4h2'
-
-        function create(str, parent) {
-            var reg,
-                h = str[0] + str[1]
-
-            switch (h) {
-                case 'h1':
-                    reg = /h1.*?(?=(h1)|\b)/g
-                    break
-                case 'h2':
-                    reg = /h2.*?(?=(h2)|\b)/g
-                    break
-                case 'h3':
-                    reg = /h3.*?(?=(h3)|\b)/g
-                    break
-                case 'h4':
-                    reg = /h4.*?(?=(h4)|\b)/g
-                    break
-                case 'h5':
-                    reg = /h5.*?(?=(h5)|\b)/g
-                    break
-                case 'h6':
-                    reg = /h6.*?(?=(h6)|\b)/g
-                    break
-            }
-
-            var group = str.match(reg)
-
-            group.forEach((ele, index, array) => {
-
-                console.log(ele[0] + ele[1], 1)
-
-                var outLi = document.createElement('li')
-                outLi.textContent = ele[0] + ele[1]
-                parent.appendChild(outLi)
-
-                var ele = ele.substr(2) // "h3h4h5h3h4h5"
-
-                if (ele.length === 0) {
-                    
-                    return
-
-                } else {
-
-                    var oUl = document.createElement('ul')
-                    var oLi = document.createElement('li')
-                    outLi.appendChild(oUl)
-                    parent.appendChild(outLi)
-                    arguments.callee(ele, oUl)
-                }
-            })
-        }
-
-        create(str, document.body)
-    </script>
-</body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <script type="text/javascript" defer src="http://test.jijincar.com/defer/1.js"></script>
+  <script type="text/javascript" defer src="http://test.jijincar.com/defer/2.js"></script>
+  <script type="text/javascript" async src="http://test.jijincar.com/defer/3.js"></script>
+  <body>
+    <div class="">
+      hello world
+    </div>
+  </body>
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', e => {
+      console.log('DOMContentLoaded');
+    })
+    window.addEventListener('load', e => {
+      console.log('all loaded');
+    })
+  </script>
 
 </html>
