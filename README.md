@@ -7,7 +7,6 @@
    <a href="javscript:;"><img src="https://img.shields.io/badge/lastest_version-1.0.3-blue.svg"></a>
    <a target="_blank" href="javscript:;"><img src="https://img.shields.io/badge/download-_chrome_webstore-brightgreen.svg"></a>
    <a href="javscript:;"><img src="https://img.shields.io/badge/download-_crx-brightgreen.svg"></a>
-
 </p>
 
 ***
