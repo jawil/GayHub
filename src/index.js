@@ -20,22 +20,22 @@ if (window.location.pathname === '/') {
 }
 
 /* 复制代码 */
-if (document.querySelectorAll('pre').length) {
-    const copySnippet = require('components/copySnippet')
-        // mouseover只触发一次
-    const onceMouseover = function() {
-        let count = 0
-        return function() {
-            document.body.addEventListener('mouseover', e => {
-                if (e.target.nodeName !== 'PRE') {
-                    return
-                }
-                (count++ === 0 && !document.querySelector('.copy-icon')) ? copySnippet(): ''
-            }, false)
-        }
-    }()
-    onceMouseover()
-}
+const copySnippet = require('components/copySnippet')
+    // mouseover只触发一次
+const onceMouseover = function() {
+
+    let count = 0
+    return function() {
+        document.body.addEventListener('mouseover', e => {
+            if (e.target.nodeName !== 'PRE') {
+                return
+            }
+            (count++ === 0 && !document.querySelector('.copy-icon')) ? copySnippet(): ''
+        }, false)
+    }
+}()
+onceMouseover()
+
 
 /* TOC展示 */
 const webClassContainer = {
