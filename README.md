@@ -24,6 +24,14 @@
   
   ![](https://ws1.sinaimg.cn/large/006tKfTcgy1fj6c6lg3amj30go0jfwj6.jpg)
 
+- **图片全屏预览：**
+
+  `GitHub`默认点击图片会跳转到另一个窗口，体验非常差，为此添加了一个类似知乎点击图片放大的功能
+  
+  截图
+  
+  ![](https://ws3.sinaimg.cn/large/006tKfTcgy1fj6o9v44bdj30fh0hcjwv.jpg)
+
 - **复制代码：**
 
   方便的帮助用户实现点击复制代码的功能，轻轻一点，`demo`我有。
