@@ -10,8 +10,7 @@
     "homepage_url": "http://github.com/jawil",
     "permissions": [
         "tabs",
-        "*://github.com/*",
-        "*://juejin.im/*"
+        "*://github.com/*"
     ],
     "background": {
         "scripts": [
@@ -28,7 +27,6 @@
     "content_scripts": [{
         "matches": [
             "*://github.com/*",
-            "*://juejin.im/*",
             "*://gist.github.com/*"
         ],
         "css": [
