@@ -57,3 +57,10 @@ let container = document.querySelectorAll(selectorStr)[0]
 if (container && container.querySelectorAll('h1,h2,h3,h4,h5,h6').length) {
     const TOC = require('components/tableOfContent')
 }
+
+
+/* 点击放大图片 */
+if (container.querySelectorAll('img').length) {
+    const imageZoom = require('components/imageZoom')
+    imageZoom(container)
+}

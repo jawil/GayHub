@@ -32,11 +32,11 @@
             "*://gist.github.com/*"
         ],
         "css": [
-            "styles/main.css"
+            "styles/main.css",
+            "styles/zoom.css"
         ],
         "js": [
-            "scripts/contentscript.js",
-            "scripts/sideBar.js"
+            "scripts/contentscript.js"
         ],
         "run_at": "document_end",
         "all_frames": false

@@ -102,7 +102,6 @@
 
 .table-of-content>li>span:hover {
     border-left: 3px solid rgba(86, 61, 124, 0.5);
-    color: #563d7c;
     padding-left: calc(1em - 3px);
     text-decoration: none;
 }
@@ -120,6 +119,10 @@
     box-sizing: border-box;
 }
 
+.table-of-content span:hover{
+    background-color: #f3f3f3;
+    color:#009a61;
+}
 
 /* 所有二级LI下A标签样式 */
 
@@ -129,7 +132,6 @@
 
 .table-of-content li>ul>li>span:hover {
     border-left: 2px solid rgba(86, 61, 124, 0.5);
-    color: #563d7c;
     padding-left: calc(3em - 2px);
     text-decoration: none;
 }
@@ -143,7 +145,6 @@
 
 .table-of-content li>ul>li>ul>li>span:hover {
     border-left: 2px solid rgba(86, 61, 124, 0.5);
-    color: #563d7c;
     padding-left: calc(4em - 2px);
     text-decoration: none;
 }
@@ -157,7 +158,6 @@
 
 .table-of-content li>ul>li>ul>li>ul>li>span:hover {
     border-left: 2px solid rgba(86, 61, 124, 0.5);
-    color: #563d7c;
     padding-left: calc(5em - 2px);
     text-decoration: none;
 }
@@ -171,7 +171,6 @@
 
 .table-of-content li>ul>li>ul>li>ul>li>ul>li>span:hover {
     border-left: 2px solid rgba(86, 61, 124, 0.5);
-    color: #563d7c;
     padding-left: calc(6em - 2px);
     text-decoration: none;
 }
@@ -185,7 +184,6 @@
 
 .table-of-content li>ul>li>ul>li>ul>li>ul>li>ul>li>span:hover {
     border-left: 2px solid rgba(86, 61, 124, 0.5);
-    color: #563d7c;
     padding-left: calc(7em - 2px);
     text-decoration: none;
 }

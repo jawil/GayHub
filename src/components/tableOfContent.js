@@ -18,15 +18,19 @@ const options = {
 const styles = {
     childSpan(cascad, flag) {
         return `border-left: 2px solid #563d7c;
-                color: #563d7c;
+                color: #009a61;
                 padding-left: calc(${2 + cascad - flag}em - 2px);
-                text-decoration: none;`
+                text-decoration: none;
+                background-color: #f3f3f3;
+                `
     },
 
     rootSpan: ` border-left: 3px solid #563d7c;
-                color: #563d7c;
+                color: #009a61;
                 padding-left: calc(1em - 3px);
-                text-decoration: none;`,
+                text-decoration: none;
+                background-color: #f3f3f3;
+                `,
 
     childLi: `max-height: 26px;
                 transition: all 0.5s ease-out;`,
