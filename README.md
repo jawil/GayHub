@@ -5,7 +5,6 @@
 <p align="center">为了达到完美的GitHub阅览体验这个小目标 ，让大家更方便的体验Github，因此诞生了GayHub。</p>
 <p align="center">
    <a href="javscript:;"><img src="https://img.shields.io/badge/lastest_version-1.0.3-blue.svg"></a>
-   <a target="_blank" href="javscript:;"><img src="https://img.shields.io/badge/website-_simpread.ksria.com-1DBA90.svg"></a>
    <a target="_blank" href="javscript:;"><img src="https://img.shields.io/badge/download-_chrome_webstore-brightgreen.svg"></a>
    <a href="javscript:;"><img src="https://img.shields.io/badge/download-_crx-brightgreen.svg"></a>
 
