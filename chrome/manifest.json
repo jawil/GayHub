@@ -34,7 +34,8 @@
             "styles/zoom.css"
         ],
         "js": [
-            "scripts/contentscript.js"
+            "scripts/contentscript.js",
+            "scripts/sideBar.js"
         ],
         "run_at": "document_end",
         "all_frames": false
