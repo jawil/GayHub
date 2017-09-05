@@ -1,0 +1,36 @@
+@charset 'utf-8';
+.side-bar-wrap {
+    position: fixed;
+    top: 3%;
+    left: 20px;
+    z-index: 999;
+    background-color: #fff;
+    width: 300px;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    box-shadow: 0 3px 12px rgba(27, 31, 35, 0.15);
+    border-radius: 5px;
+    overflow: auto;
+    height: 600px;
+}
+
+.side-bar-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+
+.side-bar-wrap li {
+  list-style: none;
+  cursor: pointer;
+  line-height: 22px;
+  max-height: 22px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: all 1s ease-out;
+  font-size: 12px;
+}
+
+.side-bar-wrap li:hover {
+  max-height: 600px;
+  transition: all 3s ease-out;
+}

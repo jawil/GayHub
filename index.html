@@ -1,13 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title></title>
+
+<head>
+    <title>test</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="chrome/styles/zoom.css" rel="stylesheet">
-    <script src="chrome/scripts/zoom.js"></script>
-  </head>
-  <body>
-  <img src="chrome/images/icon-128.png" alt="" data-action="zoom">
-  </body>
+</head>
+
+<body>
+
+    <script>
+        /* 获取参数 */
+        const oParam = function() {
+            const pathname = "/jawil/github-extension"
+            const parseParam = pathname.replace(/^\//, '').split('/')
+            const oParam = {
+                userName: '',
+                reposName: '',
+                branch: ''
+            }
+            oParam.userName = parseParam[0]
+            oParam.reposName = parseParam[1]
+            oParam.branch = parseParam[3] ? `trees/${parseParam[3]}` : 'trees/master'
+            return oParam
+        }()
+
+        /* 获取所有的文件名 */
+        const filePathName = function(callback) {
+            const API = 'https://api.github.com/repos/'
+            let parmArr = []
+            for (let attr in oParam) {
+                parmArr.push(oParam[attr])
+            }
+            parmArr.splice(2, 0, 'git')
+            const getPathUrl = `${API}${parmArr.join('/')}?recursive=1`
+            fetch('./data.json', {
+                method: 'get'
+            }).then(response => {
+                return response.json()
+            }).then(data => {
+                callback(data.tree, document.body)
+            })
+        }(generatePath)
+
+        let count = 0
+        let isHaveTree = false
+            /* 组合拼装生成想要的嵌套格式 */
+        function generatePath(files, parent) {
+
+            count++
+            /* 筛选出第一层的tree和blob*/
+            files.forEach((ele, i) => {
+                    let oOuterLi = document.createElement('li')
+
+                    const cascading = ele.path.split('/').length
+
+                    if (count === cascading && ele.type === 'blob') {
+
+                        oOuterLi.textContent = ele.path
+                        parent.appendChild(oOuterLi)
+
+                    }
+
+                    if (ele.type === 'tree' && count === cascading) {
+
+                        isHaveTree = true
+
+                        oOuterLi.textContent = ele.path
+                        parent.appendChild(oOuterLi)
+
+                        let oUl = document.createElement('ul')
+                        oOuterLi.appendChild(oUl)
+
+                        const newFiles = function() {
+                            let filterArr = []
+                            files.forEach((item, index) => {
+
+                                if (new RegExp(`^${ele.path}`).test(item.path)) {
+
+                                    const cascad = item.path.split('/').length
+
+                                    if (cascad === count + 1) {
+                                        filterArr.push({
+                                            path: item.path
+                                        })
+                                    }
+
+                                }
+                            })
+
+                           
+                        generatePath(filterArr, oUl)
+                            
+
+                        }()
+
+
+                    }
+
+                    if (!isHaveTree) {
+                        return
+                    }
+
+
+                }
+
+
+            )
+
+        }
+    </script>
+</body>
+
 </html>

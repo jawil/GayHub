@@ -31,6 +31,7 @@
         ],
         "css": [
             "styles/main.css",
+            "styles/sidebar.css",
             "styles/zoom.css"
         ],
         "js": [
