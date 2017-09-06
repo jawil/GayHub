@@ -15,6 +15,15 @@
 * [Chrome 应用商店]() 或者 [离线下载]() 或者 [下载测试版]()
 
 #### 主要功能一览：
+- **文件目录树：**
+
+给`github`插上翅膀，让你轻松切换文件,方便阅读，把`Vscode`的精美的侧边栏完美移植到`github`上，颜值颇高。
+
+截图：
+
+![](https://ws4.sinaimg.cn/large/006tNc79gy1fja57hmcomj30gn0k6afi.jpg)
+
+ 
 - **TOC导航：**  
 
   为了清晰明了的概览整个`GitHub`文档、`issure`、`wiki`的结构层次，为此开发了这个强大的功能，支持任意层次嵌套，能完美解析内容的所有嵌套标题，性能优越。
@@ -45,13 +54,6 @@
 
 ![](https://ws4.sinaimg.cn/large/006tKfTcgy1fj6ceezg31j30go0iqjw8.jpg)
 
-- **文件树：**
-
-模拟Vscode的一款侧边栏插件，还在开发中。
-
-截图：
- 
- 还在开发中
 
 #### 许可：
 [![license-badge]][license-link]
