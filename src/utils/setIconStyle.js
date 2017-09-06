@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Pjax from 'pjax'
 import icons from '../icons.json'
 console.log(2222222)
 const iconDefinitions = icons.iconDefinitions,
@@ -11,21 +12,22 @@ const pjax = function(ele) {
     ele.addEventListener('click', e => {
         e.preventDefault()
         let pjaxContainer = document.querySelector('#js-repo-pjax-container')
-        if (pjaxContainer) {
-          
-            axios.get(`${ele.href}?_pjax=%23js-repo-pjax-container%2C+.context-loader-container%2C+%5Bdata-pjax-container%5D`)
-                .then(response => {
-                    console.log(response)
-                })
-                .catch(error => {
-                    console.log(error)
-                });
 
-        } else {
 
-        }
+        axios.get(ele.href)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
 
-        console.log(ele.href)
+        new Pjax({
+            elements: 'div[data-pjax-container]',
+            selectors: ['#js-repo-pjax-container', '.context-loader-container'],
+            callback: {}
+        })
+
     }, false)
 }
 

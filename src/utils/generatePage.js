@@ -27,16 +27,35 @@ function generatePath(files, parent, url) {
                 /* 设置相对应的图标 */
                 setIconCss(ele, iconI)
                 hrefA.textContent = ele.path.split('/').pop()
+                outerLi.setAttribute('type', ele.type)
+
                 outerLi.appendChild(iconI)
                 outerLi.appendChild(hrefA)
-                parent.appendChild(outerLi)
+
+                if (ele.type === 'blob') {
+                    parent.appendChild(outerLi)
+                } else {
+                    const firstBlobChild = function() {
+                        const childrenArr = Array.from(parent.children)
+                        for (let eleLi of childrenArr) {
+
+                            if (eleLi.getAttribute('type') === 'blob') {
+                                return eleLi
+                            }
+
+                        }
+                        return null
+                    }()
+                    parent.insertBefore(outerLi, firstBlobChild)
+                }
 
                 /* 求出tree文件下所有的文件 */
                 if (ele.type == 'tree') {
 
                     let oSpan = document.createElement('span')
                     outerLi.insertBefore(oSpan, iconI)
-                        /* 默认文件夹都是收缩的 */
+
+                    /* 默认文件夹都是收缩的 */
                     outerLi.setAttribute('onoff', 'off')
 
                     serClickCss(hrefA, ele, iconI)
