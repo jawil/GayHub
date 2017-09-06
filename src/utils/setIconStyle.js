@@ -1,21 +1,32 @@
+import axios from 'axios'
 import icons from '../icons.json'
-
+console.log(2222222)
 const iconDefinitions = icons.iconDefinitions,
     folderNames = icons.folderNames,
     folderNamesExpanded = icons.folderNamesExpanded,
     iconNames = Object.assign(icons.fileExtensions, icons.fileNames, icons.languageIds)
 
-/* 当前页面获取所有的文件类型 */
-const getAllFiletype = function(files) {
-    let allFileTypes = []
+/* 点击页面请求数据，防止刷新 */
+const pjax = function(ele) {
+    ele.addEventListener('click', e => {
+        e.preventDefault()
+        let pjaxContainer = document.querySelector('#js-repo-pjax-container')
+        if (pjaxContainer) {
+          
+            axios.get(`${ele.href}?_pjax=%23js-repo-pjax-container%2C+.context-loader-container%2C+%5Bdata-pjax-container%5D`)
+                .then(response => {
+                    console.log(response)
+                })
+                .catch(error => {
+                    console.log(error)
+                });
 
-    files.forEach(ele => {
-        let type = ele.type === 'blob' ? ele.path.split('.').pop() : 'folder'
-        allFileTypes.push(type)
-    })
+        } else {
 
-    allFileTypes = [...new Set(allFileTypes)]
-    return allFileTypes
+        }
+
+        console.log(ele.href)
+    }, false)
 }
 
 /* 设置所有图标样式 */
@@ -48,7 +59,7 @@ const serClickCss = function(hrefA, ele, child) {
 
     hrefA.addEventListener('click', e => {
         e.stopPropagation()
-        console.log(111)
+
         let onoff = hrefA.parentNode.getAttribute('onoff') === 'on' ? 'off' : 'on'
 
         let oPath = {}
@@ -70,4 +81,4 @@ const serClickCss = function(hrefA, ele, child) {
     })
 }
 
-export { getAllFiletype, setIconCss, serClickCss }
+export { pjax, setIconCss, serClickCss }

@@ -43,8 +43,8 @@
 }
 
 .side-bar-wrap li[onoff=on] {
-    max-height: 600px;
-    transition: all 2s ease-out;
+    max-height: 6666px;
+    transition: all 3s ease-out;
 }
 
 .side-bar-wrap i {
@@ -57,7 +57,7 @@
 .side-bar-wrap a {
     vertical-align: middle;
     display: inline-block;
-    width:100%;
+    width: 100%;
     margin-left: 5px;
     color: #0366d6;
 }

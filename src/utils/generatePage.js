@@ -1,5 +1,5 @@
 /* 设置侧边栏样式模块 */
-import { setIconCss, serClickCss } from 'utils/setIconStyle'
+import { setIconCss, serClickCss, pjax } from 'utils/setIconStyle'
 
 /* 生成侧边栏sidebar的HTML */
 function generatePath(files, parent, url) {
@@ -21,6 +21,7 @@ function generatePath(files, parent, url) {
 
                 if (ele.type === 'blob') {
                     hrefA.href = `${url}/${ele.path}`
+                    pjax(hrefA)
                 }
 
                 /* 设置相对应的图标 */
