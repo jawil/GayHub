@@ -1,9 +1,10 @@
 @charset 'utf-8';
 .side-bar-wrap {
     position: fixed;
-    top: 3%;
-    left: 20px;
+    top: 10%;
+    right: 20px;
     z-index: 999;
+    padding: 1em;
     background-color: #fff;
     width: 300px;
     border: 1px solid rgba(27, 31, 35, 0.15);
@@ -11,26 +12,76 @@
     border-radius: 5px;
     overflow: auto;
     height: 600px;
+    color: #0366d6;
+    background-color: #fafbfc;
 }
 
 .side-bar-wrap::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
-
 
 .side-bar-wrap li {
-  list-style: none;
-  cursor: pointer;
-  line-height: 22px;
-  max-height: 22px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  transition: all 1s ease-out;
-  font-size: 12px;
+    position: relative;
+    list-style: none;
+    cursor: pointer;
+    line-height: 22px;
+    max-height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: all 0.5s ease-out;
+    font-size: 14px;
+    padding-left: 1.3em;
 }
 
-.side-bar-wrap li:hover {
-  max-height: 600px;
-  transition: all 3s ease-out;
+.side-bar-wrap li a:hover {
+    background-color: #f3f3f3;
+}
+
+.side-bar-wrap li a:hover {
+    color: #009a61!important;
+}
+
+.side-bar-wrap li[onoff=on] {
+    max-height: 600px;
+    transition: all 2s ease-out;
+}
+
+.side-bar-wrap i {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+.side-bar-wrap a {
+    vertical-align: middle;
+    display: inline-block;
+    width:100%;
+    margin-left: 5px;
+    color: #0366d6;
+}
+
+.side-bar-wrap a:hover {
+    text-decoration: none;
+}
+
+.side-bar-wrap span {
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    vertical-align: middle;
+    position: absolute;
+    top: 5px;
+    left: 0;
+}
+
+.side-bar-wrap li[onoff=on] span:first-child {
+    background: url(chrome-extension://__MSG_@@extension_id__/icons/disexpend.png);
+    background-size: cover;
+}
+
+.side-bar-wrap li[onoff=off] span:first-child {
+    background: url(chrome-extension://__MSG_@@extension_id__/icons/expend.png);
+    background-size: cover;
 }

@@ -1,7 +1,7 @@
 import Drag from 'utils/draggabilly'
 import throttle from 'utils/throttle'
 import parentNotRoll from 'utils/parentNotRoll'
-import generatetableOfContentHTML from 'utils/generatePage'
+import { generatetableOfContentHTML } from 'utils/generatePage'
 import imagesLoaded from 'imagesloaded'
 
 const webClassContainer = {
@@ -51,42 +51,42 @@ const selectorStr = function(obj) {
 
 /* 兼容掘金，掘金网站的dom元素只能用load事件才能正确获取到 */
 
-    let container = document.querySelectorAll(selectorStr)[0]
+let container = document.querySelectorAll(selectorStr)[0]
 
-    if (container && container.querySelectorAll(options.title).length) {
+if (container && container.querySelectorAll(options.title).length) {
 
-        TOC(container)
+    TOC(container)
 
-    }
+}
 
-    /* github进入issue界面并不会刷新页面，ajax异步局部渲染都存在这个问题 */
-    const hackGithub = function() {
-        let count = 0
-        document.addEventListener('scroll', throttle(e => {
+/* github进入issue界面并不会刷新页面，ajax异步局部渲染都存在这个问题 */
+const hackGithub = function() {
+    let count = 0
+    document.addEventListener('scroll', throttle(e => {
 
-            if (container && document.querySelectorAll(selectorStr).length) {
+        if (container && document.querySelectorAll(selectorStr).length) {
 
-                if (container.innerHTML !== document.querySelectorAll(selectorStr)[0].innerHTML) {
+            if (container.innerHTML !== document.querySelectorAll(selectorStr)[0].innerHTML) {
 
-                    container = document.querySelectorAll(selectorStr)[0]
-
-                    if (document.querySelector(`.${options.classWrap}`)) {
-                        document.body.removeChild(document.querySelector(`.${options.classWrap}`))
-                    }
-
-                    TOC(container)
-                }
-
-            } else {
+                container = document.querySelectorAll(selectorStr)[0]
 
                 if (document.querySelector(`.${options.classWrap}`)) {
-                    count++ == 1 ? document.body.removeChild(document.querySelector(`.${options.classWrap}`)) : ''
+                    document.body.removeChild(document.querySelector(`.${options.classWrap}`))
                 }
+
+                TOC(container)
             }
 
-        }, 200), false)
+        } else {
 
-    }()
+            if (document.querySelector(`.${options.classWrap}`)) {
+                count++ == 1 ? document.body.removeChild(document.querySelector(`.${options.classWrap}`)) : ''
+            }
+        }
+
+    }, 200), false)
+
+}()
 
 export default function TOC(container) {
 

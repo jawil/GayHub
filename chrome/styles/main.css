@@ -1,15 +1,5 @@
 @charset 'utf-8';
 
-/* github */
-
-
-/* 文件模块 */
-
-.js-file-line-container {
-    border: 1px solid red;
-}
-
-
 /* TOC模块 */
 
 .table-of-content-wrap {

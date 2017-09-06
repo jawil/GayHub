@@ -17,7 +17,7 @@
             "scripts/background.js"
         ]
     },
-    "web_accessible_resources": ["../package/dev/vs/editor/editor.main.js"],
+    "web_accessible_resources": ["icons/*.png"],
 
     "browser_action": {
         "default_icon": "images/icon-16.png",
@@ -35,8 +35,7 @@
             "styles/zoom.css"
         ],
         "js": [
-            "scripts/contentscript.js",
-            "scripts/sideBar.js"
+            "scripts/contentscript.js"
         ],
         "run_at": "document_end",
         "all_frames": false
