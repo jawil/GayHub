@@ -122,7 +122,7 @@ body {
 
 .side-bar-main li[onoff=on] {
     max-height: 6666px;
-    transition: all 3s ease-out;
+    transition: all 5s ease-out;
 }
 
 .side-bar-main i {

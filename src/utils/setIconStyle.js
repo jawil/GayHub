@@ -42,6 +42,51 @@ const getCurrentPath = function() {
     return currentPath
 }
 
+/* 监听URL变化，改变侧边栏对应的样式变化 */
+const urlChangeEvent = function() {
+
+    const fileWrap = document.querySelectorAll('.file-wrap,.file')
+
+    if (fileWrap.length) {
+
+        document.addEventListener('click', e => {
+
+            if (e.target.nodeName === 'A' && !e.target.getAttribute('data-pjax')) {
+                const href = e.target.href
+
+                let sideBarWrap = document.querySelector('.side-bar-wrap')
+
+                let eleAs = sideBarWrap.querySelectorAll('a')
+
+                let targetA = ''
+
+                for (let ele of eleAs) {
+                    if (ele.getAttribute('data-href') === href) {
+                        targetA = ele
+                        break
+                    }
+                }
+        
+                let sideBarContainer = document.querySelector('.side-bar-main')
+                
+                sideBarContainer.querySelectorAll('a').forEach(ele => {
+                    ele.setAttribute('isClicked', false)
+                })
+                
+                if (targetA.getAttribute('type') === 'blob') {
+                    targetA.setAttribute('isClicked', true)
+                } else {
+                    setTimeout(f => {    
+                        targetA.parentNode.setAttribute('onoff', 'on')
+                    }, 1000)
+
+                }
+
+            }
+        }, false)
+    }
+
+}
 
 const toggleBtn = function() {
     let oBtn = document.querySelector('.toggle-btn')
@@ -110,5 +155,6 @@ export {
     setClickTreeCss,
     setClickBlobCss,
     getCurrentPath,
-    toggleBtn
+    toggleBtn,
+    urlChangeEvent
 }

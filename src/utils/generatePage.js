@@ -2,7 +2,7 @@
 import { setIconCss, setClickTreeCss, setClickBlobCss, getCurrentPath } from 'utils/setIconStyle'
 
 /* 生成侧边栏sidebar的HTML */
-function generatePath(files, parent, url, oParam) {
+function generatePath(files, parent, oParam) {
 
     let currentPath = getCurrentPath()
 
@@ -56,9 +56,13 @@ function generatePath(files, parent, url, oParam) {
                 outerLi.appendChild(iconI)
                 outerLi.appendChild(hrefA)
 
-                if (ele.type === 'blob') {
+                const url = `${oParam.userName}/${oParam.reposName}/${ele.type}/${oParam.branch}`
 
-                    hrefA.href = `${url}/${ele.path}`
+                hrefA.setAttribute('data-href',
+                    `${window.location.protocol}//${window.location.host}/${url}/${ele.path}`)
+
+                if (ele.type === 'blob') {
+                    hrefA.href = `/${url}/${ele.path}`
                     hrefA.setAttribute('type', 'blob')
                     setClickBlobCss(hrefA)
 

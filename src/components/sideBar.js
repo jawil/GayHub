@@ -2,7 +2,7 @@
 import { generatePath } from 'utils/generatePage'
 import parentNotRoll from 'utils/parentNotRoll'
 import Pjax from 'pjax'
-import { toggleBtn } from 'utils/setIconStyle'
+import { toggleBtn,urlChangeEvent } from 'utils/setIconStyle'
 
 module.exports = function() {
     const fileWrap = document.querySelectorAll('.file-wrap,.file'),
@@ -22,7 +22,7 @@ module.exports = function() {
             }
             oParam.userName = parseParam[0]
             oParam.reposName = parseParam[1]
-            oParam.type = parseParam[2] ? `${parseParam[2]}` : 'trees'
+            oParam.type = parseParam[2] ? `${parseParam[2]}` : 'tree'
             oParam.branch = parseParam[3] ? `${parseParam[3]}` : 'master'
             return oParam
         }()
@@ -35,7 +35,6 @@ module.exports = function() {
             for (let attr in oParam) {
                 parmArr.push(oParam[attr])
             }
-            const posiUrl = `/${parmArr.join('/').replace('trees','blob')}`
 
             parmArr.splice(2, 1, 'git/trees')
 
@@ -46,14 +45,15 @@ module.exports = function() {
                 return response.json()
             }).then(data => {
 
-                callback(data.tree, document.body, posiUrl, oParam)
+                callback(data.tree, document.body, oParam)
 
                 /* 局部刷新页面 */
                 new Pjax({
-                    elements: "a[type=blob]",
+                    elements: "a",
                     selectors: ['#js-repo-pjax-container', '.context-loader-container', '[data-pjax-container]']
                 })
                 toggleBtn()
+                urlChangeEvent()
                 parentNotRoll('.side-bar-main')
 
             })
