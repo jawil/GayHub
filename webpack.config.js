@@ -9,7 +9,7 @@ const BUILD_PATH = path.resolve(ROOT_PATH, 'chrome/scripts')
 module.exports = {
     devtool: 'cheap-module-eval-source-map',
     entry: {
-        app: './src/test.js'
+        app: './src/index.js'
     },
     output: {
         path: BUILD_PATH, // 编译到当前目录

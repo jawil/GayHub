@@ -2,18 +2,13 @@
 import { generatePath } from 'utils/generatePage'
 import parentNotRoll from 'utils/parentNotRoll'
 import Pjax from 'pjax'
+import { toggleBtn } from 'utils/setIconStyle'
 
-export default function() {
+module.exports = function() {
     const fileWrap = document.querySelectorAll('.file-wrap,.file'),
         allFilesType = []
 
     if (fileWrap.length) {
-
-        let contentMain = document.querySelector('div[role=main]')
-        let react = contentMain.getBoundingClientRect().left
-
-        document.body.style.paddingLeft = Math.max((230 - react), 0) + 'px'
-
         /* 获取参数 */
         const oParam = function() {
             const pathname = window.location.pathname
@@ -58,9 +53,8 @@ export default function() {
                     elements: "a[type=blob]",
                     selectors: ['#js-repo-pjax-container', '.context-loader-container', '[data-pjax-container]']
                 })
-
+                toggleBtn()
                 parentNotRoll('.side-bar-main')
-
 
             })
         }(generatePath)

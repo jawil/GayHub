@@ -39,11 +39,32 @@ const getCurrentPath = function() {
         currentPath = parseParam.slice(4)
         currentPath = currentPath.length === 1 ? currentPath[0] : currentPath.join('/')
     }
-
     return currentPath
 }
 
 
+const toggleBtn = function() {
+    let oBtn = document.querySelector('.toggle-btn')
+    let sideBarWrap = document.querySelector('.side-bar-wrap')
+
+    let contentMain = document.querySelector('.repository-content')
+    let react = contentMain.getBoundingClientRect().left
+
+    document.body.style.paddingLeft = Math.max((370 - react), 0) + 'px'
+
+    oBtn.addEventListener('click', e => {
+
+        let onoff = sideBarWrap.getAttribute('toggle') === 'off' ? 'on' : 'off'
+
+        if (onoff == 'on') {
+            document.body.style.paddingLeft = Math.max((370 - react), 0) + 'px'
+        } else {
+            document.body.style.paddingLeft = 0 + 'px'
+        }
+
+        sideBarWrap.setAttribute('toggle', onoff)
+    }, false)
+}
 
 const setClickBlobCss = function(hrefA) {
 
@@ -88,5 +109,6 @@ export {
     setIconCss,
     setClickTreeCss,
     setClickBlobCss,
-    getCurrentPath
+    getCurrentPath,
+    toggleBtn
 }
