@@ -1,35 +1,9 @@
-import axios from 'axios'
-import Pjax from 'pjax'
 import icons from '../icons.json'
-console.log(2222222)
+
 const iconDefinitions = icons.iconDefinitions,
     folderNames = icons.folderNames,
     folderNamesExpanded = icons.folderNamesExpanded,
     iconNames = Object.assign(icons.fileExtensions, icons.fileNames, icons.languageIds)
-
-/* 点击页面请求数据，防止刷新 */
-const pjax = function(ele) {
-    ele.addEventListener('click', e => {
-        e.preventDefault()
-        let pjaxContainer = document.querySelector('#js-repo-pjax-container')
-
-
-        axios.get(ele.href)
-            .then(response => {
-                console.log(response)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-
-        new Pjax({
-            elements: 'div[data-pjax-container]',
-            selectors: ['#js-repo-pjax-container', '.context-loader-container'],
-            callback: {}
-        })
-
-    }, false)
-}
 
 /* 设置所有图标样式 */
 const setIconCss = function(ele, iconELe) {
@@ -55,15 +29,42 @@ const setIconCss = function(ele, iconELe) {
     background-size: cover;`
 }
 
-/* 点击时候样式的变化 */
+/* 获取当前的文件名称 */
+const getCurrentPath = function() {
+    const pathname = window.location.pathname,
+        parseParam = pathname.replace(/^\//, '').split('/')
+    let currentPath = ''
 
-const serClickCss = function(hrefA, ele, child) {
+    if (parseParam[2]) {
+        currentPath = parseParam.slice(4)
+        currentPath = currentPath.length === 1 ? currentPath[0] : currentPath.join('/')
+    }
+
+    return currentPath
+}
+
+
+
+const setClickBlobCss = function(hrefA) {
+
+    hrefA.addEventListener('click', e => {
+        let sideBarWrap = document.querySelector('.side-bar-main')
+
+        sideBarWrap.querySelectorAll('a').forEach(ele => {
+            ele.setAttribute('isClicked', false)
+        })
+        hrefA.setAttribute('isClicked', true)
+    }, false)
+}
+
+
+/* 点击时候样式的变化 */
+const setClickTreeCss = function(hrefA, ele, child) {
 
     hrefA.addEventListener('click', e => {
         e.stopPropagation()
-
         let onoff = hrefA.parentNode.getAttribute('onoff') === 'on' ? 'off' : 'on'
-
+        let sideBarWrap = document.querySelector('.side-bar-main')
         let oPath = {}
         let typeName = ele.path.split('/').pop().toLocaleLowerCase()
 
@@ -83,4 +84,9 @@ const serClickCss = function(hrefA, ele, child) {
     })
 }
 
-export { pjax, setIconCss, serClickCss }
+export {
+    setIconCss,
+    setClickTreeCss,
+    setClickBlobCss,
+    getCurrentPath
+}
