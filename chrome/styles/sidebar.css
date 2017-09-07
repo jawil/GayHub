@@ -1,7 +1,9 @@
 @charset 'utf-8';
 body {
     transition: all 0.3s ease-out;
+    -webkit-overflow-scrolling: touch;
 }
+
 .side-bar-wrap {
     position: fixed;
     top: 10%;
