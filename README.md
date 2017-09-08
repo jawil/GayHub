@@ -69,7 +69,7 @@
 
 如果 `GayHub` 可以解决你在浏览 `GiuHub` 上痛点，提升`GitHub` 在 `Web` 端的阅读体验，可以请我喝杯咖啡，想必也是非常愉悦的事情。 😂 
 
-![支付](https://ws1.sinaimg.cn/large/006tNc79gy1fjc9xpe2kdj30lb0f9q96.jpg)
+![支付](http://ovycyj9pr.bkt.clouddn.com/QQ20170908-171714.png)
 
 #### 许可：
 [![license-badge]][license-link]
