@@ -47,7 +47,7 @@
   
   截图：
   
-  ![](https://ws2.sinaimg.cn/large/006tNc79gy1fjc8zyw773j30zf0l1qcg.jpg)
+  ![](http://ovycyj9pr.bkt.clouddn.com/QQ20170908-164449.png)
 
 - **图像展示** 
 
