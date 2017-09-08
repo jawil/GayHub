@@ -70,6 +70,6 @@ if (container && container.querySelectorAll('img').length) {
 const fileWrap = document.querySelectorAll('.file-wrap,.file')
 
 if (fileWrap.length) {
-    const siderBar = require('./components/sideBar')
+    const siderBar = require('components/sideBar')
     siderBar()
 }

@@ -63,10 +63,12 @@ if (container && container.querySelectorAll(options.title).length) {
 const hackGithub = function() {
     let count = 0
     document.addEventListener('scroll', throttle(e => {
+        
+        if (document.querySelectorAll(selectorStr).length) {
 
-        if (container && document.querySelectorAll(selectorStr).length) {
+            let innerHTML = container ? container.innerHTML : ''
 
-            if (container.innerHTML !== document.querySelectorAll(selectorStr)[0].innerHTML) {
+            if (innerHTML !== document.querySelectorAll(selectorStr)[0].innerHTML) {
 
                 container = document.querySelectorAll(selectorStr)[0]
 
