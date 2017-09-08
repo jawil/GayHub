@@ -6,8 +6,11 @@ const ROOT_PATH = path.resolve(__dirname)
 const APP_PATH = path.resolve(ROOT_PATH, 'src')
 const BUILD_PATH = path.resolve(ROOT_PATH, 'chrome/scripts')
 
+//获取环境
+const env = process.env.NODE_ENV
+
 module.exports = {
-    devtool: 'cheap-module-eval-source-map',
+    devtool: env === 'development' ? 'cheap-module-eval-source-map' : 'hidden-source-map',
     entry: {
         app: './src/index.js'
     },
@@ -40,8 +43,22 @@ module.exports = {
             'utils': path.resolve(APP_PATH, './utils')
         }
     },
-    plugins: [
+    plugins: [],
+    watch: env === 'development' ? true : false
+}
 
-    ],
-    watch: true
+switch (env) {
+    case 'production':
+        module.exports.plugins = (module.exports.plugins || []).concat([
+            new webpack.optimize.UglifyJsPlugin({
+                compress: {
+                    warnings: false,
+                    drop_console: true
+                },
+                comments: false,
+                beautify: false,
+                sourceMap: false
+            })
+        ])
+        break
 }
