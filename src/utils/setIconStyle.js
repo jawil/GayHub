@@ -91,20 +91,21 @@ const urlChangeEvent = function() {
 }
 
 const toggleBtn = function() {
-    let oBtn = document.querySelector('.toggle-btn')
-    let sideBarWrap = document.querySelector('.side-bar-wrap')
+    let oBtn = document.querySelector('.toggle-btn'),
+        sideBarWrap = document.querySelector('.side-bar-wrap'),
+        contentMain = document.querySelector('.repository-content'),
+        react = contentMain.getBoundingClientRect().left,
+        rootHtml = document.querySelector('html')
 
-    let contentMain = document.querySelector('.repository-content')
-    let react = contentMain.getBoundingClientRect().left
-
-    document.querySelector('html').style.marginLeft = Math.max((370 - react), 0) + 'px'
+        
+    rootHtml.style.marginLeft = Math.max((370 - react), 0) + 'px'
 
     oBtn.addEventListener('click', e => {
 
         let onoff = sideBarWrap.getAttribute('toggle') === 'off' ? 'on' : 'off'
 
         if (onoff == 'on') {
-            document.querySelector('html').style.marginLeft = Math.max((370 - react), 0) + 'px'
+            rootHtml.style.marginLeft = Math.max((370 - react), 0) + 'px'
 
         } else {
 
@@ -113,11 +114,11 @@ const toggleBtn = function() {
 
             if (TOCWrap && (TOCWrap.getAttribute('toggle') === 'on') && currentStyle == 'block') {
 
-                document.querySelector('html').style.marginLeft = -Math.max((420 - react), 0) + 'px'
+                rootHtml.style.marginLeft = -Math.max((420 - react), 0) + 'px'
 
             } else {
 
-                document.querySelector('html').style.marginLeft = 0 + 'px'
+                rootHtml.style.marginLeft = 0 + 'px'
 
             }
 
