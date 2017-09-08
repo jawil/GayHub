@@ -67,7 +67,7 @@
 
 ### 请杯咖啡：
 
-如果 `GayHub` 可以解决你在浏览 `GiuHub` 上痛点，提升`GitHub` 在 `Web` 端的阅读体验，可以请我喝杯咖啡，想必也是非常愉悦的事情。 😂 
+如果 `GayHub` 可以解决你在浏览 `GitHub` 上痛点，提升`GitHub` 在 `Web` 端的阅读体验，可以请我喝杯咖啡，想必也是非常愉悦的事情。 😂 
 
 ![支付](http://ovycyj9pr.bkt.clouddn.com/QQ20170908-171714.png)
 

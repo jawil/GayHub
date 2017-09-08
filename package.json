@@ -1,14 +1,14 @@
 {
-  "name": "app",
+  "name": "gayhub",
   "version": "1.0.0",
-  "description": "",
+  "description": "An awesome chrome extension for github",
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack  --progress",
     "dist": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["gayhub","github","chrome","extension"],
+  "author": "jawil",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
