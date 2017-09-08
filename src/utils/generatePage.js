@@ -38,6 +38,12 @@ function generatePath(files, parent, oParam) {
 
     /* 默认从第1级目录开始 */
     ! function(currentFiles, parent) {
+
+        if (!currentFiles.length) {
+            console.log('没有相应的文件')
+            return
+        }
+
         let count = currentFiles[0].path.split('/').length
 
         currentFiles.forEach(ele => {
