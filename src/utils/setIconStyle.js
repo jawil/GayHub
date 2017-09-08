@@ -141,11 +141,14 @@ const setClickBlobCss = function(hrefA) {
 
 
 /* 点击时候样式的变化 */
-const setClickTreeCss = function(hrefA, ele, child) {
+const setClickTreeCss = function(eleLi, ele, child) {
 
-    hrefA.addEventListener('click', e => {
+    eleLi.addEventListener('click', e => {
         e.stopPropagation()
-        let onoff = hrefA.parentNode.getAttribute('onoff') === 'on' ? 'off' : 'on'
+        if (e.target.getAttribute('type') === 'blob') {
+            return
+        }
+        let onoff = eleLi.getAttribute('onoff') === 'on' ? 'off' : 'on'
         let sideBarWrap = document.querySelector('.side-bar-main')
         let oPath = {}
         let typeName = ele.path.split('/').pop().toLocaleLowerCase()
@@ -162,8 +165,8 @@ const setClickTreeCss = function(hrefA, ele, child) {
         child.style.cssText = `background: url(${bgcUrl});
         background-size: cover;`
 
-        hrefA.parentNode.setAttribute('onoff', onoff)
-    })
+        eleLi.setAttribute('onoff', onoff)
+    }, false)
 }
 
 export {

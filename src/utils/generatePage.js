@@ -129,10 +129,9 @@ function generatePath(files, parent, oParam) {
 
                     } else {
                         outerLi.setAttribute('onoff', 'off')
-
                     }
 
-                    setClickTreeCss(hrefA, ele, iconI)
+                    setClickTreeCss(outerLi, ele, iconI)
 
                     let oUl = document.createElement('ul')
                     outerLi.appendChild(oUl)
