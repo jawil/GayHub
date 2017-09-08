@@ -14,6 +14,8 @@
 #### 马上使用：
 * [Chrome 应用商店]() 或者 [离线下载]() 或者 [下载测试版]()
 
+![](https://ws3.sinaimg.cn/large/006tNc79gy1fjc8qh0ketj31kw0zkhdw.jpg)
+
 #### 主要功能一览：
 - **文件目录树：**
 
