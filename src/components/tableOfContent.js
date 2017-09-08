@@ -118,6 +118,9 @@ export default function TOC(container) {
         /* 页面内容和TOC目录同步滚动 */
         syncRoll(tableOfContent)
 
+        /* TOC的显示隐藏 */
+        toggleTOCBtn()
+
         new Drag(`.${options.classWrap}`)
 
     }
@@ -132,6 +135,45 @@ export default function TOC(container) {
         })
 
         return title.join('')
+    }
+
+    /* TOC的显示隐藏 */
+    const toggleTOCBtn = function() {
+        let oBtn = document.querySelector('.table-of-content-btn')
+        let TOCWrap = document.querySelector('.table-of-content-wrap')
+
+        oBtn.addEventListener('click', e => {
+
+            let right = window.screen.width - TOCWrap.getBoundingClientRect().left
+
+            let onoff = TOCWrap.getAttribute('toggle') === 'on' ? 'off' : 'on'
+            let sideBarWrap = document.querySelector('.side-bar-wrap')
+
+            if (onoff === 'off') {
+
+                TOCWrap.style.cssText = `right:${-right}px;display:block;`
+                oBtn.style.cssText = `left:-${right-200}px;`
+
+                if (sideBarWrap && (sideBarWrap.getAttribute('toggle') === 'off')) {
+                    document.querySelector('html').style.marginLeft = 0 + 'px'
+                }
+
+            } else {
+
+                TOCWrap.style.cssText = 'right:3%;display:block;';
+                oBtn.style.cssText = `left:10px;`;
+
+                let contentMain = document.querySelector('.repository-content')
+                let react = contentMain.getBoundingClientRect().left
+
+                if (sideBarWrap && (sideBarWrap.getAttribute('toggle') === 'off')) {
+                    document.querySelector('html').style.marginLeft = -Math.max((370 - react), 0) + 'px'
+                }
+            }
+
+            TOCWrap.setAttribute('toggle', onoff)
+
+        }, false)
     }
 
 
@@ -387,6 +429,7 @@ export default function TOC(container) {
             if (document.body.scrollTop >= window.screen.height / 1.5) {
                 wrap.style.display = 'block'
             }
+
             document.addEventListener('scroll', throttle(e => {
 
                 let displayStatus = (document.body.scrollTop >= window.screen.height / 1.5) ?

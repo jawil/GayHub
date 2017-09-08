@@ -163,15 +163,21 @@ function generatetableOfContentHTML(titleArr, root) {
 
     const tableOfContentWrap = document.createElement('div'),
         tableOfContentHeader = document.createElement('div'),
-        tableOfContentLink = document.createElement('a')
+        tableOfContentLink = document.createElement('a'),
+        toggleBtn = document.createElement('a')
 
+    toggleBtn.className = 'table-of-content-btn'
+    tableOfContentLink.className = 'table-of-content-auth'
     tableOfContentWrap.className = 'table-of-content-wrap'
+    tableOfContentWrap.setAttribute('toggle', 'on')
     tableOfContentHeader.className = 'table-of-content-header'
+
     tableOfContentLink.href = 'https://github.com/jawil'
     tableOfContentLink.textContent = 'by jawil'
     tableOfContentLink.target = '_blank'
     tableOfContentHeader.textContent = 'Table of Content'
     tableOfContentHeader.appendChild(tableOfContentLink)
+    tableOfContentWrap.appendChild(toggleBtn)
     tableOfContentWrap.appendChild(tableOfContentHeader)
     tableOfContentWrap.appendChild(root)
     document.body.appendChild(tableOfContentWrap)

@@ -1,11 +1,15 @@
 @charset 'utf-8';
+body {
+    transition: all 0.3s ease-out;
+}
+
 
 /* TOC模块 */
 
 .table-of-content-wrap {
     position: fixed;
     top: 10%;
-    right: 50px;
+    right: 3%;
     z-index: 999;
     background-color: #fff;
     width: 300px;
@@ -13,6 +17,7 @@
     box-shadow: 0 3px 12px rgba(27, 31, 35, 0.15);
     border-radius: 5px;
     display: none;
+    transition: all 0.3s ease-out;
 }
 
 .table-of-content-wrap:hover {
@@ -27,7 +32,7 @@
     cursor: move;
 }
 
-.table-of-content-header a {
+.table-of-content-header .table-of-content-auth {
     color: green;
     position: absolute;
     margin-top: 5px;
@@ -38,8 +43,39 @@
     opacity: 0.7
 }
 
-.table-of-content-header a:hover {
+.table-of-content-header .table-of-content-auth:hover {
     opacity: 1
+}
+
+.table-of-content-btn {
+    position: absolute;
+    transition: all 0.3s ease-out;
+    top: 6px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    padding: 6px !important;
+    cursor: pointer;
+    color: #24292e;
+    background-color: #eff3f6;
+    background-image: linear-gradient(-180deg, #fafbfc 0%, #eff3f6 90%);
+    border: 1px solid rgba(27, 31, 35, 0.2);
+    background: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20style%3D%22fill%3A%20%234183c4%22%20height%3D%2216%22%20width%3D%228%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cpath%20d%3D%22M7.5%208L2.5%2013l-1.5-1.5%203.75-3.5L1%204.5l1.5-1.5%205%205z%22%20%2F%3E%0A%3C%2Fsvg%3E%0A) center no-repeat;
+}
+
+.table-of-content-btn:hover {
+    background-color: #e6ebf1;
+    border-color: rgba(27, 31, 35, 0.35);
+}
+
+.table-of-content-wrap[toggle=off] {
+    transition: all 0.3s ease-out;
+}
+
+.table-of-content-wrap[toggle=off] .table-of-content-btn {
+    transition: all 0.3s ease-out;
+    background-color: #fff!important;
+    background: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20height%3D%2216%22%20width%3D%228%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cpath%20d%3D%22M5.5%203l1.5%201.5-3.75%203.5%203.75%203.5-1.5%201.5L0.5%208l5-5z%22%20%2F%3E%0A%3C%2Fsvg%3E%0A) center no-repeat;
 }
 
 .table-of-content-header {
@@ -109,10 +145,11 @@
     box-sizing: border-box;
 }
 
-.table-of-content span:hover{
+.table-of-content span:hover {
     background-color: #f3f3f3;
-    color:#009a61;
+    color: #009a61;
 }
+
 
 /* 所有二级LI下A标签样式 */
 

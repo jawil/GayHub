@@ -49,7 +49,7 @@ const urlChangeEvent = function() {
 
     if (fileWrap.length) {
 
-        document.addEventListener('click', e => {
+        document.querySelector('div[role=main]').addEventListener('click', e => {
 
             if (e.target.nodeName === 'A' && !e.target.getAttribute('data-pjax')) {
                 const href = e.target.href
@@ -66,20 +66,22 @@ const urlChangeEvent = function() {
                         break
                     }
                 }
-        
+
                 let sideBarContainer = document.querySelector('.side-bar-main')
-                
+
                 sideBarContainer.querySelectorAll('a').forEach(ele => {
                     ele.setAttribute('isClicked', false)
                 })
-                
-                if (targetA.getAttribute('type') === 'blob') {
-                    targetA.setAttribute('isClicked', true)
-                } else {
-                    setTimeout(f => {    
-                        targetA.parentNode.setAttribute('onoff', 'on')
-                    }, 1000)
 
+                if (targetA) {
+                    if (targetA.getAttribute('type') === 'blob') {
+                        targetA.setAttribute('isClicked', true)
+                    } else {
+                        setTimeout(f => {
+                            targetA.parentNode.setAttribute('onoff', 'on')
+                        }, 1000)
+
+                    }
                 }
 
             }
@@ -95,16 +97,30 @@ const toggleBtn = function() {
     let contentMain = document.querySelector('.repository-content')
     let react = contentMain.getBoundingClientRect().left
 
-    document.body.style.paddingLeft = Math.max((370 - react), 0) + 'px'
+    document.querySelector('html').style.marginLeft = Math.max((370 - react), 0) + 'px'
 
     oBtn.addEventListener('click', e => {
 
         let onoff = sideBarWrap.getAttribute('toggle') === 'off' ? 'on' : 'off'
 
         if (onoff == 'on') {
-            document.body.style.paddingLeft = Math.max((370 - react), 0) + 'px'
+            document.querySelector('html').style.marginLeft = Math.max((370 - react), 0) + 'px'
+
         } else {
-            document.body.style.paddingLeft = 0 + 'px'
+
+            let TOCWrap = document.querySelector('.table-of-content-wrap')
+            let currentStyle = TOCWrap ? window.getComputedStyle(TOCWrap, null)['display'] : 'none'
+
+            if (TOCWrap && (TOCWrap.getAttribute('toggle') === 'on') && currentStyle == 'block') {
+
+                document.querySelector('html').style.marginLeft = -Math.max((420 - react), 0) + 'px'
+
+            } else {
+
+                document.querySelector('html').style.marginLeft = 0 + 'px'
+
+            }
+
         }
 
         sideBarWrap.setAttribute('toggle', onoff)
