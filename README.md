@@ -30,7 +30,7 @@
   
   截图：
   
-  ![](https://ws1.sinaimg.cn/large/006tKfTcgy1fj6c6lg3amj30go0jfwj6.jpg)
+  ![](http://ovycyj9pr.bkt.clouddn.com/QQ20170908-162323.png)
 
 - **图片全屏预览：**
 
