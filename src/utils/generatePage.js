@@ -40,7 +40,7 @@ function generatePath(files, parent, oParam) {
     ! function(currentFiles, parent) {
 
         if (!currentFiles.length) {
-            console.log('没有相应的文件')
+            throw Error('没有相应的文件')
             return
         }
 
