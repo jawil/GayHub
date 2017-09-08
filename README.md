@@ -14,7 +14,6 @@
 #### 马上使用：
 * [Chrome 应用商店]() 或者 [离线下载]() 或者 [下载测试版]()
 
-![](https://ws4.sinaimg.cn/large/006tNc79gy1fjc8tiutotj30zk0m8hdt.jpg)
 
 #### 主要功能一览：
 - **文件目录树：**
@@ -40,7 +39,7 @@
   
   截图
   
-  ![](https://ws3.sinaimg.cn/large/006tKfTcgy1fj6oewrdowj30gn0goq8i.jpg)
+  ![](https://ws1.sinaimg.cn/large/006tNc79gy1fjc8vujk97j30z40ky1kx.jpg)
 
 - **复制代码：**
 
