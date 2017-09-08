@@ -97,7 +97,7 @@ const toggleBtn = function() {
         react = contentMain.getBoundingClientRect().left,
         rootHtml = document.querySelector('html')
 
-        
+
     rootHtml.style.marginLeft = Math.max((370 - react), 0) + 'px'
 
     oBtn.addEventListener('click', e => {

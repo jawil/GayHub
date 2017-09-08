@@ -402,6 +402,7 @@ export default function TOC(container) {
                     current.index = 0
                     return
                 }
+                
                 if ((!nextHeight) || (scrollY >= preHeight && scrollY < nextHeight)) {
                     /* 微微提高性能，只有当index改变时候才去监听，然后调用函数 */
                     if (i !== current.preIndex) {

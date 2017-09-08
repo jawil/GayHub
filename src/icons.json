@@ -440,6 +440,9 @@
         },
         "_f_server": {
             "iconPath": "icons/server.png"
+        },
+        "_f_xml":{
+            "iconPath": "icons/xaml.png"
         }
     },
     "file": "_file",
