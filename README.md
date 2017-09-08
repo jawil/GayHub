@@ -1,4 +1,4 @@
-# 介绍
+## 介绍
 <p align="center"><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fj6b54v22kj306y06yq3v.jpg" /></p>
 <h1 align="center">Chrome - GayHub</h1>
 <p align="center">一款强大的GitHub的Chrome 扩展，打造完美的GitHub体验，提升你的阅读效率。</p>
@@ -11,11 +11,11 @@
 
 ***
 
-#### 马上使用：
+### 马上使用：
 * [Chrome 应用商店]() 或者 [离线下载]() 或者 [下载测试版]()
 
 
-#### 主要功能一览：
+### 主要功能一览：
 - **文件目录树：**
 
 给`github`插上翅膀，让你轻松切换文件，方便阅读，把`Vscode`的精美的侧边栏完美移植到`github`上，颜值颇高，`100`多种精美图标完美移植，加上`Pjax`的无刷新切换文件，体验颇佳。
@@ -56,7 +56,7 @@
 ![](https://ws2.sinaimg.cn/large/006tNc79gy1fjc91k84n3j30z90l1agp.jpg)
 
 
-####  说明
+###  说明
 
 > 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
 
@@ -65,13 +65,13 @@
 > 如有问题请直接在 Issues 中提，或者您发现问题并有非常好的解决方案，欢迎 PR 👍
 
 
-#### 请杯咖啡：
+### 请杯咖啡：
 
 如果 `GayHub` 可以解决你在浏览 `GiuHub` 上痛点，提升`GitHub` 在 `Web` 端的阅读体验，可以请我喝杯咖啡，想必也是非常愉悦的事情。 😂 
 
 ![支付](http://ovycyj9pr.bkt.clouddn.com/QQ20170908-171714.png)
 
-#### 许可：
+### 许可：
 [![license-badge]][license-link]
 
 <!-- Link -->
