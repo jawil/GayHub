@@ -47,13 +47,13 @@
   
   截图：
   
-  ![](https://ws1.sinaimg.cn/large/006tKfTcgy1fj6c9yhmvmj30k40d977u.jpg)
+  ![](https://ws2.sinaimg.cn/large/006tNc79gy1fjc8zyw773j30zf0l1qcg.jpg)
 
 - **图像展示** 
 
 进入首页，大佬图像一览无余，更清晰直观的看出大佬的各种动态，更利于我们直观的感受。
 
-![](https://ws4.sinaimg.cn/large/006tKfTcgy1fj6ceezg31j30go0iqjw8.jpg)
+![](https://ws2.sinaimg.cn/large/006tNc79gy1fjc91k84n3j30z90l1agp.jpg)
 
 
 #### 许可：
