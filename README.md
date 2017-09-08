@@ -56,6 +56,21 @@
 ![](https://ws2.sinaimg.cn/large/006tNc79gy1fjc91k84n3j30z90l1agp.jpg)
 
 
+####  说明
+
+> 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
+
+> 或者您可以 "follow" 一下，我会不断开源更多的有趣的项目
+
+> 如有问题请直接在 Issues 中提，或者您发现问题并有非常好的解决方案，欢迎 PR 👍
+
+
+#### 请杯咖啡：
+
+如果 `GayHub` 可以解决你在浏览 `GiuHub` 上痛点，提升`GitHub` 在 `Web` 端的阅读体验，可以请我喝杯咖啡，想必也是非常愉悦的事情。 😂 
+
+![支付](https://ws1.sinaimg.cn/large/006tNc79gy1fjc9xpe2kdj30lb0f9q96.jpg)
+
 #### 许可：
 [![license-badge]][license-link]
 
