@@ -1,6 +1,6 @@
 /* 生成侧边栏sidebar的HTML */
 import { generateContainerHTML } from 'utils/generatePage'
-import parentNotRoll from 'utils/parentNotRoll'
+import parentNotRoll from 'libs/parentNotRoll'
 import Pjax from 'pjax'
 import { toggleBtn, urlChangeEvent } from 'utils/setIconStyle'
 import { getUrlParam, initDOM } from 'utils/sideBarHelp'

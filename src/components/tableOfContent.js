@@ -1,6 +1,6 @@
-import Drag from 'utils/draggabilly'
-import throttle from 'utils/throttle'
-import parentNotRoll from 'utils/parentNotRoll'
+import Drag from 'libs/draggabilly'
+import throttle from 'libs/throttle'
+import parentNotRoll from 'libs/parentNotRoll'
 import { generatetableOfContentHTML } from 'utils/generatePage'
 import imagesLoaded from 'imagesloaded'
 
@@ -63,7 +63,7 @@ if (container && container.querySelectorAll(options.title).length) {
 const hackGithub = function() {
     let count = 0
     document.addEventListener('scroll', throttle(e => {
-        
+
         if (document.querySelectorAll(selectorStr).length) {
 
             let innerHTML = container ? container.innerHTML : ''
@@ -402,7 +402,7 @@ export default function TOC(container) {
                     current.index = 0
                     return
                 }
-                
+
                 if ((!nextHeight) || (scrollY >= preHeight && scrollY < nextHeight)) {
                     /* 微微提高性能，只有当index改变时候才去监听，然后调用函数 */
                     if (i !== current.preIndex) {
