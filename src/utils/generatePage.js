@@ -23,7 +23,7 @@ function generateContainerHTML() {
     <a href="/${oParam.userName}">${oParam.userName}</a> / 
     <a type="blob" href="/${oParam.userName}/${oParam.reposName}">${oParam.reposName}</a>
     </div>
-    <div class="side-bar-header-branch">${oParam.branch}</div>
+    <div class="side-bar-header-branch">${decodeURIComponent(oParam.branch)}</div>
     </div>`
 
     sideBarHeader.innerHTML = headerHTML

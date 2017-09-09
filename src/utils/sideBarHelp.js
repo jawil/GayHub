@@ -1,5 +1,6 @@
 import { setIconCss, setClickTreeCss, setClickBlobCss } from 'utils/setIconStyle'
 import Pjax from 'pjax'
+
 /* 根据浏览器的url解析参数 */
 const getUrlParam = function() {
     const pathname = window.location.pathname
@@ -14,7 +15,7 @@ const getUrlParam = function() {
     oParam.userName = parseParam[0]
     oParam.reposName = parseParam[1]
     oParam.type = parseParam[2] ? `${parseParam[2]}` : 'tree'
-    oParam.branch = parseParam[3] ? `${parseParam[3]}` : 'master'
+    oParam.branch =document.querySelector('span.css-truncate-target').textContent    
 
     return oParam
 }
@@ -86,7 +87,7 @@ const initDOM = function(files, parent) {
             flag++
         } else {
             let lastA = document.querySelector(`a[data-href="${window.location.href}"]`)
-            
+
             if (lastA) {
                 let react = lastA.parentNode.getBoundingClientRect().top
                 let container = document.querySelector('.side-bar-main')
