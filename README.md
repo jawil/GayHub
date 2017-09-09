@@ -53,7 +53,7 @@
 
 进入首页，大佬图像一览无余，更清晰直观的看出大佬的各种动态，关注大佬的一举一动，时刻关心最新开源技术。
 
-![](https://ws2.sinaimg.cn/large/006tNc79gy1fjc91k84n3j30z90l1agp.jpg)
+![](https://ws2.sinaimg.cn/large/006tNc79gy1fjd4g2vys9j30z80l5zuk.jpg)
 
 
 ###  说明
