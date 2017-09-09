@@ -6,14 +6,22 @@ module.exports = function(container) {
 
     zoomImageArr.forEach(ele => {
 
-        let typeName = ele.href.split('.').pop()
+
+
         let imgArr = ['png', 'jpg', 'jpeg', 'svg', 'gif']
 
-        if (ele.parentNode.nodeName === 'A' && (typeName.indexOf(imgArr) !== -1)) {
-            ele.parentNode.parentNode.replaceChild(ele, ele.parentNode)
+        if (ele.parentNode.nodeName === 'A') {
+
+            if (/https:\/\/camo\.githubusercontent\.com/.test(ele.parentNode.href)) {
+                
+                ele.parentNode.parentNode.replaceChild(ele, ele.parentNode)
+                ele.setAttribute('data-action', 'zoom')
+                zoom.setup(ele)
+                
+            }
+
         }
 
-        ele.setAttribute('data-action', 'zoom')
-        zoom.setup(ele)
+
     })
 }
