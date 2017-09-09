@@ -14,16 +14,34 @@ const setIconCss = function(ele, iconELe) {
     let typeName = ele.path.split('/').pop().toLocaleLowerCase()
 
     if (ele.type === 'tree') {
+
         oPath = folderNames.hasOwnProperty(typeName) ?
             iconDefinitions[folderNames[typeName]].iconPath : 'icons/folder.png'
+
     } else {
+
         if (iconNames.hasOwnProperty(typeName)) {
+
             oPath = iconDefinitions[iconNames[typeName]].iconPath
+
         } else {
-            typeName = ele.path.split('.').pop().toLocaleLowerCase()
-            oPath = iconNames.hasOwnProperty(typeName) ?
-                iconDefinitions[iconNames[typeName]].iconPath : 'icons/file.png'
+
+            if (typeName.split('.').length >= 3) {
+
+                let typeName1 = typeName.split('.').shift()
+                let typeName2 = typeName.split('.').pop()
+                typeName = `${typeName1}.${typeName2}`                
+                oPath = iconNames.hasOwnProperty(typeName) ?
+                    iconDefinitions[iconNames[typeName]].iconPath : 'icons/folder.png'
+
+            } else {
+                typeName = ele.path.split('.').pop().toLocaleLowerCase()
+                oPath = iconNames.hasOwnProperty(typeName) ?
+                    iconDefinitions[iconNames[typeName]].iconPath : 'icons/file.png'
+            }
+
         }
+
     }
 
     let bgcUrl = chrome.extension.getURL(`${oPath}`)
