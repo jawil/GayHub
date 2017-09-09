@@ -4,9 +4,9 @@
 <p align="center">一款强大的GitHub的Chrome 扩展，打造完美的GitHub体验，提升你的阅读效率。</p>
 <p align="center">为了达到完美的GitHub阅览体验这个小目标 ，让大家更方便的体验Github，因此诞生了GayHub。</p>
 <p align="center">
-   <a href="https://github.com/jawil/GayHub/raw/master/download/gayhub-1.0.crx"><img src="https://img.shields.io/badge/lastest_version-1.0.3-blue.svg"></a>
-   <a target="_blank" href="https://github.com/jawil/GayHub/raw/master/download/gayhub-1.0.crx"><img src="https://img.shields.io/badge/download-_chrome_webstore-brightgreen.svg"></a>
-   <a href="https://github.com/jawil/GayHub/raw/master/download/gayhub-1.0.crx"><img src="https://img.shields.io/badge/download-_crx-brightgreen.svg"></a>
+   <a href="https://github.com/jawil/GayHub/raw/master/download/gayhub-1.0.crx" download><img src="https://img.shields.io/badge/lastest_version-1.0.3-blue.svg"></a>
+   <a target="_blank" href="https://github.com/jawil/GayHub/raw/master/download/gayhub-1.0.crx"><img src="https://img.shields.io/badge/download-_chrome_webstore-brightgreen.svg" download></a>
+   <a href="https://github.com/jawil/GayHub/raw/master/download/gayhub-1.0.crx"><img src="https://img.shields.io/badge/download-_crx-brightgreen.svg" download></a>
 </p>
 
 ***

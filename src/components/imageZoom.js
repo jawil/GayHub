@@ -7,7 +7,6 @@ module.exports = function(container) {
     zoomImageArr.forEach(ele => {
 
 
-
         let imgArr = ['png', 'jpg', 'jpeg', 'svg', 'gif']
 
         if (ele.parentNode.nodeName === 'A') {
