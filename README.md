@@ -22,7 +22,7 @@
 
 截图：对于微软的Vscode这种大型开源，10000+文件的解析起来也毫无压力，瞬间打开，颜值与性能并存。
 
-![](https://ws1.sinaimg.cn/large/006tNc79gy1fjddtbfucyj30zj0l7158.jpg)
+![](http://opb6zkmf0.bkt.clouddn.com/QQ20170909-161545.png)
 
  
 - **TOC导航：**  
