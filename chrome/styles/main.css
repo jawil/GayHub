@@ -1,6 +1,7 @@
 @charset 'utf-8';
-body {
-    transition: all 0.3s ease-out;
+html {
+    transition: all 0.5s ease-out;
+    -webkit-overflow-scrolling: touch;
 }
 
 a {
@@ -22,7 +23,7 @@ a {
     box-shadow: 0 3px 12px rgba(27, 31, 35, 0.15);
     border-radius: 5px;
     display: none;
-    transition: all 0.3s ease-out;
+    transition: all 0.5s ease-out;
 }
 
 .table-of-content-wrap:hover {

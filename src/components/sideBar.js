@@ -35,6 +35,8 @@ module.exports = function() {
 
                 callback(data.tree, sideBarMain)
 
+                document.querySelector('#spinner').style.display = 'none'
+
                 new Pjax({
                     elements: "a",
                     selectors: ['#js-repo-pjax-container', '.context-loader-container', '[data-pjax-container]']

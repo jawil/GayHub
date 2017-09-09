@@ -24,10 +24,30 @@ function generateContainerHTML() {
     <a type="blob" href="/${oParam.userName}/${oParam.reposName}">${oParam.reposName}</a>
     </div>
     <div class="side-bar-header-branch">${decodeURIComponent(oParam.branch)}</div>
-    </div>`
+    </div>
+    <div id="spinner">
+    <div class="spinner-container container1">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+    <div class="spinner-container container2">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+    <div class="spinner-container container3">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+</div>
+`
 
     sideBarHeader.innerHTML = headerHTML
-
     sideBarWrap.appendChild(toggleBtn)
     sideBarWrap.appendChild(sideBarHeader)
     sideBarWrap.appendChild(sideBarMain)
