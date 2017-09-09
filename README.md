@@ -24,6 +24,7 @@
 
 ![](http://opb6zkmf0.bkt.clouddn.com/111.png)
 
+ 温馨提示：不要打开`Linux`这种巨无霸的开源，我从`GitHub`接口拉取目录文件名都需要几分钟。。。
  
 - **TOC导航：**  
 

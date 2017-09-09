@@ -1,7 +1,9 @@
-import { initDOM } from 'utils/sideBarHelp'
+import { getUrlParam } from 'utils/sideBarHelp'
+
+const oParam = getUrlParam()
 
 /* 生成侧边栏sidebar的HTML */
-function generatePath(files, parent, oParam) {
+function generateContainerHTML() {
 
     let sideBarWrap = document.createElement('div')
     sideBarWrap.className = 'side-bar-wrap'
@@ -30,13 +32,17 @@ function generatePath(files, parent, oParam) {
     sideBarWrap.appendChild(sideBarHeader)
     sideBarWrap.appendChild(sideBarMain)
 
+    document.body.appendChild(sideBarWrap)
 
-    parent.appendChild(sideBarWrap)
+    let contentMain = document.querySelector('.repository-content'),
+        react = contentMain.getBoundingClientRect().left,
+        rootHtml = document.querySelector('html')
 
-    let lastCount = files[0].path.split('/').length + 1
+    rootHtml.style.marginLeft = Math.max((370 - react), 0) + 'px'
 
-    /* 默认开始时候生成两层目录 */
-    initDOM(files, sideBarMain)
+    sideBarWrap.setAttribute('toggle', 'on')
+
+    return sideBarMain
 }
 
 
@@ -106,4 +112,4 @@ function generatetableOfContentHTML(titleArr, root) {
     }
 }
 
-export { generatePath, generatetableOfContentHTML }
+export { generateContainerHTML, generatetableOfContentHTML }

@@ -71,12 +71,32 @@ const currentPath = getCurrentPath()
 
 /* 解析首次打开url要解析的DOM结构 */
 const initDOM = function(files, parent) {
-    /* 找到当前url对应的A标签 */
-
-    console.log(currentPath)
 
     generateCurrentTreeDOM(files, parent, 2, files)
 
+    let flag = 1
+    while (flag) {
+        let topElePath = currentPath.split('/').slice(0, flag).join('/')
+        const topLi = document.querySelector(`li[path="${topElePath}"]`)
+
+        if (topLi) {
+            topLi.setAttribute('onoff', 'on')
+            const ele = { path: topLi.getAttribute('path') }
+            RenderDOM(topLi, ele, files)
+            flag++
+        } else {
+            let lastA = document.querySelector(`a[data-href="${window.location.href}"]`)
+            
+            if (lastA) {
+                let react = lastA.parentNode.getBoundingClientRect().top
+                let container = document.querySelector('.side-bar-main')
+                container.scrollTop = react - container.clientHeight / 2
+                lastA.setAttribute('isClicked', true)
+            }
+
+            return
+        }
+    }
 }
 
 /* 点击之后重新生成渲染DOM */
@@ -181,28 +201,6 @@ const generateCurrentTreeDOM = function(CurrentTreeFiles, parent, cascad, files)
                 hrefA.href = `/${url}/${ele.path}`
                 hrefA.setAttribute('type', 'blob')
                 setClickBlobCss(hrefA)
-
-                if (ele.path.toLocaleLowerCase() === currentPath.toLocaleLowerCase()) {
-
-                    hrefA.setAttribute('isClicked', true)
-                    let flag = true // parent => ul
-
-                    if (parent.className !== 'side-bar-main') {
-                        parent.parentNode.setAttribute('onoff', 'on')
-                        let ele = parent.parentNode //ele => li
-
-                        while (flag) {
-
-                            if (ele.parentNode.className !== 'side-bar-main') {
-                                ele.parentNode.parentNode.setAttribute('onoff', 'on')
-                            } else {
-                                flag = false
-                            }
-                            ele = ele.parentNode
-                        }
-                    }
-
-                }
 
                 parent.appendChild(outerLi)
 

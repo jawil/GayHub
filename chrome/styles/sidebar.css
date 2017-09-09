@@ -109,7 +109,7 @@ body {
     white-space: nowrap;
     transition: all 0.5s ease-out;
     font-size: 14px;
-    padding-left: 1.3em;
+    padding-left: 1em;
 }
 
 .side-bar-main li a:hover {

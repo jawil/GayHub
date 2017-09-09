@@ -1,3 +1,11 @@
+/* 侧边栏功能 */
+const fileWrap = document.querySelectorAll('.file-wrap,.file')
+
+if (fileWrap.length) {
+    const siderBar = require('components/sideBar')
+    siderBar()
+}
+
 /* 用户图像 */
 if (window.location.pathname === '/') {
     const showAvatar = require('components/showAvatar')
@@ -63,13 +71,4 @@ if (container && container.querySelectorAll('h1,h2,h3,h4,h5,h6').length) {
 if (container && container.querySelectorAll('img').length) {
     const imageZoom = require('components/imageZoom')
     imageZoom(container)
-}
-
-
-/* 侧边栏功能 */
-const fileWrap = document.querySelectorAll('.file-wrap,.file')
-
-if (fileWrap.length) {
-    const siderBar = require('components/sideBar')
-    siderBar()
 }

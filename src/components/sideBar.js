@@ -1,9 +1,12 @@
 /* 生成侧边栏sidebar的HTML */
-import { generatePath } from 'utils/generatePage'
+import { generateContainerHTML } from 'utils/generatePage'
 import parentNotRoll from 'utils/parentNotRoll'
 import Pjax from 'pjax'
 import { toggleBtn, urlChangeEvent } from 'utils/setIconStyle'
-import { getUrlParam } from 'utils/sideBarHelp'
+import { getUrlParam, initDOM } from 'utils/sideBarHelp'
+
+
+const sideBarMain = generateContainerHTML()
 
 module.exports = function() {
     const fileWrap = document.querySelectorAll('.file-wrap,.file'),
@@ -30,7 +33,7 @@ module.exports = function() {
                 return response.json()
             }).then(data => {
 
-                callback(data.tree, document.body, oParam)
+                callback(data.tree, sideBarMain)
 
                 new Pjax({
                     elements: "a",
@@ -41,7 +44,7 @@ module.exports = function() {
                 parentNotRoll('.side-bar-main')
 
             })
-        }(generatePath)
+        }(initDOM)
 
     }
 }

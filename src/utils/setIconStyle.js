@@ -31,8 +31,12 @@ const setIconCss = function(ele, iconELe) {
                 let typeName1 = typeName.split('.').shift()
                 let typeName2 = typeName.split('.').pop()
                 typeName = `${typeName1}.${typeName2}`
-                oPath = iconNames.hasOwnProperty(typeName) ?
-                    iconDefinitions[iconNames[typeName]].iconPath : 'icons/folder.png'
+                if (iconNames.hasOwnProperty(typeName)) {
+                    oPath = iconDefinitions[iconNames[typeName]].iconPath
+                } else {
+                    oPath = iconNames.hasOwnProperty(typeName2) ?
+                        iconDefinitions[iconNames[typeName2]].iconPath : 'icons/file.png'
+                }
 
             } else {
                 typeName = ele.path.split('.').pop().toLocaleLowerCase()
@@ -110,16 +114,13 @@ const urlChangeEvent = function(files) {
 const toggleBtn = function() {
     let oBtn = document.querySelector('.toggle-btn'),
         sideBarWrap = document.querySelector('.side-bar-wrap'),
-        contentMain = document.querySelector('.repository-content'),
-        react = contentMain.getBoundingClientRect().left,
         rootHtml = document.querySelector('html')
-
-
-    rootHtml.style.marginLeft = Math.max((370 - react), 0) + 'px'
 
     oBtn.addEventListener('click', e => {
 
-        let onoff = sideBarWrap.getAttribute('toggle') === 'off' ? 'on' : 'off'
+        let contentMain = document.querySelector('.repository-content'),
+            react = contentMain.getBoundingClientRect().left,
+            onoff = sideBarWrap.getAttribute('toggle') === 'off' ? 'on' : 'off'
 
         if (onoff == 'on') {
             rootHtml.style.marginLeft = Math.max((370 - react), 0) + 'px'
@@ -134,7 +135,7 @@ const toggleBtn = function() {
                 rootHtml.style.marginLeft = -Math.max((420 - react), 0) + 'px'
 
             } else {
-
+     
                 rootHtml.style.marginLeft = 0 + 'px'
 
             }
@@ -167,9 +168,10 @@ const setClickTreeCss = function(eleLi, ele, child, files) {
             return
         }
 
-        RenderDOM(eleLi, ele, files)
-
         let onoff = eleLi.getAttribute('onoff') === 'on' ? 'off' : 'on'
+
+        eleLi.setAttribute('onoff', onoff)
+
         let sideBarWrap = document.querySelector('.side-bar-main')
         let oPath = {}
         let typeName = ele.path.split('/').pop().toLocaleLowerCase()
@@ -186,7 +188,11 @@ const setClickTreeCss = function(eleLi, ele, child, files) {
         child.style.cssText = `background: url(${bgcUrl});
         background-size: cover;`
 
-        eleLi.setAttribute('onoff', onoff)
+        setTimeout(() => {
+            RenderDOM(eleLi, ele, files)
+        }, 300)
+
+
     }, false)
 }
 
