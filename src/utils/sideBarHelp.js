@@ -15,7 +15,7 @@ const getUrlParam = function() {
     oParam.userName = parseParam[0]
     oParam.reposName = parseParam[1]
     oParam.type = parseParam[2] ? `${parseParam[2]}` : 'tree'
-    oParam.branch =document.querySelector('span.css-truncate-target').textContent    
+    oParam.branch = document.querySelector('span.css-truncate-target').textContent
 
     return oParam
 }
@@ -23,13 +23,8 @@ const getUrlParam = function() {
 /* 获取当前的文件名称 */
 const getCurrentPath = function() {
     const pathname = window.location.pathname,
-        parseParam = pathname.replace(/^\//, '').split('/')
-    let currentPath = ''
-
-    if (parseParam[2]) {
-        currentPath = parseParam.slice(4)
-        currentPath = currentPath.length === 1 ? currentPath[0] : currentPath.join('/')
-    }
+        branch = document.querySelector('span.css-truncate-target').textContent,
+        currentPath = pathname.split(`${branch}/`).pop()
     return currentPath
 }
 
