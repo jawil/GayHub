@@ -6,10 +6,13 @@ module.exports = function(container) {
 
     zoomImageArr.forEach(ele => {
 
-        if (ele.parentNode.nodeName === 'A') {
+        let typeName = ele.href.split('.').pop()
+        let imgArr = ['png', 'jpg', 'jpeg', 'svg', 'gif']
+
+        if (ele.parentNode.nodeName === 'A' && (typeName.indexOf(imgArr) !== -1)) {
             ele.parentNode.parentNode.replaceChild(ele, ele.parentNode)
         }
-        
+
         ele.setAttribute('data-action', 'zoom')
         zoom.setup(ele)
     })
