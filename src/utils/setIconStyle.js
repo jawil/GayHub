@@ -1,4 +1,6 @@
 import icons from '../icons.json'
+import { generateCurrentTreeDOM, getCurrentTreeFiles } from 'utils/sideBarHelp'
+import Pjax from 'pjax'
 
 const iconDefinitions = icons.iconDefinitions,
     folderNames = icons.folderNames,
@@ -142,13 +144,63 @@ const setClickBlobCss = function(hrefA) {
 
 
 /* 点击时候样式的变化 */
-const setClickTreeCss = function(eleLi, ele, child) {
+const setClickTreeCss = function(eleLi, ele, child, files) {
 
     eleLi.addEventListener('click', e => {
         e.stopPropagation()
         if (e.target.getAttribute('type') === 'blob') {
             return
         }
+
+        let currentCascad = ele.path.split('/').length
+
+        /* 当前目录下的所有文件 */
+        let currentTreeFiles = getCurrentTreeFiles(ele, files, currentCascad)
+
+        let currenteleLiChild = eleLi.querySelectorAll('li')
+
+        /* 求出当前目录下所有的文件夹DOM节点，也就是type=tree */
+        let treeChild = []
+
+        currenteleLiChild.forEach(ele => {
+            if (ele.getAttribute('type') === 'tree') {
+                treeChild.push(ele)
+            }
+        })
+
+        /* 求出当前所有文件树的状态信息，也就是type=tree */
+        let treeMsg = []
+
+        currentTreeFiles.forEach(ele => {
+            if (ele.type === 'tree') {
+                treeMsg.push(ele)
+            }
+        })
+
+        /* 如果当前目录下的所有文件并没有文件夹类型 */
+        if (treeChild.length && (eleLi.getAttribute('generateDOM') !== 'off')) {
+
+            treeChild.forEach((ele, index) => {
+                let nextCascad = treeMsg[index].path.split('/').length
+                let nextTreeFiles = getCurrentTreeFiles(treeMsg[index], files, nextCascad)
+
+                /* 如果不是空文件夹 */
+                if (nextTreeFiles.length) {
+                    generateCurrentTreeDOM(nextTreeFiles, ele, nextCascad + 1, files)
+                }
+
+            })
+
+            /* 重新渲染Pjax */
+            new Pjax({
+                elements: "a",
+                selectors: ['#js-repo-pjax-container', '.context-loader-container', '[data-pjax-container]']
+            })
+        }
+
+        /* 设置开关，防止重复渲染，影响性能 */
+        eleLi.setAttribute('generateDOM', 'off')
+
         let onoff = eleLi.getAttribute('onoff') === 'on' ? 'off' : 'on'
         let sideBarWrap = document.querySelector('.side-bar-main')
         let oPath = {}

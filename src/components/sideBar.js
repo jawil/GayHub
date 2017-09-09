@@ -2,7 +2,8 @@
 import { generatePath } from 'utils/generatePage'
 import parentNotRoll from 'utils/parentNotRoll'
 import Pjax from 'pjax'
-import { toggleBtn,urlChangeEvent } from 'utils/setIconStyle'
+import { toggleBtn, urlChangeEvent } from 'utils/setIconStyle'
+import { getUrlParam } from 'utils/sideBarHelp'
 
 module.exports = function() {
     const fileWrap = document.querySelectorAll('.file-wrap,.file'),
@@ -10,23 +11,7 @@ module.exports = function() {
 
     if (fileWrap.length) {
         /* 获取参数 */
-        const oParam = function() {
-            const pathname = window.location.pathname
-            const parseParam = pathname.replace(/^\//, '').split('/')
-
-            const oParam = {
-                userName: '',
-                reposName: '',
-                type: '',
-                branch: ''
-            }
-            oParam.userName = parseParam[0]
-            oParam.reposName = parseParam[1]
-            oParam.type = parseParam[2] ? `${parseParam[2]}` : 'tree'
-            oParam.branch = parseParam[3] ? `${parseParam[3]}` : 'master'
-            return oParam
-        }()
-
+        const oParam = getUrlParam()
 
         /* 获取所有的文件名 */
         const filePathName = function(callback) {
