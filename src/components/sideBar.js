@@ -37,7 +37,7 @@ module.exports = function() {
                     selectors: ['#js-repo-pjax-container', '.context-loader-container', '[data-pjax-container]']
                 })
                 toggleBtn()
-                urlChangeEvent()
+                urlChangeEvent(data.tree)
                 parentNotRoll('.side-bar-main')
 
             })

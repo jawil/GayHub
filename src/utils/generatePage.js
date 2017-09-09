@@ -1,4 +1,4 @@
-import { generateCurrentTreeDOM } from 'utils/sideBarHelp'
+import { initDOM } from 'utils/sideBarHelp'
 
 /* 生成侧边栏sidebar的HTML */
 function generatePath(files, parent, oParam) {
@@ -36,10 +36,7 @@ function generatePath(files, parent, oParam) {
     let lastCount = files[0].path.split('/').length + 1
 
     /* 默认开始时候生成两层目录 */
-
-    generateCurrentTreeDOM(files, sideBarMain, 2, files)
-
-
+    initDOM(files, sideBarMain)
 }
 
 

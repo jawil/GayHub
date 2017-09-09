@@ -1,5 +1,5 @@
-import { setIconCss, setClickTreeCss, setClickBlobCss, getCurrentPath } from 'utils/setIconStyle'
-
+import { setIconCss, setClickTreeCss, setClickBlobCss } from 'utils/setIconStyle'
+import Pjax from 'pjax'
 /* 根据浏览器的url解析参数 */
 const getUrlParam = function() {
     const pathname = window.location.pathname
@@ -17,6 +17,19 @@ const getUrlParam = function() {
     oParam.branch = parseParam[3] ? `${parseParam[3]}` : 'master'
 
     return oParam
+}
+
+/* 获取当前的文件名称 */
+const getCurrentPath = function() {
+    const pathname = window.location.pathname,
+        parseParam = pathname.replace(/^\//, '').split('/')
+    let currentPath = ''
+
+    if (parseParam[2]) {
+        currentPath = parseParam.slice(4)
+        currentPath = currentPath.length === 1 ? currentPath[0] : currentPath.join('/')
+    }
+    return currentPath
 }
 
 
@@ -56,6 +69,72 @@ const getCurrentTreeFiles = function(fileTree, allFiles, cascad) {
 const oParam = getUrlParam()
 const currentPath = getCurrentPath()
 
+/* 解析首次打开url要解析的DOM结构 */
+const initDOM = function(files, parent) {
+    /* 找到当前url对应的A标签 */
+
+    console.log(currentPath)
+
+    generateCurrentTreeDOM(files, parent, 2, files)
+
+}
+
+/* 点击之后重新生成渲染DOM */
+const RenderDOM = function(eleLi, ele, files) {
+
+    let currentCascad = ele.path.split('/').length
+
+    /* 当前目录下的所有文件 */
+    let currentTreeFiles = getCurrentTreeFiles(ele, files, currentCascad)
+
+    let currenteleLiChild = eleLi.querySelectorAll('li')
+
+    /* 求出当前目录下所有的文件夹DOM节点，也就是type=tree */
+    let treeChild = []
+
+    currenteleLiChild.forEach(ele => {
+        if (ele.getAttribute('type') === 'tree') {
+            treeChild.push(ele)
+        }
+    })
+
+    /* 求出当前所有文件树的状态信息，也就是type=tree */
+    let treeMsg = []
+
+    currentTreeFiles.forEach(ele => {
+        if (ele.type === 'tree') {
+            treeMsg.push(ele)
+        }
+    })
+
+    /* 如果当前目录下的所有文件并没有文件夹类型 */
+    if (treeChild.length && (eleLi.getAttribute('generateDOM') !== 'off')) {
+
+        treeChild.forEach((ele, index) => {
+            let nextCascad = treeMsg[index].path.split('/').length
+            let nextTreeFiles = getCurrentTreeFiles(treeMsg[index], files, nextCascad)
+
+            /* 如果不是空文件夹 */
+            if (nextTreeFiles.length) {
+                generateCurrentTreeDOM(nextTreeFiles, ele, nextCascad + 1, files)
+            }
+
+        })
+
+        /* 重新渲染Pjax */
+        new Pjax({
+            elements: "a",
+            selectors: ['#js-repo-pjax-container', '.context-loader-container', '[data-pjax-container]']
+        })
+    }
+
+    /* 设置开关，防止重复渲染，影响性能 */
+    eleLi.setAttribute('generateDOM', 'off')
+}
+
+
+
+
 /**
  * 递归生成当前文件树下面所有的DOM结构 
  * @param {*当前目录所有的文件} CurrentTreeFiles 
@@ -88,6 +167,10 @@ const generateCurrentTreeDOM = function(CurrentTreeFiles, parent, cascad, files)
 
             outerLi.appendChild(iconI)
             outerLi.appendChild(hrefA)
+
+            if (ele.type === 'tree') {
+                outerLi.setAttribute('path', ele.path)
+            }
 
             const url = `${oParam.userName}/${oParam.reposName}/${ele.type}/${oParam.branch}`
 
@@ -184,4 +267,4 @@ const generateCurrentTreeDOM = function(CurrentTreeFiles, parent, cascad, files)
 }
 
 
-export { getCurrentTreeFiles, generateCurrentTreeDOM, getUrlParam }
+export { initDOM, getCurrentTreeFiles, generateCurrentTreeDOM, RenderDOM, getUrlParam, getCurrentPath }

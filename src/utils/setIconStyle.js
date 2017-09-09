@@ -1,6 +1,6 @@
 import icons from '../icons.json'
-import { generateCurrentTreeDOM, getCurrentTreeFiles } from 'utils/sideBarHelp'
-import Pjax from 'pjax'
+import { generateCurrentTreeDOM, getCurrentTreeFiles, RenderDOM } from 'utils/sideBarHelp'
+
 
 const iconDefinitions = icons.iconDefinitions,
     folderNames = icons.folderNames,
@@ -30,7 +30,7 @@ const setIconCss = function(ele, iconELe) {
 
                 let typeName1 = typeName.split('.').shift()
                 let typeName2 = typeName.split('.').pop()
-                typeName = `${typeName1}.${typeName2}`                
+                typeName = `${typeName1}.${typeName2}`
                 oPath = iconNames.hasOwnProperty(typeName) ?
                     iconDefinitions[iconNames[typeName]].iconPath : 'icons/folder.png'
 
@@ -49,21 +49,9 @@ const setIconCss = function(ele, iconELe) {
     background-size: cover;`
 }
 
-/* 获取当前的文件名称 */
-const getCurrentPath = function() {
-    const pathname = window.location.pathname,
-        parseParam = pathname.replace(/^\//, '').split('/')
-    let currentPath = ''
-
-    if (parseParam[2]) {
-        currentPath = parseParam.slice(4)
-        currentPath = currentPath.length === 1 ? currentPath[0] : currentPath.join('/')
-    }
-    return currentPath
-}
 
 /* 监听URL变化，改变侧边栏对应的样式变化 */
-const urlChangeEvent = function() {
+const urlChangeEvent = function(files) {
 
     const fileWrap = document.querySelectorAll('.file-wrap,.file')
 
@@ -94,6 +82,15 @@ const urlChangeEvent = function() {
                 })
 
                 if (targetA) {
+
+                    let targetLi = targetA.parentNode
+                    let ele = { path: targetLi.getAttribute('path') }
+
+                    /* 点击gitub页面文件目录重新渲染侧边栏的DOM */
+                    if (targetLi.getAttribute('type') === 'tree') {
+                        RenderDOM(targetLi, ele, files)
+                    }
+
                     if (targetA.getAttribute('type') === 'blob') {
                         targetA.setAttribute('isClicked', true)
                     } else {
@@ -170,54 +167,7 @@ const setClickTreeCss = function(eleLi, ele, child, files) {
             return
         }
 
-        let currentCascad = ele.path.split('/').length
-
-        /* 当前目录下的所有文件 */
-        let currentTreeFiles = getCurrentTreeFiles(ele, files, currentCascad)
-
-        let currenteleLiChild = eleLi.querySelectorAll('li')
-
-        /* 求出当前目录下所有的文件夹DOM节点，也就是type=tree */
-        let treeChild = []
-
-        currenteleLiChild.forEach(ele => {
-            if (ele.getAttribute('type') === 'tree') {
-                treeChild.push(ele)
-            }
-        })
-
-        /* 求出当前所有文件树的状态信息，也就是type=tree */
-        let treeMsg = []
-
-        currentTreeFiles.forEach(ele => {
-            if (ele.type === 'tree') {
-                treeMsg.push(ele)
-            }
-        })
-
-        /* 如果当前目录下的所有文件并没有文件夹类型 */
-        if (treeChild.length && (eleLi.getAttribute('generateDOM') !== 'off')) {
-
-            treeChild.forEach((ele, index) => {
-                let nextCascad = treeMsg[index].path.split('/').length
-                let nextTreeFiles = getCurrentTreeFiles(treeMsg[index], files, nextCascad)
-
-                /* 如果不是空文件夹 */
-                if (nextTreeFiles.length) {
-                    generateCurrentTreeDOM(nextTreeFiles, ele, nextCascad + 1, files)
-                }
-
-            })
-
-            /* 重新渲染Pjax */
-            new Pjax({
-                elements: "a",
-                selectors: ['#js-repo-pjax-container', '.context-loader-container', '[data-pjax-container]']
-            })
-        }
-
-        /* 设置开关，防止重复渲染，影响性能 */
-        eleLi.setAttribute('generateDOM', 'off')
+        RenderDOM(eleLi, ele, files)
 
         let onoff = eleLi.getAttribute('onoff') === 'on' ? 'off' : 'on'
         let sideBarWrap = document.querySelector('.side-bar-main')
@@ -244,7 +194,6 @@ export {
     setIconCss,
     setClickTreeCss,
     setClickBlobCss,
-    getCurrentPath,
     toggleBtn,
     urlChangeEvent
 }
