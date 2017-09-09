@@ -12,7 +12,7 @@
 ***
 
 ### 马上使用：
-* [Chrome 应用商店]() 或者 [离线下载](https://github.com/jawil/GayHub/raw/master/download/gayhub-1.0.crx) 或者 [下载测试版](https://github.com/jawil/GayHub/raw/master/download/test.crx)
+* [Chrome 应用商店](https://github.com/jawil/GayHub/raw/master/download/gayhub-1.0.crx) 或者 [离线下载](https://github.com/jawil/GayHub/raw/master/download/gayhub-1.0.crx) 或者 [下载测试版](https://github.com/jawil/GayHub/raw/master/download/test.crx)
 
 
 ### 主要功能一览：
