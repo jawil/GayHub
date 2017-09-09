@@ -54,6 +54,7 @@
 .toggle-btn {
     position: absolute;
     transition: all 0.3s ease-out;
+    z-index:100;
     top: 20px;
     right: 10px;
     width: 30px;
