@@ -139,7 +139,7 @@ const RenderDOM = function(eleLi, ele, files) {
 
         /* 重新渲染Pjax */
         new Pjax({
-            elements: "a",
+            elements: "a[data-href],a[id],span.js-path-segment>a",
             selectors: ['#js-repo-pjax-container', '.context-loader-container', '[data-pjax-container]']
         })
     }
