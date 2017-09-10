@@ -1,3 +1,9 @@
+/* 收集用户错误信息，及时更正未知bug */
+import Raven from 'raven-js'
+
+Raven.config('https://fefe8b39c6984f56bcff4562caf28740@sentry.io/214908').install()
+
+
 /* 侧边栏功能 */
 const fileWrap = document.querySelectorAll('.file-wrap,.file')
 

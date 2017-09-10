@@ -10,13 +10,15 @@ const BUILD_PATH = path.resolve(ROOT_PATH, 'chrome/scripts')
 const env = process.env.NODE_ENV
 
 module.exports = {
-    devtool: env === 'development' ? 'cheap-module-eval-source-map' : 'hidden-source-map',
+    /* source-map */
+    devtool: env === 'production' ? 'hidden-source-map' : 'cheap-module-eval-source-map',
     entry: {
         app: './src/index.js'
     },
     output: {
         path: BUILD_PATH, // 编译到当前目录
-        filename: 'contentscript.js'
+        filename: 'contentscript.js',
+        sourceMapFilename: 'contentscript.js.map'
     },
     module: {
         rules: [{
