@@ -137,12 +137,12 @@ const RenderDOM = function(eleLi, ele, files) {
 
         })
 
-        /* 重新渲染Pjax */
-        new Pjax({
-            elements: "a[data-href],a[id],span.js-path-segment>a",
-            selectors: ['#js-repo-pjax-container', '.context-loader-container', '[data-pjax-container]']
-        })
     }
+    /* 重新渲染Pjax */
+    new Pjax({
+        elements: "a[data-href],a[id],a[type],span.js-path-segment>a",
+        selectors: ['#js-repo-pjax-container', '.context-loader-container', '[data-pjax-container]']
+    })
 
     /* 设置开关，防止重复渲染，影响性能 */
     eleLi.setAttribute('generateDOM', 'off')
@@ -165,6 +165,20 @@ const generateCurrentTreeDOM = function(CurrentTreeFiles, parent, cascad, files)
         throw Error('没有相应的文件')
         return
     }
+
+    /* 重新渲染Pjax */
+    new Pjax({
+        elements: "a[data-href],a[id],a[type],span.js-path-segment>a",
+        selectors: ['#js-repo-pjax-container', '.context-loader-container', '[data-pjax-container]']
+    })
+
+    document.addEventListener("pjax:send", function() {
+        document.querySelector('#spinner').style.display = 'block'
+    })
+
+    document.addEventListener("pjax:success", function() {
+        document.querySelector('#spinner').style.display = 'none'
+    })
 
     let count = CurrentTreeFiles[0].path.split('/').length
 

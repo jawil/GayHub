@@ -124,6 +124,7 @@ export default function TOC(container) {
         toggleTOCBtn()
 
         new Drag(`.${options.classWrap}`)
+        
 
     }
 

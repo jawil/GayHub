@@ -37,10 +37,6 @@ module.exports = function() {
 
                 document.querySelector('#spinner').style.display = 'none'
 
-                new Pjax({
-                    elements: "a[data-href],a[id],span.js-path-segment>a",
-                    selectors: ['#js-repo-pjax-container', '.context-loader-container', '[data-pjax-container]']
-                })
                 toggleBtn()
                 urlChangeEvent(data.tree)
                 parentNotRoll('.side-bar-main')
