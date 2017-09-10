@@ -441,8 +441,11 @@
         "_f_server": {
             "iconPath": "icons/server.png"
         },
-        "_f_xml":{
+        "_f_xml": {
             "iconPath": "icons/xaml.png"
+        },
+        "_f_vim": {
+            "iconPath": "icons/vim.png"
         }
     },
     "file": "_file",
@@ -911,6 +914,7 @@
         "php": "_f_php",
         "html": "_f_html",
         "json": "_f_json",
-        "dart": "_f_dart"
+        "dart": "_f_dart",
+        "vim": "_f_vim"
     }
 }
