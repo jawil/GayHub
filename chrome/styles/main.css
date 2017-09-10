@@ -9,6 +9,10 @@ a {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+.container-lg div.flex-justify-between:first-child {
+    width: 120px;
+}
+
 
 /* TOC模块 */
 

@@ -11,6 +11,12 @@ if (fileWrap.length) {
     siderBar()
 }
 
+
+/* 回到我的主页 */
+const overView = require('components/overView')
+overView()
+
+
 /* 用户图像 */
 if (window.location.pathname === '/') {
     const showAvatar = require('components/showAvatar')
