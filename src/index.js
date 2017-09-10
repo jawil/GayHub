@@ -7,8 +7,8 @@ Raven.config('https://fefe8b39c6984f56bcff4562caf28740@sentry.io/214908').instal
 const fileWrap = document.querySelectorAll('.file-wrap,.file')
 
 if (fileWrap.length) {
-    const siderBar = require('components/sideBar')
-    siderBar()
+    const sidebarNav = require('components/sidebarNav')
+    sidebarNav()
 }
 
 
