@@ -420,7 +420,6 @@ export default function TOC(container) {
     }
 
     
-    
     /* 等图片全部加载完成再加载TOC，防止图片未加载完成造成内容坍塌 */
     imagesLoaded(container, { background: true }, function() {
 
