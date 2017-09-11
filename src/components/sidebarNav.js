@@ -1,47 +1,56 @@
-/* 生成侧边栏sidebar的HTML */
 import { generateContainerHTML } from 'utils/generatePage'
-import { toggleBtn, urlChangeEvent } from 'utils/setIconStyle'
-import { getUrlParam, initDOM } from 'utils/sideBarHelp'
+
+import {
+    toggleBtn,
+    urlChangeEvent
+} from 'utils/setIconStyle'
+
+import {
+    getUrlParam,
+    initDOM
+} from 'utils/sideBarHelp'
+
 import parentNotRoll from 'libs/parentNotRoll'
-import Pjax from 'pjax'
 
 const sideBarMain = generateContainerHTML()
 
 module.exports = function() {
-    const fileWrap = document.querySelectorAll('.file-wrap,.file'),
-        allFilesType = []
+    const fileWrap = document.querySelectorAll('.file-wrap,.file')
 
     if (fileWrap.length) {
         /* 获取参数 */
         const oParam = getUrlParam()
 
         /* 获取所有的文件名 */
-        const filePathName = function(callback) {
+        const filePathName = function() {
+
             const API = 'https://api.github.com/repos/'
             let parmArr = []
+
             for (let attr in oParam) {
                 parmArr.push(oParam[attr])
             }
 
             parmArr.splice(2, 1, 'git/trees')
-
             const getPathUrl = `${API}${parmArr.join('/')}?recursive=1`
+
             fetch(getPathUrl, {
+
                 method: 'get'
+
             }).then(response => {
+
                 return response.json()
+
             }).then(data => {
 
-                callback(data.tree, sideBarMain)
-
-                document.querySelector('#spinner').style.display = 'none'
-
+                initDOM(data.tree, sideBarMain)
                 toggleBtn()
                 urlChangeEvent(data.tree)
                 parentNotRoll('.side-bar-main')
+                document.querySelector('#spinner').style.display = 'none'
 
             })
-        }(initDOM)
-
+        }()
     }
 }

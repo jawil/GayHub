@@ -1,5 +1,9 @@
 import icons from '../icons.json'
-import { generateCurrentTreeDOM, getCurrentTreeFiles, RenderDOM } from 'utils/sideBarHelp'
+import {
+    generateCurrentTreeDOM,
+    getCurrentTreeFiles,
+    RenderDOM
+} from 'utils/sideBarHelp'
 
 
 const iconDefinitions = icons.iconDefinitions,
@@ -135,7 +139,7 @@ const toggleBtn = function() {
                 rootHtml.style.marginLeft = -Math.max((420 - react), 0) + 'px'
 
             } else {
-     
+
                 rootHtml.style.marginLeft = 0 + 'px'
 
             }

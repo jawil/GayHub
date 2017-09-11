@@ -1,4 +1,9 @@
-import { setIconCss, setClickTreeCss, setClickBlobCss } from 'utils/setIconStyle'
+import {
+    setIconCss,
+    setClickTreeCss,
+    setClickBlobCss
+} from 'utils/setIconStyle'
+
 import Pjax from 'pjax'
 
 /* 根据浏览器的url解析参数 */
@@ -282,4 +287,11 @@ const generateCurrentTreeDOM = function(CurrentTreeFiles, parent, cascad, files)
 }
 
 
-export { initDOM, getCurrentTreeFiles, generateCurrentTreeDOM, RenderDOM, getUrlParam, getCurrentPath }
+export {
+    initDOM,
+    getCurrentTreeFiles,
+    generateCurrentTreeDOM,
+    RenderDOM,
+    getUrlParam,
+    getCurrentPath
+}
