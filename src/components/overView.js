@@ -1,8 +1,8 @@
 module.exports = function() {
 
     const logoAvatar = document.querySelector('.header-logo-invertocat'),
-        userAvatarEle = document.querySelector('.avatar')
-    isLogined = document.querySelector('.text-bold')
+        userAvatarEle = document.querySelector('.avatar'),
+        isLogined = document.querySelector('.text-bold')
 
     let overViewUrl
 
