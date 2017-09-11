@@ -446,6 +446,9 @@
         },
         "_f_vim": {
             "iconPath": "icons/vim.png"
+        },
+        "_f_txt": {
+            "iconPath": "icons/txt.png"
         }
     },
     "file": "_file",
@@ -915,6 +918,7 @@
         "html": "_f_html",
         "json": "_f_json",
         "dart": "_f_dart",
-        "vim": "_f_vim"
+        "vim": "_f_vim",
+        "txt": "_f_txt"
     }
 }
