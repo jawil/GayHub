@@ -3,6 +3,9 @@ import throttle from 'libs/throttle'
 import parentNotRoll from 'libs/parentNotRoll'
 import { generatetableOfContentHTML } from 'utils/generatePage'
 import imagesLoaded from 'imagesloaded'
+import Eventemitter from 'wolfy-eventemitter'
+
+let eventbus = new Eventemitter()
 
 const webClassContainer = {
     github: ['.markdown-body', '.wiki-wrapper'],
@@ -108,6 +111,11 @@ export default function TOC(container) {
         /* 生成TOC的HTML结构 */
         generatetableOfContentHTML(titleArr, tableOfContent)(titleStr, tableOfContent)
 
+        /* 初始化TOC位置，屏幕不大时候默认是隐藏的*/
+        if (window.screen.width < 1600) {
+            eventbus.emit('toggleTOCBtn')
+        }
+
         /* 计算需要的一些的一些数据 */
         calculateDatas()
 
@@ -121,10 +129,13 @@ export default function TOC(container) {
         syncRoll(tableOfContent)
 
         /* TOC的显示隐藏 */
-        toggleTOCBtn()
+        let oBtn = document.querySelector('.table-of-content-btn')
+        oBtn.addEventListener('click', e => {
+            eventbus.emit('toggleTOCBtn')
+        }, false)
 
         new Drag(`.${options.classWrap}`)
-        
+
 
     }
 
@@ -141,43 +152,41 @@ export default function TOC(container) {
     }
 
     /* TOC的显示隐藏 */
-    const toggleTOCBtn = function() {
-        let oBtn = document.querySelector('.table-of-content-btn')
+    eventbus.on('toggleTOCBtn', f => {
+
         let TOCWrap = document.querySelector('.table-of-content-wrap')
+        let oBtn = document.querySelector('.table-of-content-btn')
 
-        oBtn.addEventListener('click', e => {
+        let right = window.screen.width - TOCWrap.getBoundingClientRect().left
 
-            let right = window.screen.width - TOCWrap.getBoundingClientRect().left
+        let onoff = TOCWrap.getAttribute('toggle') === 'on' ? 'off' : 'on'
+        let sideBarWrap = document.querySelector('.side-bar-wrap')
 
-            let onoff = TOCWrap.getAttribute('toggle') === 'on' ? 'off' : 'on'
-            let sideBarWrap = document.querySelector('.side-bar-wrap')
+        if (onoff === 'off') {
 
-            if (onoff === 'off') {
+            TOCWrap.style.cssText = `right:${-right}px;display:block;`
+            oBtn.style.cssText = `left:-${right-200}px;`
 
-                TOCWrap.style.cssText = `right:${-right}px;display:block;`
-                oBtn.style.cssText = `left:-${right-200}px;`
-
-                if (sideBarWrap && (sideBarWrap.getAttribute('toggle') === 'off')) {
-                    document.querySelector('html').style.marginLeft = 0 + 'px'
-                }
-
-            } else {
-
-                TOCWrap.style.cssText = 'right:3%;display:block;';
-                oBtn.style.cssText = `left:10px;`;
-
-                let contentMain = document.querySelector('.repository-content')
-                let react = contentMain.getBoundingClientRect().left
-
-                if (sideBarWrap && (sideBarWrap.getAttribute('toggle') === 'off')) {
-                    document.querySelector('html').style.marginLeft = -Math.max((370 - react), 0) + 'px'
-                }
+            if (sideBarWrap && (sideBarWrap.getAttribute('toggle') === 'off')) {
+                document.querySelector('html').style.marginLeft = 0 + 'px'
             }
 
-            TOCWrap.setAttribute('toggle', onoff)
+        } else {
 
-        }, false)
-    }
+            TOCWrap.style.cssText = 'right:3%;display:block;';
+            oBtn.style.cssText = `left:10px;`;
+
+            let contentMain = document.querySelector('.repository-content')
+            let react = contentMain.getBoundingClientRect().left
+
+            if (sideBarWrap && (sideBarWrap.getAttribute('toggle') === 'off')) {
+                document.querySelector('html').style.marginLeft = -Math.max((370 - react), 0) + 'px'
+            }
+        }
+
+        TOCWrap.setAttribute('toggle', onoff)
+
+    })
 
 
     /* 页面滚动时候，tableOfContent也跟随者滚动，同步滚动 */
@@ -419,29 +428,14 @@ export default function TOC(container) {
         calculateCurrentIndex(document.body.scrollTop)
     }
 
-    
+
     /* 等图片全部加载完成再加载TOC，防止图片未加载完成造成内容坍塌 */
     imagesLoaded(container, { background: true }, function() {
 
         /* 如果当前滚动条超过页面一半，显示TOC目录导航 */
         tableOfContentStart()
 
-        /* TOC显示与隐藏 */
-        const toggleTOC = function() {
-            const wrap = document.querySelector(`.${options.classWrap}`)
-
-            if (document.body.scrollTop >= window.screen.height / 1.5) {
-                wrap.style.display = 'block'
-            }
-
-            document.addEventListener('scroll', throttle(e => {
-
-                let displayStatus = (document.body.scrollTop >= window.screen.height / 1.5) ?
-                    'block' : 'none'
-
-                wrap.style.display = displayStatus
-            }, 500), false)
-        }()
+        console.log(33333)
 
     })
 
