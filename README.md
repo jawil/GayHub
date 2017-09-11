@@ -1,8 +1,8 @@
 ## 介绍
 <p align="center"><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fj6b54v22kj306y06yq3v.jpg" /></p>
-<h1 align="center">Chrome - GayHub</h1>
-<p align="center">一款强大的GitHub的Chrome 扩展，打造完美的GitHub体验，提升你的阅读效率。</p>
-<p align="center">为了达到完美的GitHub阅览体验这个小目标 ，让大家更方便的体验Github，因此诞生了GayHub。</p>
+<h1 align="center">Chrome —— GayHub</h1>
+<p align="center">一款强大的 GitHub 的 Chrome 扩展 —— GayHub，优化 GitHub 的阅读体验。</p>
+<p align="center">为了进一步提高 GitHub 阅览体验这个小目标 ，让大家更方便的畅游 Github，因此诞生了 GayHub。</p>
 <p align="center">
    <a href="https://github.com/jawil/GayHub/blob/master/download/gayhub-1.0.crx?raw=true" download><img src="https://img.shields.io/badge/lastest_version-1.0.3-blue.svg"></a>
    <a target="_blank" href="https://github.com/jawil/GayHub/blob/master/download/gayhub-1.0.crx?raw=true"><img src="https://img.shields.io/badge/download-_chrome_webstore-brightgreen.svg" download></a>
@@ -20,17 +20,17 @@
 
 给`github`插上翅膀，让你轻松切换文件，方便阅读，把`Vscode`的精美的侧边栏完美移植到`github`上，颜值颇高，`100`多种精美图标完美移植，加上`Pjax`的无刷新切换文件，体验颇佳。
 
-截图：对于微软的VScode和TypeScript这种大型开源，10000+文件的解析起来也毫无压力，瞬间打开，颜值与性能并存。
+截图：对于微软的VScode和TypeScript这种大型开源，10000+文件的解析起来也毫无压力，稍等片刻即可打开，颜值与性能并存。
 
 ![](https://ws3.sinaimg.cn/large/006tNc79gy1fjfyqib2edj30zg0l3dtx.jpg)
 
- 温馨提示：不要打开`Linux`这种巨无霸的开源，我从`GitHub`接口拉取目录文件名都需要几分钟。。。
+ 温馨提示：不要打开`Linux`这种巨无霸的开源，因为从`GitHub`接口拉取所有目录文件名数据都需要几分钟。。。
  
 - **TOC导航：**  
 
   为了清晰明了的概览整个`GitHub`文档、`issure`、`wiki`的结构层次，为此开发了这个强大的功能，支持任意层次嵌套，能完美解析内容的所有嵌套标题，性能优越，滑动起来如丝滑般流畅。
   
-  截图：
+  截图：不管你嵌套多少层，解析不出来算我输。
   
  ![](https://ws1.sinaimg.cn/large/006tNc79gy1fjc8ic7g3fj30zd0kzk8d.jpg)
 
@@ -38,7 +38,7 @@
 
   `GitHub`默认点击图片会跳转到另一个窗口，有时候无意点到也会跳转到另一个页面，体验稍差，为此添加了一个类似知乎点击图片全屏查看的功能
   
-  截图
+  截图：
   
   ![](https://ws1.sinaimg.cn/large/006tNc79gy1fjc8vujk97j30z40ky1kx.jpg)
 
