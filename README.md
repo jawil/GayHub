@@ -20,9 +20,9 @@
 
 给`github`插上翅膀，让你轻松切换文件，方便阅读，把`Vscode`的精美的侧边栏完美移植到`github`上，颜值颇高，`100`多种精美图标完美移植，加上`Pjax`的无刷新切换文件，体验颇佳。
 
-截图：对于微软的Vscode这种大型开源，10000+文件的解析起来也毫无压力，瞬间打开，颜值与性能并存。
+截图：对于微软的VScode和TypeScript这种大型开源，10000+文件的解析起来也毫无压力，瞬间打开，颜值与性能并存。
 
-![](http://opb6zkmf0.bkt.clouddn.com/111.png)
+![](https://ws3.sinaimg.cn/large/006tNc79gy1fjfyqib2edj30zg0l3dtx.jpg)
 
  温馨提示：不要打开`Linux`这种巨无霸的开源，我从`GitHub`接口拉取目录文件名都需要几分钟。。。
  
