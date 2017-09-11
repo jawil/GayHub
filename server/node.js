@@ -1,1 +1,1 @@
-let auth = 'jawil'
+const auth = 'jawil'

@@ -1,5 +1,5 @@
 ## 介绍
-<p align="center"><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fj6b54v22kj306y06yq3v.jpg" /></p>
+<p align="center"><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fjg0akcj3fj30b40b4gm2.jpg" /></p>
 <h1 align="center">Chrome —— GayHub</h1>
 <p align="center">一款强大的 GitHub 的 Chrome 扩展 —— GayHub，优化 GitHub 的阅读体验。</p>
 <p align="center">为了进一步提高 GitHub 阅览体验这个小目标 ，让大家更方便的畅游 Github，因此诞生了 GayHub。</p>
