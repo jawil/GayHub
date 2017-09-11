@@ -1,0 +1,53 @@
+@charset 'utf-8';
+pre {
+    position: relative
+}
+
+.copy-wrap {
+    position: relative;
+}
+
+.copy-wrap .copy-icon {
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    opacity: 0.7
+}
+
+.copy-wrap .copy-icon:hover {
+    opacity: 1
+}
+
+.copy-wrap .copy-icon:hover+.msg-tips {
+    display: block;
+    content: '复制到剪切板'
+}
+
+.copy-wrap span.msg-tips::before {
+    position: absolute;
+    border: 5px solid transparent;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.7);
+    content: '';
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.copy-wrap .msg-tips {
+    position: absolute;
+    width: 115px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border: 1px solid #aaa;
+    right: -43px;
+    top: 36px;
+    font-size: 13px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    display: none;
+}

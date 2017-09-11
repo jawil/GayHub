@@ -30,9 +30,12 @@
             "*://gist.github.com/*"
         ],
         "css": [
-            "styles/main.css",
-            "styles/sidebar.css",
+            "styles/overView.css",
+            "styles/sidebarNav.css",
             "styles/loading.css",
+            "styles/tableOfContent.css",
+            "styles/showAvatar.css",
+            "styles/copySnippet.css",
             "styles/zoom.css"
         ],
         "js": [
