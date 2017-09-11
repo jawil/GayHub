@@ -1,4 +1,4 @@
-let path = chrome.extension.getURL('vs-dev/vs')
+/* let path = chrome.extension.getURL('vs-dev/vs')
 
 require.config({ paths: { 'vs': path } })
 
@@ -22,4 +22,4 @@ require(['vs/editor/editor.main'], function(ele) {
         language: 'javascript'
 
     });
-})
+}) */
