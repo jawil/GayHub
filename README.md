@@ -16,6 +16,9 @@
 
 
 ### 主要功能一览：
+
+**温馨提示：请自行忽略书签栏等不健康网站，1024。**
+
 - **文件目录树：**
 
 给`github`插上翅膀，让你轻松切换文件，方便阅读，把`Vscode`的精美的侧边栏完美移植到`github`上，颜值颇高，`100`多种精美图标完美移植，加上`Pjax`的无刷新切换文件，体验颇佳。
@@ -40,7 +43,7 @@
   
   截图：
   
- ![](http://ww1.sinaimg.cn/large/ae49ba57gy1fjgkb7mz9hj20z40kyjyu.jpg)
+ ![](https://ws2.sinaimg.cn/large/006tNc79gy1fjgkem4rnoj30zi0l2afd.jpg)
 
 - **复制代码：**
 
