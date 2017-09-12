@@ -209,7 +209,7 @@ export default function TOC(container) {
         document.addEventListener('scroll', throttle(e => {
             /* 点击时候也会触发滚动条事件 */
             if (!isClick) {
-                calculateCurrentIndex(document.body.scrollTop - initScrollHeight)
+                calculateCurrentIndex((document.body.scrollTop || document.documentElement.scrollTop) - initScrollHeight)
             }
             isClick = false
 
@@ -283,7 +283,13 @@ export default function TOC(container) {
             isClick = true
 
             /* 一元运算符+隐式转换 */
-            document.body.scrollTop = listHeight[+e.target.getAttribute('index')] + initScrollHeight
+
+            let scrollTop = listHeight[+e.target.getAttribute('index')] + initScrollHeight
+            if (document.body.scrollTop) {
+                document.body.scrollTop = scrollTop
+            } else {
+                document.documentElement.scrollTop = scrollTop
+            }
 
             /* 求出LI里面嵌套了几层UL */
             const cascad = getCascad()(e.target)
@@ -427,7 +433,7 @@ export default function TOC(container) {
         }
 
         /* 初始化样式 */
-        calculateCurrentIndex(document.body.scrollTop)
+        calculateCurrentIndex(document.body.scrollTop || document.documentElement.scrollTop)
     }
 
 
