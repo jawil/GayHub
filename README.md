@@ -56,12 +56,12 @@
 
 ![](http://opb6zkmf0.bkt.clouddn.com/QQ20170909-105120.png)
 
-### 大屏幕全貌
+### 大屏全貌
 在大屏幕下，会展示所有的内容，在mac等小屏幕下默认只显示侧边栏目录树，而TOC默认是隐藏的。
 
 截图：
 
-![](http://opb6zkmf0.bkt.clouddn.com/WX20170912-093706.png)
+![](https://ws1.sinaimg.cn/large/006tNc79gy1fjgj9pvps7j31hc0sq47z.jpg)
 
 ###  说明
 
