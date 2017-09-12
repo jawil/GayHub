@@ -20,7 +20,8 @@ const getUrlParam = function() {
     oParam.userName = parseParam[0]
     oParam.reposName = parseParam[1]
     oParam.type = parseParam[2] ? `${parseParam[2]}` : 'tree'
-    oParam.branch = document.querySelector('span.css-truncate-target').textContent
+    let branchWrap = document.querySelector('span.css-truncate-target')
+    oParam.branch = branchWrap ? branchWrap.textContent : 'master'
 
     return oParam
 }
