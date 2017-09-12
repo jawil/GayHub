@@ -40,7 +40,7 @@
   
   截图：
   
-  ![](https://ws1.sinaimg.cn/large/006tNc79gy1fjc8vujk97j30z40ky1kx.jpg)
+ ![](https://ws4.sinaimg.cn/large/006tNc79gy1fjgjvhv37pj30z40kyjyu.jpg)
 
 - **复制代码：**
 
