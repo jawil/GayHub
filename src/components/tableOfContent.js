@@ -145,7 +145,6 @@ export default function TOC(container) {
     const getTitleStr = element => {
         
         let title = []
-
         element.forEach(ele => {
             ele.id = ele.textContent
             title.push(ele.nodeName.toLocaleLowerCase())
