@@ -1,4 +1,4 @@
-## 介绍
+## 总体介绍
 <p align="center"><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fjg0akcj3fj30b40b4gm2.jpg" /></p>
 <h1 align="center">Chrome —— GayHub</h1>
 <p align="center">一款强大的 GitHub 的 Chrome 扩展 —— GayHub，优化 GitHub 的阅读体验。</p>
@@ -12,12 +12,15 @@
 ***
 
 ### 马上使用：
+
 * [Chrome 应用商店](https://github.com/jawil/GayHub/blob/master/download/gayhub-1.0.crx?raw=true) 或者 [离线下载](https://github.com/jawil/GayHub/blob/master/download/gayhub-1.0.crx?raw=true) 或者 [下载测试版](https://github.com/jawil/GayHub/blob/master/download/test.crx?raw=true)
 
 
-### 主要功能一览：
+### 温馨提示
 
-**温馨提示：请自行忽略书签栏等不健康网站，1024。**
+**请自行忽略下面截图书签栏等不健康网站，为了您的健康，请转移你犀利的目光。1024**
+
+### 主要功能一览：
 
 - **文件目录树：**
 
