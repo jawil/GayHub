@@ -143,6 +143,7 @@ export default function TOC(container) {
 
     /* 获取页面所有的标题然后拼接成字符串 */
     const getTitleStr = element => {
+        
         let title = []
 
         element.forEach(ele => {
