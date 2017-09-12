@@ -18,6 +18,7 @@ module.exports = function() {
     const fileWrap = document.querySelectorAll('.file-wrap,.file')
 
     if (fileWrap.length) {
+
         /* 获取参数 */
         const oParam = getUrlParam()
 
