@@ -112,7 +112,9 @@ export default function TOC(container) {
         generatetableOfContentHTML(titleArr, tableOfContent)(titleStr, tableOfContent)
 
         /* 初始化TOC位置，屏幕不大时候默认是隐藏的*/
-        if (window.screen.width < 1600) {
+        eventbus.emit('toggleTOCBtn')
+
+        if (window.screen.width > 1700) {
             eventbus.emit('toggleTOCBtn')
         }
 
