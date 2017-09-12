@@ -1,8 +1,8 @@
 {
     "name": "GayHub",
-    "version": "0.1.0",
+    "version": "v.1.0",
     "manifest_version": 2,
-    "description": "GayHub is useful",
+    "description": "An awesome chrome extension for github",
     "icons": {
         "16": "images/icon-16.png",
         "128": "images/icon-128.png"
