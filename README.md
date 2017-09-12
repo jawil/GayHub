@@ -61,7 +61,7 @@
 
 截图：
 
-![](https://ws3.sinaimg.cn/large/006tNc79gy1fjgj422jifj31hc0sq47z.jpg)
+![](http://opb6zkmf0.bkt.clouddn.com/WX20170912-093706.png)
 
 ###  说明
 
