@@ -5,8 +5,6 @@ import { generatetableOfContentHTML } from 'utils/generatePage'
 import imagesLoaded from 'imagesloaded'
 import Eventemitter from 'wolfy-eventemitter'
 
-let eventbus = new Eventemitter()
-
 const webClassContainer = {
     github: ['.markdown-body', '.wiki-wrapper'],
     juejin: ['.entry-content']
@@ -95,6 +93,9 @@ const hackGithub = function() {
 
 export default function TOC(container) {
 
+
+    let eventbus = new Eventemitter()
+
     let current = { index: 0, preIndex: -1, Li: '' },
         isClick = false,
         listHeight = [],
@@ -143,9 +144,9 @@ export default function TOC(container) {
 
     /* 获取页面所有的标题然后拼接成字符串 */
     const getTitleStr = element => {
-        
+
         let title = []
-        
+
         element.forEach(ele => {
             ele.id = ele.textContent
             title.push(ele.nodeName.toLocaleLowerCase())
@@ -443,6 +444,8 @@ export default function TOC(container) {
 
         /* 如果当前滚动条超过页面一半，显示TOC目录导航 */
         tableOfContentStart()
+
+        console.log(2222)
 
     })
 
