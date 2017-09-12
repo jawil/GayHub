@@ -445,8 +445,6 @@ export default function TOC(container) {
         /* 如果当前滚动条超过页面一半，显示TOC目录导航 */
         tableOfContentStart()
 
-        console.log(2222)
-
     })
 
 }
