@@ -4,13 +4,10 @@ import { $, $$ } from 'utils/getDom'
 /* 生成侧边栏sidebar的HTML */
 function sideBarContainerHTML() {
 
-    const oParam = getUrlParam()
-
-    let sideBarMainHTML = `<ul class="side-bar-main"></ul>`
-
-    let toggleBtnHTML = `<a class="toggle-btn"></a>`
-
-    let sideBarHeaderHTML = `
+    const oParam = getUrlParam(),
+        sideBarMainHTML = `<ul class="side-bar-main"></ul>`,
+        toggleBtnHTML = `<a class="toggle-btn"></a>`,
+        sideBarHeaderHTML = `
     <div class="side-bar-header">
     <div class="side-bar-header-repo">
         <a href="/${oParam.userName}">${oParam.userName}</a>
@@ -37,9 +34,8 @@ function sideBarContainerHTML() {
             <div class="circle4"></div>
         </div>
     </div>
-</div>`
-
-    let sideBarWrapHTML = `<div class="side-bar-wrap">
+</div>`,
+        sideBarWrapHTML = `<div class="side-bar-wrap">
                             ${sideBarHeaderHTML}
                             ${toggleBtnHTML}
                             ${sideBarMainHTML}
