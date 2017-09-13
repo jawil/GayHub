@@ -30,7 +30,6 @@
             "*://gist.github.com/*"
         ],
         "css": [
-            /*     "styles/darkTheme.css", */
             "styles/overView.css",
             "styles/sidebarNav.css",
             "styles/loading.css",

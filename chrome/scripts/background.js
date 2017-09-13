@@ -6,10 +6,4 @@ chrome.runtime.onInstalled.addListener(function(details) {
 
 chrome.tabs.onUpdated.addListener(function(tabId) {
     chrome.pageAction.show(tabId);
-    
-   /*  chrome.tabs.executeScript(tabId, {
-        "file": "package/min/vs/editor/editor.main.js"
-    }, null); */
-
 });
-
