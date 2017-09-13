@@ -1,4 +1,4 @@
-import { generateContainerHTML } from 'utils/generatePage'
+import { sideBarContainerHTML } from 'utils/generatePage'
 
 import {
     toggleBtn,
@@ -12,7 +12,7 @@ import {
 
 import parentNotRoll from 'libs/parentNotRoll'
 
-const sideBarMain = generateContainerHTML()
+const sideBarMain = sideBarContainerHTML()
 
 module.exports = function() {
     const fileWrap = document.querySelectorAll('.file-wrap,.file')

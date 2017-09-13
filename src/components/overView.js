@@ -1,8 +1,9 @@
+import { $, $$ } from 'utils/getDom'
 module.exports = function() {
 
-    const logoAvatar = document.querySelector('.header-logo-invertocat'),
-        userAvatarEle = document.querySelector('.avatar'),
-        isLogined = document.querySelector('.text-bold')
+    const logoAvatar = $('.header-logo-invertocat'),
+        userAvatarEle = $('.avatar'),
+        isLogined = $('.text-bold')
 
     let overViewUrl
 

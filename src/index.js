@@ -1,10 +1,11 @@
 /* 收集用户错误信息，及时更正未知bug */
 import Raven from 'raven-js'
+import { $, $$ } from 'utils/getDom'
 
 Raven.config('https://fefe8b39c6984f56bcff4562caf28740@sentry.io/214908').install()
 
 /* 侧边栏功能 */
-const fileWrap = document.querySelectorAll('.file-wrap,.file')
+const fileWrap = document.$$('.file-wrap,.file')
 
 if (fileWrap.length) {
     const sidebarNav = require('components/sidebarNav')
@@ -21,12 +22,12 @@ overView()
 if (window.location.pathname === '/') {
     const showAvatar = require('components/showAvatar')
     showAvatar()
-    document.querySelector('.news').addEventListener('click', ev => {
+    $('.news').addEventListener('click', ev => {
         if (ev.target.className !== 'ajax-pagination-btn') {
             return
         }
         let timer = setInterval(f => {
-            if (document.querySelectorAll('.loading').length === 0) {
+            if (document.$$('.loading').length === 0) {
                 clearInterval(timer)
                 showAvatar()
                 console.info('pagination completed')
@@ -51,7 +52,7 @@ const onceMouseover = function() {
             if (e.target.nodeName !== 'PRE') {
                 return
             }
-            (count++ === 0 && !document.querySelector('.copy-icon')) ? copySnippet(): ''
+            (count++ === 0 && !$('.copy-icon')) ? copySnippet(): ''
         }, false)
     }
 }()
@@ -74,14 +75,14 @@ const selectorStr = function(obj) {
 
 }(webClassContainer)
 
-let container = document.querySelectorAll(selectorStr)[0]
-if (container && container.querySelectorAll('h1,h2,h3,h4,h5,h6').length) {
+let container = document.$$(selectorStr)[0]
+if (container && container.$$('h1,h2,h3,h4,h5,h6').length) {
     const TOC = require('components/tableOfContent')
 }
 
 
 /* 点击放大图片 */
-if (container && container.querySelectorAll('img').length) {
+if (container && container.$$('img').length) {
     const imageZoom = require('components/imageZoom')
     imageZoom(container)
 }

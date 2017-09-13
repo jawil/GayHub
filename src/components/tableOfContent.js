@@ -1,7 +1,8 @@
 import Drag from 'libs/draggabilly'
 import throttle from 'libs/throttle'
 import parentNotRoll from 'libs/parentNotRoll'
-import { generatetableOfContentHTML } from 'utils/generatePage'
+import { tableOfContentHTML } from 'utils/generatePage'
+import { $, $$ } from 'utils/getDom'
 import imagesLoaded from 'imagesloaded'
 import Eventemitter from 'wolfy-eventemitter'
 
@@ -52,9 +53,9 @@ const selectorStr = function(obj) {
 
 /* 兼容掘金，掘金网站的dom元素只能用load事件才能正确获取到 */
 
-let container = document.querySelectorAll(selectorStr)[0]
+let container = document.$$(selectorStr)[0]
 
-if (container && container.querySelectorAll(options.title).length) {
+if (container && container.$$(options.title).length) {
 
     TOC(container)
 
@@ -65,16 +66,16 @@ const hackGithub = function() {
     let count = 0
     document.addEventListener('scroll', throttle(e => {
 
-        if (document.querySelectorAll(selectorStr).length) {
+        if (document.$$(selectorStr).length) {
 
             let innerHTML = container ? container.innerHTML : ''
 
-            if (innerHTML !== document.querySelectorAll(selectorStr)[0].innerHTML) {
+            if (innerHTML !== document.$$(selectorStr)[0].innerHTML) {
 
-                container = document.querySelectorAll(selectorStr)[0]
+                container = document.$$(selectorStr)[0]
 
-                if (document.querySelector(`.${options.classWrap}`)) {
-                    document.body.removeChild(document.querySelector(`.${options.classWrap}`))
+                if ($(`.${options.classWrap}`)) {
+                    document.body.removeChild($(`.${options.classWrap}`))
                 }
 
                 TOC(container)
@@ -82,8 +83,8 @@ const hackGithub = function() {
 
         } else {
 
-            if (document.querySelector(`.${options.classWrap}`)) {
-                count++ == 1 ? document.body.removeChild(document.querySelector(`.${options.classWrap}`)) : ''
+            if ($(`.${options.classWrap}`)) {
+                count++ == 1 ? document.body.removeChild($(`.${options.classWrap}`)) : ''
             }
         }
 
@@ -98,14 +99,14 @@ export default function TOC(container) {
         isClick = false,
         listHeight = [],
         calculateCurrentIndex,
-        titleArr = container.querySelectorAll(options.title)
+        titleArr = container.$$(options.title)
 
     if (!titleArr.length) {
         return
     }
 
     let tableOfContent = document.createElement('ul'),
-        initScrollHeight =titleArr[0].getBoundingClientRect().top - document.querySelector('div').getBoundingClientRect().top - 200
+        initScrollHeight = titleArr[0].getBoundingClientRect().top - $('div').getBoundingClientRect().top - 200
 
     tableOfContent.className = options.class
 
@@ -113,7 +114,7 @@ export default function TOC(container) {
         const titleStr = getTitleStr(titleArr)
 
         /* 生成TOC的HTML结构 */
-        generatetableOfContentHTML(titleArr, tableOfContent)(titleStr, tableOfContent)
+        tableOfContentHTML(titleArr, tableOfContent)(titleStr, tableOfContent)
 
         /* 初始化TOC位置，屏幕不大时候默认是隐藏的*/
         eventbus.emit('toggleTOCBtn')
@@ -135,7 +136,7 @@ export default function TOC(container) {
         syncRoll(tableOfContent)
 
         /* TOC的显示隐藏 */
-        let oBtn = document.querySelector('.table-of-content-btn')
+        let oBtn = $('.table-of-content-btn')
         oBtn.addEventListener('click', e => {
             eventbus.emit('toggleTOCBtn')
         }, false)
@@ -165,13 +166,13 @@ export default function TOC(container) {
     /* TOC的显示隐藏 */
     eventbus.on('toggleTOCBtn', f => {
 
-        let TOCWrap = document.querySelector('.table-of-content-wrap')
-        let oBtn = document.querySelector('.table-of-content-btn')
+        let TOCWrap = $('.table-of-content-wrap')
+        let oBtn = $('.table-of-content-btn')
 
         let right = window.screen.width - TOCWrap.getBoundingClientRect().left
 
         let onoff = TOCWrap.getAttribute('toggle') === 'on' ? 'off' : 'on'
-        let sideBarWrap = document.querySelector('.side-bar-wrap')
+        let sideBarWrap = $('.side-bar-wrap')
 
         if (onoff === 'off') {
 
@@ -179,7 +180,7 @@ export default function TOC(container) {
             oBtn.style.cssText = `left:-${right-200}px;`
 
             if (sideBarWrap && (sideBarWrap.getAttribute('toggle') === 'off')) {
-                document.querySelector('html').style.marginLeft = 0 + 'px'
+                $('html').style.marginLeft = 0 + 'px'
             }
 
         } else {
@@ -187,11 +188,11 @@ export default function TOC(container) {
             TOCWrap.style.cssText = 'right:3%;display:block;';
             oBtn.style.cssText = `left:10px;`;
 
-            let contentMain = document.querySelector('.repository-content')
+            let contentMain = $('.repository-content')
             let react = contentMain.getBoundingClientRect().left
 
             if (sideBarWrap && (sideBarWrap.getAttribute('toggle') === 'off')) {
-                document.querySelector('html').style.marginLeft = -Math.max((370 - react), 0) + 'px'
+                $('html').style.marginLeft = -Math.max((370 - react), 0) + 'px'
             }
         }
 
@@ -227,7 +228,7 @@ export default function TOC(container) {
         /* TOC出现滚动条时候，激活状态的Tab要一直处于页面中间 */
         function TOCAutoRollCenter(index) {
 
-            let oLi = element.querySelectorAll('li')
+            let oLi = element.$$('li')
             let currentTop = oLi[index].getBoundingClientRect().top
 
             if (tableOfContent.scrollHeight !== tableOfContent.clientHeight) { // 此时有滚动条出现
@@ -239,14 +240,14 @@ export default function TOC(container) {
 
     function setRollStyle(element, index) {
         /* span的个数和li一样多 */
-        let oSpan = element.querySelectorAll('span')
-        let Li = element.querySelectorAll('li')
+        let oSpan = element.$$('span')
+        let Li = element.$$('li')
 
         /* 点击之后如果是收起菜单栏，那么将移除上面的cssText */
         clearCssText(element)
 
         /* 重置所有style */
-        element.querySelectorAll('span,li').forEach(ele => {
+        element.$$('span,li').forEach(ele => {
 
             if (ele.parentNode.className === options.class) {
                 ele.toggle = false
@@ -321,7 +322,7 @@ export default function TOC(container) {
             }
 
             /* 重置所有style */
-            element.querySelectorAll('span,li').forEach(ele => {
+            element.$$('span,li').forEach(ele => {
                 if (ele.parentNode.className === options.class) {
                     /* 上次点击和这次点击还是同一个目标，就过滤掉 */
                     if (ele.firstChild.getAttribute('index') !== current.Li.firstChild.getAttribute('index')) {

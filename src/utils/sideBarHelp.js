@@ -4,6 +4,8 @@ import {
     setClickBlobCss
 } from 'utils/setIconStyle'
 
+import { $, $$ } from 'utils/getDom'
+
 import Pjax from 'pjax'
 
 /* 根据浏览器的url解析参数 */
@@ -20,7 +22,7 @@ const getUrlParam = function() {
     oParam.userName = parseParam[0]
     oParam.reposName = parseParam[1]
     oParam.type = parseParam[2] ? `${parseParam[2]}` : 'tree'
-    let branchWrap = document.querySelector('span.css-truncate-target')
+    let branchWrap = $('span.css-truncate-target')
     oParam.branch = branchWrap ? branchWrap.textContent : 'master'
 
     return oParam
@@ -29,7 +31,7 @@ const getUrlParam = function() {
 /* 获取当前的文件名称 */
 const getCurrentPath = function() {
     const pathname = window.location.pathname,
-        branchWrap = document.querySelector('span.css-truncate-target'),
+        branchWrap = $('span.css-truncate-target'),
         branch = branchWrap ? branchWrap.textContent : 'master',
         currentPath = pathname.split(`${branch}/`).pop()
     return currentPath
@@ -84,18 +86,18 @@ const initDOM = function(files, parent) {
     })
 
     document.addEventListener("pjax:send", function() {
-        document.querySelector('#spinner').style.display = 'block'
+        $('#spinner').style.display = 'block'
     })
 
     document.addEventListener("pjax:success", function() {
-        document.querySelector('#spinner').style.display = 'none'
+        $('#spinner').style.display = 'none'
     })
 
 
     let flag = 1
     while (flag) {
         let topElePath = currentPath.split('/').slice(0, flag).join('/')
-        const topLi = document.querySelector(`li[path="${topElePath}"]`)
+        const topLi = $(`li[path="${topElePath}"]`)
 
         if (topLi) {
             topLi.setAttribute('onoff', 'on')
@@ -103,11 +105,11 @@ const initDOM = function(files, parent) {
             RenderDOM(topLi, ele, files)
             flag++
         } else {
-            let lastA = document.querySelector(`a[data-href="${window.location.href}"]`)
+            let lastA = $(`a[data-href="${window.location.href}"]`)
 
             if (lastA) {
                 let react = lastA.parentNode.getBoundingClientRect().top
-                let container = document.querySelector('.side-bar-main')
+                let container = $('.side-bar-main')
                 container.scrollTop = react - container.clientHeight / 2
                 lastA.setAttribute('isClicked', true)
             }
@@ -125,7 +127,7 @@ const RenderDOM = function(eleLi, ele, files) {
     /* 当前目录下的所有文件 */
     let currentTreeFiles = getCurrentTreeFiles(ele, files, currentCascad)
 
-    let currenteleLiChild = eleLi.querySelectorAll('li')
+    let currenteleLiChild = eleLi.$$('li')
 
     /* 求出当前目录下所有的文件夹DOM节点，也就是type=tree */
     let treeChild = []

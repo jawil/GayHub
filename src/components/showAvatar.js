@@ -1,8 +1,9 @@
+import { $, $$ } from 'utils/getDom'
 module.exports = function showAvatar() {
     let index = 0,
         userArr = [],
         userAvatar = {},
-        element = document.querySelectorAll('.title'),
+        element = document.$$('.title'),
         filterEle = Array.from(element).filter((ele, current) => {
             return (/\b(starred|forked|created)\b/g.test(ele.textContent)) && (current >= index)
         })

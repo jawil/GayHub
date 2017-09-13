@@ -1,4 +1,5 @@
 import icons from '../icons.json'
+import { $, $$ } from 'utils/getDom'
 import {
     generateCurrentTreeDOM,
     getCurrentTreeFiles,
@@ -61,18 +62,18 @@ const setIconCss = function(ele, iconELe) {
 /* 监听URL变化，改变侧边栏对应的样式变化 */
 const urlChangeEvent = function(files) {
 
-    const fileWrap = document.querySelectorAll('.file-wrap,.file')
+    const fileWrap = document.$$('.file-wrap,.file')
 
     if (fileWrap.length) {
 
-        document.querySelector('div[role=main]').addEventListener('click', e => {
+        $('div[role=main]').addEventListener('click', e => {
 
             if (e.target.nodeName === 'A' && !e.target.getAttribute('data-pjax')) {
                 const href = e.target.href
 
-                let sideBarWrap = document.querySelector('.side-bar-wrap')
+                let sideBarWrap = $('.side-bar-wrap')
 
-                let eleAs = sideBarWrap.querySelectorAll('a')
+                let eleAs = sideBarWrap.$$('a')
 
                 let targetA = ''
 
@@ -83,9 +84,9 @@ const urlChangeEvent = function(files) {
                     }
                 }
 
-                let sideBarContainer = document.querySelector('.side-bar-main')
+                let sideBarContainer = $('.side-bar-main')
 
-                let eleMainA = sideBarContainer.querySelectorAll('a')
+                let eleMainA = sideBarContainer.$$('a')
                 if (eleMainA.length) {
                     eleMainA.forEach(ele => {
                         ele.setAttribute('isClicked', false)
@@ -120,13 +121,13 @@ const urlChangeEvent = function(files) {
 }
 
 const toggleBtn = function() {
-    let oBtn = document.querySelector('.toggle-btn'),
-        sideBarWrap = document.querySelector('.side-bar-wrap'),
-        rootHtml = document.querySelector('html')
+    let oBtn = $('.toggle-btn'),
+        sideBarWrap = $('.side-bar-wrap'),
+        rootHtml = $('html')
 
     oBtn.addEventListener('click', e => {
 
-        let contentMain = document.querySelector('.repository-content'),
+        let contentMain = $('.repository-content'),
             react = contentMain.getBoundingClientRect().left,
             onoff = sideBarWrap.getAttribute('toggle') === 'off' ? 'on' : 'off'
 
@@ -135,7 +136,7 @@ const toggleBtn = function() {
 
         } else {
 
-            let TOCWrap = document.querySelector('.table-of-content-wrap')
+            let TOCWrap = $('.table-of-content-wrap')
             let currentStyle = TOCWrap ? window.getComputedStyle(TOCWrap, null)['display'] : 'none'
 
             if (TOCWrap && (TOCWrap.getAttribute('toggle') === 'on') && currentStyle == 'block') {
@@ -157,9 +158,9 @@ const toggleBtn = function() {
 const setClickBlobCss = function(hrefA) {
 
     hrefA.addEventListener('click', e => {
-        let sideBarWrap = document.querySelector('.side-bar-main')
+        let sideBarWrap = $('.side-bar-main')
 
-        let eleA = sideBarWrap.querySelectorAll('a')
+        let eleA = sideBarWrap.$$('a')
 
         if (eleA.length) {
             eleA.forEach(ele => {
@@ -185,7 +186,7 @@ const setClickTreeCss = function(eleLi, ele, child, files) {
 
         eleLi.setAttribute('onoff', onoff)
 
-        let sideBarWrap = document.querySelector('.side-bar-main')
+        let sideBarWrap = $('.side-bar-main')
         let oPath = {}
         let typeName = ele.path.split('/').pop().toLocaleLowerCase()
 

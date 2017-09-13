@@ -1,74 +1,69 @@
 import { getUrlParam } from 'utils/sideBarHelp'
-
-const oParam = getUrlParam()
+import { $, $$ } from 'utils/getDom'
 
 /* 生成侧边栏sidebar的HTML */
-function generateContainerHTML() {
+function sideBarContainerHTML() {
 
-    let sideBarWrap = document.createElement('div')
-    sideBarWrap.className = 'side-bar-wrap'
+    const oParam = getUrlParam()
 
-    let toggleBtn = document.createElement('a')
-    toggleBtn.className = 'toggle-btn'
+    let sideBarMainHTML = `<ul class="side-bar-main"></ul>`
 
-    let sideBarMain = document.createElement('ul')
-    sideBarMain.className = 'side-bar-main'
+    let toggleBtnHTML = `<a class="toggle-btn"></a>`
 
-    let sideBarHeader = document.createElement('div')
-    sideBarHeader.className = 'side-bar-header'
-
-    let headerHTML = `
+    let sideBarHeaderHTML = `
     <div class="side-bar-header">
     <div class="side-bar-header-repo">
-    <a href="/${oParam.userName}">${oParam.userName}</a> / 
-    <a type="blob" href="/${oParam.userName}/${oParam.reposName}">${oParam.reposName}</a>
+        <a href="/${oParam.userName}">${oParam.userName}</a>
+        <a type="blob" href="/${oParam.userName}/${oParam.reposName}">${oParam.reposName}</a>
     </div>
     <div class="side-bar-header-branch">${decodeURIComponent(oParam.branch)}</div>
-    </div>
     <div id="spinner">
-    <div class="spinner-container container1">
-        <div class="circle1"></div>
-        <div class="circle2"></div>
-        <div class="circle3"></div>
-        <div class="circle4"></div>
+        <div class="spinner-container container1">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container2">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container3">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
     </div>
-    <div class="spinner-container container2">
-        <div class="circle1"></div>
-        <div class="circle2"></div>
-        <div class="circle3"></div>
-        <div class="circle4"></div>
-    </div>
-    <div class="spinner-container container3">
-        <div class="circle1"></div>
-        <div class="circle2"></div>
-        <div class="circle3"></div>
-        <div class="circle4"></div>
-    </div>
-</div>
-`
+</div>`
 
-    sideBarHeader.innerHTML = headerHTML
-    sideBarWrap.appendChild(toggleBtn)
-    sideBarWrap.appendChild(sideBarHeader)
-    sideBarWrap.appendChild(sideBarMain)
+    let sideBarWrapHTML = `<div class="side-bar-wrap">
+                            ${sideBarHeaderHTML}
+                            ${toggleBtnHTML}
+                            ${sideBarMainHTML}
+                         </div>`
 
-    document.body.appendChild(sideBarWrap)
+    document.body.innerHTML += sideBarWrapHTML
 
-    let contentMain = document.querySelector('.repository-content'),
-        react = contentMain.getBoundingClientRect().left,
-        rootHtml = document.querySelector('html')
+    const initHtmlNodeStyle = function() {
 
-    rootHtml.style.marginLeft = Math.max((370 - react), 0) + 'px'
+        let contentMain = $('.repository-content'),
+            offsetLeft = contentMain.getBoundingClientRect().left,
+            htmlNode = $('html')
 
-    sideBarWrap.setAttribute('toggle', 'on')
+        htmlNode.style.marginLeft = `${Math.max((370 - offsetLeft), 0)}px`
+        $('.side-bar-wrap').setAttribute('toggle', 'on')
+    }()
 
-    return sideBarMain
+    return $('.side-bar-main')
 }
 
 
 
 /* 生成tableOfContent的HTML */
-function generatetableOfContentHTML(titleArr, root) {
+function tableOfContentHTML(titleArr, root) {
     let count = 0
 
     const tableOfContentWrap = document.createElement('div'),
@@ -132,4 +127,4 @@ function generatetableOfContentHTML(titleArr, root) {
     }
 }
 
-export { generateContainerHTML, generatetableOfContentHTML }
+export { sideBarContainerHTML, tableOfContentHTML }

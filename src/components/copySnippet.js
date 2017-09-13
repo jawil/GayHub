@@ -1,8 +1,8 @@
 import Clipboard from 'clipboard'
-
+import { $, $$ } from 'utils/getDom'
 module.exports = function copySnippet() {
 
-    let copySnippets = document.querySelectorAll('pre')
+    let copySnippets = document.$$('pre')
 
     if (copySnippets.length) {
         // 插入表示复制的icon标签
