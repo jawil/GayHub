@@ -17,7 +17,7 @@
             "scripts/background.js"
         ]
     },
-    "web_accessible_resources": ["icons/*.png","images/*"],
+    "web_accessible_resources": ["icons/*.png", "images/*"],
 
     "browser_action": {
         "default_icon": "images/icon-16.png",
@@ -30,7 +30,7 @@
             "*://gist.github.com/*"
         ],
         "css": [
-            "styles/darkTheme.css",
+            /*     "styles/darkTheme.css", */
             "styles/overView.css",
             "styles/sidebarNav.css",
             "styles/loading.css",

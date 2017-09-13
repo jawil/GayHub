@@ -182,7 +182,7 @@ export default function TOC(container) {
 
             let contentMain = document.querySelector('.repository-content')
             let react = contentMain.getBoundingClientRect().left
-
+            
             if (sideBarWrap && (sideBarWrap.getAttribute('toggle') === 'off')) {
                 document.querySelector('html').style.marginLeft = -Math.max((370 - react), 0) + 'px'
             }

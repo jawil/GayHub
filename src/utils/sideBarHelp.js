@@ -29,7 +29,8 @@ const getUrlParam = function() {
 /* 获取当前的文件名称 */
 const getCurrentPath = function() {
     const pathname = window.location.pathname,
-        branch = document.querySelector('span.css-truncate-target').textContent,
+        branchWrap = document.querySelector('span.css-truncate-target'),
+        branch = branchWrap ? branchWrap.textContent : 'master',
         currentPath = pathname.split(`${branch}/`).pop()
     return currentPath
 }
