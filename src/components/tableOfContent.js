@@ -92,17 +92,20 @@ const hackGithub = function() {
 }()
 
 export default function TOC(container) {
-
-
     let eventbus = new Eventemitter()
 
     let current = { index: 0, preIndex: -1, Li: '' },
         isClick = false,
         listHeight = [],
         calculateCurrentIndex,
-        titleArr = container.querySelectorAll(options.title),
-        tableOfContent = document.createElement('ul'),
-        initScrollHeight = titleArr[0].getBoundingClientRect().top - document.querySelector('div').getBoundingClientRect().top - 200
+        titleArr = container.querySelectorAll(options.title)
+
+    if (!titleArr.length) {
+        return
+    }
+
+    let tableOfContent = document.createElement('ul'),
+        initScrollHeight =titleArr[0].getBoundingClientRect().top - document.querySelector('div').getBoundingClientRect().top - 200
 
     tableOfContent.className = options.class
 
@@ -146,13 +149,17 @@ export default function TOC(container) {
     const getTitleStr = element => {
 
         let title = []
+        if (element.length) {
+            element.forEach(ele => {
+                ele.id = ele.textContent
+                title.push(ele.nodeName.toLocaleLowerCase())
+            })
 
-        element.forEach(ele => {
-            ele.id = ele.textContent
-            title.push(ele.nodeName.toLocaleLowerCase())
-        })
+            return title.join('')
+        }
 
-        return title.join('')
+        return ''
+
     }
 
     /* TOC的显示隐藏 */
@@ -182,7 +189,7 @@ export default function TOC(container) {
 
             let contentMain = document.querySelector('.repository-content')
             let react = contentMain.getBoundingClientRect().left
-            
+
             if (sideBarWrap && (sideBarWrap.getAttribute('toggle') === 'off')) {
                 document.querySelector('html').style.marginLeft = -Math.max((370 - react), 0) + 'px'
             }

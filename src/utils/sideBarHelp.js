@@ -130,11 +130,13 @@ const RenderDOM = function(eleLi, ele, files) {
     /* 求出当前目录下所有的文件夹DOM节点，也就是type=tree */
     let treeChild = []
 
-    currenteleLiChild.forEach(ele => {
-        if (ele.getAttribute('type') === 'tree') {
-            treeChild.push(ele)
-        }
-    })
+    if (currenteleLiChild.length) {
+        currenteleLiChild.forEach(ele => {
+            if (ele.getAttribute('type') === 'tree') {
+                treeChild.push(ele)
+            }
+        })
+    }
 
     /* 求出当前所有文件树的状态信息，也就是type=tree */
     let treeMsg = []

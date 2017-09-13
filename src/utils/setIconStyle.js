@@ -85,9 +85,13 @@ const urlChangeEvent = function(files) {
 
                 let sideBarContainer = document.querySelector('.side-bar-main')
 
-                sideBarContainer.querySelectorAll('a').forEach(ele => {
-                    ele.setAttribute('isClicked', false)
-                })
+                let eleMainA = sideBarContainer.querySelectorAll('a')
+                if (eleMainA.length) {
+                    eleMainA.forEach(ele => {
+                        ele.setAttribute('isClicked', false)
+                    })
+                }
+
 
                 if (targetA) {
 
@@ -155,9 +159,14 @@ const setClickBlobCss = function(hrefA) {
     hrefA.addEventListener('click', e => {
         let sideBarWrap = document.querySelector('.side-bar-main')
 
-        sideBarWrap.querySelectorAll('a').forEach(ele => {
-            ele.setAttribute('isClicked', false)
-        })
+        let eleA = sideBarWrap.querySelectorAll('a')
+
+        if (eleA.length) {
+            eleA.forEach(ele => {
+                ele.setAttribute('isClicked', false)
+            })
+        }
+
         hrefA.setAttribute('isClicked', true)
     }, false)
 }
