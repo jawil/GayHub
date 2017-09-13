@@ -40,6 +40,7 @@ if (window.location.pathname === '/') {
 
 /* 复制代码 */
 const copySnippet = require('components/copySnippet')
+copySnippet()
 
 // mouseover只触发一次
 const onceMouseover = function() {
