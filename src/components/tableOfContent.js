@@ -350,7 +350,6 @@ export default function TOC(container) {
         "mouseleave",
         e => {
           // 防止冒泡
-
           if (item.toggle === false) {
             e.target.style.cssText = "";
           }
