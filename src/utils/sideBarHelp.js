@@ -262,21 +262,14 @@ const generateCurrentTreeDOM = function(CurrentTreeFiles, parent, cascad, files)
 
                 /* 默认文件夹都是收缩的 */
 
+
                 if (ele.path === currentPath) {
 
                     outerLi.attr('onoff', 'on')
                     hrefA.attr('isClicked', true)
                     let ele = parent // ele => ul
-                    let flag = true
-
-                    while (flag) {
-                        if (ele.className !== 'side-bar-main') {
-                            ele.parentNode.attr('onoff', 'on')
-                        } else {
-                            flag = false
-                        }
-                        ele = ele.parentNode.parentNode
-                    }
+                    
+                    ele.parentNode.attr('onoff', 'on')
 
                 } else {
                     outerLi.attr('onoff', 'off')
