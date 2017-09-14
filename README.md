@@ -4,16 +4,16 @@
 <p align="center">一款强大的 GitHub 的 Chrome 扩展 —— GayHub，优化 GitHub 的阅读体验。</p>
 <p align="center">为了进一步提高 GitHub 阅览体验这个小目标 ，让大家更方便的畅游 Github，因此诞生了 GayHub。</p>
 <p align="center">
-   <a href="https://github.com/jawil/GayHub/blob/master/download/gayhub-1.1.crx?raw=true" download><img src="https://img.shields.io/badge/lastest_version-1.0.3-blue.svg"></a>
+   <a href="https://github.com/jawil/GayHub/blob/master/download/gayhub-1.3.crx?raw=true" download><img src="https://img.shields.io/badge/lastest_version-1.0.3-blue.svg"></a>
    <a target="_blank" href="https://chrome.google.com/webstore/detail/gayhub/mdcffelghikdiafnfodjlgllenhlnejl"><img src="https://img.shields.io/badge/download-_chrome_webstore-brightgreen.svg" download></a>
-   <a href="https://github.com/jawil/GayHub/blob/master/download/gayhub-1.1.crx?raw=true"><img src="https://img.shields.io/badge/download-_crx-brightgreen.svg" download></a>
+   <a href="https://github.com/jawil/GayHub/blob/master/download/gayhub-1.3.crx?raw=true"><img src="https://img.shields.io/badge/download-_crx-brightgreen.svg" download></a>
 </p>
 
 ***
 
 ### 马上使用：
 
-* [Chrome 应用商店](https://chrome.google.com/webstore/detail/gayhub/mdcffelghikdiafnfodjlgllenhlnejl) 或者 [离线下载](https://github.com/jawil/GayHub/blob/master/download/gayhub-1.1.crx?raw=true) 或者 [下载测试版](https://github.com/jawil/GayHub/blob/master/download/test.crx?raw=true)
+* [Chrome 应用商店](https://chrome.google.com/webstore/detail/gayhub/mdcffelghikdiafnfodjlgllenhlnejl) 或者 [离线下载](https://github.com/jawil/GayHub/blob/master/download/gayhub-1.3.crx?raw=true) 或者 [下载测试版](https://github.com/jawil/GayHub/blob/master/download/test.crx?raw=true)
 
 
 ### 温馨提示
