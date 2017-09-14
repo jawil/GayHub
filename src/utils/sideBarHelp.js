@@ -100,7 +100,7 @@ const initDOM = function(files, parent) {
     let topElePath = currentPath
       .split("/")
       .slice(0, flag)
-      .join("/"); // config
+      .join("/");
     const topLi = $(`li[path="${topElePath}"]`);
 
     if (topLi) {
