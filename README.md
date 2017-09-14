@@ -39,6 +39,15 @@
   截图：不管你嵌套多少层，解析不出来算我输。
   
  ![](https://ws1.sinaimg.cn/large/006tNc79gy1fjc8ic7g3fj30zd0kzk8d.jpg)
+ 
+ - **夜间暗色主题：**  
+ 
+ GitHub的白色主题在晚上稍微有些刺眼，就在stylish上找了一套暗色主题修改一下移植到了github上，喜欢暗色主题可以开启，默认不开启。
+ 
+ 截图：透明加暗色，感觉颜值有个提升，因人而异，我还是喜欢亮色的主题，习惯了
+ 
+ ![](https://ws2.sinaimg.cn/large/006tNc79gy1fjj1qw1s7aj30zh0je4o5.jpg)
+ 
 
 - **图片全屏预览：**
 
