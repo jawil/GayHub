@@ -96,14 +96,21 @@ const initDOM = function(files, parent) {
 
     let flag = 1
     while (flag) {
-        let topElePath = currentPath.split('/').slice(0, flag).join('/')
+        let topElePath = currentPath.split('/').slice(0, flag).join('/') // config
         const topLi = $(`li[path="${topElePath}"]`)
 
         if (topLi) {
+
             topLi.attr('onoff', 'on')
             const ele = { path: topLi.attr('path') }
             RenderDOM(topLi, ele, files)
+
+            if (flag === currentPath.split('/').length) {
+                flag = false
+                return
+            }
             flag++
+
         } else {
             let lastA = $(`a[data-href="${window.location.href}"]`)
 

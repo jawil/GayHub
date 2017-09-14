@@ -1,8 +1,7 @@
 import { zoom } from "../zoom/zoom"
-import { $, $$ } from 'utils/getDom'
+import { $, $$, attr } from 'utils/getDom'
 
 module.exports = function(container) {
-
     const zoomImageArr = container.$$('img')
 
     zoomImageArr.forEach(ele => {
@@ -12,13 +11,10 @@ module.exports = function(container) {
             if (/https:\/\/camo\.githubusercontent\.com/.test(ele.parentNode.href)) {
 
                 ele.parentNode.parentNode.replaceChild(ele, ele.parentNode)
-                ele.setAttribute('data-action', 'zoom')
+                ele.attr('data-action', 'zoom')
                 zoom.setup(ele)
 
             }
-
         }
-
-
     })
 }
