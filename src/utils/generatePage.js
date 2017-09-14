@@ -43,15 +43,12 @@ function sideBarContainerHTML() {
 
     document.body.innerHTML += sideBarWrapHTML
 
-    const initHtmlNodeStyle = function() {
+    let contentMain = $('.repository-content'),
+        offsetLeft = contentMain.getBoundingClientRect().left,
+        htmlNode = $('html')
+    htmlNode.style.marginLeft = `${Math.max((370 - offsetLeft), 0)}px`
 
-        let contentMain = $('.repository-content'),
-            offsetLeft = contentMain.getBoundingClientRect().left,
-            htmlNode = $('html')
-
-        htmlNode.style.marginLeft = `${Math.max((370 - offsetLeft), 0)}px`
-        $('.side-bar-wrap').attr('toggle', 'on')
-    }()
+    $('.side-bar-wrap').attr('toggle', 'on')
 
     return $('.side-bar-main')
 }

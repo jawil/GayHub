@@ -46,7 +46,7 @@
  
  截图：透明加暗色，感觉颜值有个提升，因人而异，我还是喜欢亮色的主题，习惯了
  
- ![](https://ws2.sinaimg.cn/large/006tNc79gy1fjj1qw1s7aj30zh0je4o5.jpg)
+ ![](http://opb6zkmf0.bkt.clouddn.com/QQ20170914-135012.png)
  
 
 - **图片全屏预览：**
