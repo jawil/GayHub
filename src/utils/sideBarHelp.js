@@ -46,10 +46,21 @@ const getCurrentPath = function() {
 const getCurrentTreeFiles = function(fileTree, allFiles, cascad) {
   let arr = [];
   let flag = 0;
+
+  /* 把字符串比如C++替换成C\+\+，防止new RegExp('C++')这种出现 */
   const path = fileTree.path
     .replace(/(?!\\)\+/g, "\\+")
     .replace(/(?!\\)\./g, "\\.")
-    .replace(/(?!\\)\?/g, "\\?");
+    .replace(/(?!\\)\?/g, "\\?")
+    .replace(/(?!\\)\^/g, "\\^")
+    .replace(/(?!\\)\$/g, "\\$")
+    .replace(/(?!\\)\|/g, "\\|")
+    .replace(/(?!\\)\(/g, "\\(")
+    .replace(/(?!\\)\)/g, "\\)")
+    .replace(/(?!\\)\[/g, "\\[")
+    .replace(/(?!\\)\]/g, "\\]")
+    .replace(/(?!\\)\{/g, "\\{")
+    .replace(/(?!\\)\}/g, "\\}");
 
   for (let i = 0, len = allFiles.length; i < len; i++) {
     let current = allFiles[i].path.split("/").length;
