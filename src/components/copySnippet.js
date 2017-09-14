@@ -2,7 +2,7 @@ import Clipboard from 'clipboard'
 import { $, $$ } from 'utils/getDom'
 module.exports = function copySnippet() {
 
-    let copySnippets = document.$$('pre')
+    let copySnippets = document.$$('pre:not(.CodeMirror-line)')
 
     if (copySnippets.length) {
         // 插入表示复制的icon标签

@@ -52,7 +52,7 @@ const getCurrentTreeFiles = function(fileTree, allFiles, cascad) {
 
         let current = allFiles[i].path.split('/').length
 
-        if (new RegExp(`^${fileTree.path}`).test(allFiles[i].path) && (cascad + 1 === current)) {
+        if ((new RegExp(`^${fileTree.path}`).test(allFiles[i].path)) && (fileTree.path.split('/').shift() === allFiles[i].path.split('/').shift()) && (cascad + 1 === current)) {
 
             arr.push(allFiles[i])
             flag++
@@ -268,7 +268,7 @@ const generateCurrentTreeDOM = function(CurrentTreeFiles, parent, cascad, files)
                     outerLi.attr('onoff', 'on')
                     hrefA.attr('isClicked', true)
                     let ele = parent // ele => ul
-                    
+
                     ele.parentNode.attr('onoff', 'on')
 
                 } else {
