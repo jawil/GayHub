@@ -46,11 +46,16 @@ const getCurrentPath = function() {
 const getCurrentTreeFiles = function(fileTree, allFiles, cascad) {
   let arr = [];
   let flag = 0;
+  const path = fileTree.path
+    .replace(/(?!\\)\+/g, "\\+")
+    .replace(/(?!\\)\./g, "\\.")
+    .replace(/(?!\\)\?/g, "\\?");
+
   for (let i = 0, len = allFiles.length; i < len; i++) {
     let current = allFiles[i].path.split("/").length;
 
     if (
-      new RegExp(`^${fileTree.path}`).test(allFiles[i].path) &&
+      new RegExp(`^${path}`).test(allFiles[i].path) &&
       fileTree.path.split("/").shift() ===
         allFiles[i].path.split("/").shift() &&
       cascad + 1 === current
@@ -59,10 +64,7 @@ const getCurrentTreeFiles = function(fileTree, allFiles, cascad) {
       flag++;
     } else {
       //  匹配成功第一次后面再也没匹配成功过，直接跳出循环
-      if (
-        flag !== 0 &&
-        !new RegExp(`^${fileTree.path}`).test(allFiles[i].path)
-      ) {
+      if (flag !== 0 && !new RegExp(`^${path}`).test(allFiles[i].path)) {
         break;
       }
     }
@@ -202,7 +204,6 @@ const generateCurrentTreeDOM = function(
   files
 ) {
   if (!CurrentTreeFiles.length) {
-    throw Error("没有相应的文件");
     return;
   }
 
