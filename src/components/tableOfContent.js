@@ -2,7 +2,7 @@ import Drag from 'libs/draggabilly'
 import throttle from 'libs/throttle'
 import parentNotRoll from 'libs/parentNotRoll'
 import { tableOfContentHTML } from 'utils/generatePage'
-import { $, $$ } from 'utils/getDom'
+import { $, $$, attr } from 'utils/getDom'
 import imagesLoaded from 'imagesloaded'
 import Eventemitter from 'wolfy-eventemitter'
 
@@ -51,7 +51,6 @@ const selectorStr = function(obj) {
 
 }(webClassContainer)
 
-/* 兼容掘金，掘金网站的dom元素只能用load事件才能正确获取到 */
 
 let container = document.$$(selectorStr)[0]
 
@@ -171,7 +170,7 @@ export default function TOC(container) {
 
         let right = window.screen.width - TOCWrap.getBoundingClientRect().left
 
-        let onoff = TOCWrap.getAttribute('toggle') === 'on' ? 'off' : 'on'
+        let onoff = TOCWrap.attr('toggle') === 'on' ? 'off' : 'on'
         let sideBarWrap = $('.side-bar-wrap')
 
         if (onoff === 'off') {
@@ -179,7 +178,7 @@ export default function TOC(container) {
             TOCWrap.style.cssText = `right:${-right}px;display:block;`
             oBtn.style.cssText = `left:-${right-200}px;`
 
-            if (sideBarWrap && (sideBarWrap.getAttribute('toggle') === 'off')) {
+            if (sideBarWrap && (sideBarWrap.attr('toggle') === 'off')) {
                 $('html').style.marginLeft = 0 + 'px'
             }
 
@@ -191,12 +190,12 @@ export default function TOC(container) {
             let contentMain = $('.repository-content')
             let react = contentMain.getBoundingClientRect().left
 
-            if (sideBarWrap && (sideBarWrap.getAttribute('toggle') === 'off')) {
+            if (sideBarWrap && (sideBarWrap.attr('toggle') === 'off')) {
                 $('html').style.marginLeft = -Math.max((370 - react), 0) + 'px'
             }
         }
 
-        TOCWrap.setAttribute('toggle', onoff)
+        TOCWrap.attr('toggle', onoff)
 
     })
 
@@ -294,7 +293,7 @@ export default function TOC(container) {
 
             /* 一元运算符+隐式转换 */
 
-            let scrollTop = listHeight[+e.target.getAttribute('index')] + initScrollHeight
+            let scrollTop = listHeight[+e.target.attr('index')] + initScrollHeight
             if (document.body.scrollTop) {
                 document.body.scrollTop = scrollTop
             } else {
@@ -325,7 +324,7 @@ export default function TOC(container) {
             element.$$('span,li').forEach(ele => {
                 if (ele.parentNode.className === options.class) {
                     /* 上次点击和这次点击还是同一个目标，就过滤掉 */
-                    if (ele.firstChild.getAttribute('index') !== current.Li.firstChild.getAttribute('index')) {
+                    if (ele.firstChild.attr('index') !== current.Li.firstChild.attr('index')) {
                         ele.toggle = false
                         ele.style.cssText = ''
                     } else {

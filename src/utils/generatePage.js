@@ -1,5 +1,5 @@
 import { getUrlParam } from 'utils/sideBarHelp'
-import { $, $$ } from 'utils/getDom'
+import { $, $$, attr } from 'utils/getDom'
 
 /* 生成侧边栏sidebar的HTML */
 function sideBarContainerHTML() {
@@ -10,7 +10,7 @@ function sideBarContainerHTML() {
         sideBarHeaderHTML = `
     <div class="side-bar-header">
     <div class="side-bar-header-repo">
-        <a href="/${oParam.userName}">${oParam.userName}</a>
+        <a href="/${oParam.userName}">${oParam.userName}</a>/
         <a type="blob" href="/${oParam.userName}/${oParam.reposName}">${oParam.reposName}</a>
     </div>
     <div class="side-bar-header-branch">${decodeURIComponent(oParam.branch)}</div>
@@ -50,7 +50,7 @@ function sideBarContainerHTML() {
             htmlNode = $('html')
 
         htmlNode.style.marginLeft = `${Math.max((370 - offsetLeft), 0)}px`
-        $('.side-bar-wrap').setAttribute('toggle', 'on')
+        $('.side-bar-wrap').attr('toggle', 'on')
     }()
 
     return $('.side-bar-main')
@@ -60,26 +60,28 @@ function sideBarContainerHTML() {
 
 /* 生成tableOfContent的HTML */
 function tableOfContentHTML(titleArr, root) {
+
     let count = 0
 
     const tableOfContentWrap = document.createElement('div'),
-        tableOfContentHeader = document.createElement('div'),
-        tableOfContentLink = document.createElement('a'),
-        toggleBtn = document.createElement('a')
 
-    toggleBtn.className = 'table-of-content-btn'
-    tableOfContentLink.className = 'table-of-content-auth'
+        headerHTML = `<div class="table-of-content-header">
+                        Table of Content
+                        <a href="https://github.com/jawil" 
+                        class="table-of-content-auth" target="_blank">
+                        by jawil
+                    </a>
+                     </div>`,
+        toggleBtnHTML = `<a class="table-of-content-btn"></a>`,
+        containerHTML = `<div class="table-of-content-wrap" toggle="on">
+                        ${toggleBtnHTML}
+                        ${headerHTML}
+                    </div>`
+
     tableOfContentWrap.className = 'table-of-content-wrap'
-    tableOfContentWrap.setAttribute('toggle', 'on')
-    tableOfContentHeader.className = 'table-of-content-header'
+    tableOfContentWrap.attr('toggle', 'on')
 
-    tableOfContentLink.href = 'https://github.com/jawil'
-    tableOfContentLink.textContent = 'by jawil'
-    tableOfContentLink.target = '_blank'
-    tableOfContentHeader.textContent = 'Table of Content'
-    tableOfContentHeader.appendChild(tableOfContentLink)
-    tableOfContentWrap.appendChild(toggleBtn)
-    tableOfContentWrap.appendChild(tableOfContentHeader)
+    tableOfContentWrap.innerHTML = `${toggleBtnHTML}${headerHTML}`
     tableOfContentWrap.appendChild(root)
     document.body.appendChild(tableOfContentWrap)
 
@@ -101,7 +103,7 @@ function tableOfContentHTML(titleArr, root) {
             let oSpan = document.createElement('span')
 
             oSpan.textContent = titleArr[count].textContent
-            oSpan.setAttribute('index', count)
+            oSpan.attr('index', count)
 
             outLi.appendChild(oSpan)
             count++

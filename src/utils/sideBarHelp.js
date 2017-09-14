@@ -4,7 +4,7 @@ import {
     setClickBlobCss
 } from 'utils/setIconStyle'
 
-import { $, $$ } from 'utils/getDom'
+import { $, $$, attr } from 'utils/getDom'
 
 import Pjax from 'pjax'
 
@@ -100,8 +100,8 @@ const initDOM = function(files, parent) {
         const topLi = $(`li[path="${topElePath}"]`)
 
         if (topLi) {
-            topLi.setAttribute('onoff', 'on')
-            const ele = { path: topLi.getAttribute('path') }
+            topLi.attr('onoff', 'on')
+            const ele = { path: topLi.attr('path') }
             RenderDOM(topLi, ele, files)
             flag++
         } else {
@@ -111,7 +111,7 @@ const initDOM = function(files, parent) {
                 let react = lastA.parentNode.getBoundingClientRect().top
                 let container = $('.side-bar-main')
                 container.scrollTop = react - container.clientHeight / 2
-                lastA.setAttribute('isClicked', true)
+                lastA.attr('isClicked', true)
             }
 
             return
@@ -134,7 +134,7 @@ const RenderDOM = function(eleLi, ele, files) {
 
     if (currenteleLiChild.length) {
         currenteleLiChild.forEach(ele => {
-            if (ele.getAttribute('type') === 'tree') {
+            if (ele.attr('type') === 'tree') {
                 treeChild.push(ele)
             }
         })
@@ -150,7 +150,7 @@ const RenderDOM = function(eleLi, ele, files) {
     })
 
     /* 如果当前目录下的所有文件并没有文件夹类型 */
-    if (treeChild.length && (eleLi.getAttribute('generateDOM') !== 'off')) {
+    if (treeChild.length && (eleLi.attr('generateDOM') !== 'off')) {
 
         treeChild.forEach((ele, index) => {
             let nextCascad = treeMsg[index].path.split('/').length
@@ -171,7 +171,7 @@ const RenderDOM = function(eleLi, ele, files) {
     })
 
     /* 设置开关，防止重复渲染，影响性能 */
-    eleLi.setAttribute('generateDOM', 'off')
+    eleLi.attr('generateDOM', 'off')
 }
 
 
@@ -211,23 +211,23 @@ const generateCurrentTreeDOM = function(CurrentTreeFiles, parent, cascad, files)
             /* 设置相对应的图标 */
             setIconCss(ele, iconI)
             hrefA.textContent = ele.path.split('/').pop()
-            outerLi.setAttribute('type', ele.type)
+            outerLi.attr('type', ele.type)
 
             outerLi.appendChild(iconI)
             outerLi.appendChild(hrefA)
 
             if (ele.type === 'tree') {
-                outerLi.setAttribute('path', ele.path)
+                outerLi.attr('path', ele.path)
             }
 
             const url = `${oParam.userName}/${oParam.reposName}/${ele.type}/${oParam.branch}`
 
-            hrefA.setAttribute('data-href',
+            hrefA.attr('data-href',
                 `${window.location.protocol}//${window.location.host}/${url}/${ele.path}`)
 
             if (ele.type === 'blob') {
                 hrefA.href = `/${url}/${ele.path}`
-                hrefA.setAttribute('type', 'blob')
+                hrefA.attr('type', 'blob')
                 setClickBlobCss(hrefA)
 
                 parent.appendChild(outerLi)
@@ -237,7 +237,7 @@ const generateCurrentTreeDOM = function(CurrentTreeFiles, parent, cascad, files)
                     const childrenArr = Array.from(parent.children)
                     for (let eleLi of childrenArr) {
 
-                        if (eleLi.getAttribute('type') === 'blob') {
+                        if (eleLi.attr('type') === 'blob') {
                             return eleLi
                         }
 
@@ -257,14 +257,14 @@ const generateCurrentTreeDOM = function(CurrentTreeFiles, parent, cascad, files)
 
                 if (ele.path === currentPath) {
 
-                    outerLi.setAttribute('onoff', 'on')
-                    hrefA.setAttribute('isClicked', true)
+                    outerLi.attr('onoff', 'on')
+                    hrefA.attr('isClicked', true)
                     let ele = parent // ele => ul
                     let flag = true
 
                     while (flag) {
                         if (ele.className !== 'side-bar-main') {
-                            ele.parentNode.setAttribute('onoff', 'on')
+                            ele.parentNode.attr('onoff', 'on')
                         } else {
                             flag = false
                         }
@@ -272,7 +272,7 @@ const generateCurrentTreeDOM = function(CurrentTreeFiles, parent, cascad, files)
                     }
 
                 } else {
-                    outerLi.setAttribute('onoff', 'off')
+                    outerLi.attr('onoff', 'off')
                 }
 
                 setClickTreeCss(outerLi, ele, iconI, files)

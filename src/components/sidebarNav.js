@@ -1,5 +1,5 @@
 import { sideBarContainerHTML } from 'utils/generatePage'
-
+import { $, $$ } from 'utils/getDom'
 import {
     toggleBtn,
     urlChangeEvent
@@ -15,7 +15,7 @@ import parentNotRoll from 'libs/parentNotRoll'
 const sideBarMain = sideBarContainerHTML()
 
 module.exports = function() {
-    const fileWrap = document.querySelectorAll('.file-wrap,.file')
+    const fileWrap = document.$$('.file-wrap,.file')
 
     if (fileWrap.length) {
 
@@ -49,7 +49,7 @@ module.exports = function() {
                 toggleBtn()
                 urlChangeEvent(data.tree)
                 parentNotRoll('.side-bar-main')
-                document.querySelector('#spinner').style.display = 'none'
+                $('#spinner').style.display = 'none'
 
             })
         }()
