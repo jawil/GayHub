@@ -1,19 +1,20 @@
-import { getUrlParam } from 'utils/sideBarHelp'
-import { $, $$, attr } from 'utils/getDom'
+import { getUrlParam } from "utils/sideBarHelp";
+import { $, $$, attr } from "utils/getDom";
 
 /* 生成侧边栏sidebar的HTML */
 function sideBarContainerHTML() {
-
-    const oParam = getUrlParam(),
-        sideBarMainHTML = `<ul class="side-bar-main"></ul>`,
-        toggleBtnHTML = `<a class="toggle-btn"></a>`,
-        sideBarHeaderHTML = `
+  const oParam = getUrlParam(),
+    sideBarMainHTML = `<ul class="side-bar-main"></ul>`,
+    toggleBtnHTML = `<a class="toggle-btn"></a>`,
+    sideBarHeaderHTML = `
     <div class="side-bar-header">
     <div class="side-bar-header-repo">
         <a href="/${oParam.userName}">${oParam.userName}</a>/
         <a type="blob" href="/${oParam.userName}/${oParam.reposName}">${oParam.reposName}</a>
     </div>
-    <div class="side-bar-header-branch">${decodeURIComponent(oParam.branch)}</div>
+    <div class="side-bar-header-branch">${decodeURIComponent(
+      oParam.branch
+    )}</div>
     <div id="spinner">
         <div class="spinner-container container1">
             <div class="circle1"></div>
@@ -35,91 +36,85 @@ function sideBarContainerHTML() {
         </div>
     </div>
 </div>`,
-        sideBarWrapHTML = `<div class="side-bar-wrap">
+    sideBarWrapHTML = `<div class="side-bar-wrap">
                             ${sideBarHeaderHTML}
                             ${toggleBtnHTML}
                             ${sideBarMainHTML}
-                         </div>`
+                         </div>`;
 
-    document.body.innerHTML += sideBarWrapHTML
+  document.body.innerHTML += sideBarWrapHTML;
 
-    let contentMain = $('.repository-content'),
-        offsetLeft = contentMain.getBoundingClientRect().left,
-        htmlNode = $('html')
-    htmlNode.style.marginLeft = `${Math.max((370 - offsetLeft), 0)}px`
+  let contentMain = $(".repository-content"),
+    offsetLeft = contentMain.getBoundingClientRect().left,
+    htmlNode = $("html");
+  htmlNode.style.marginLeft = `${Math.max(370 - offsetLeft, 0)}px`;
 
-    $('.side-bar-wrap').attr('toggle', 'on')
+  $(".side-bar-wrap").attr("toggle", "on");
 
-    return $('.side-bar-main')
+  return $(".side-bar-main");
 }
-
-
 
 /* 生成tableOfContent的HTML */
 function tableOfContentHTML(titleArr, root) {
+  let count = 0;
 
-    let count = 0
-
-    const tableOfContentWrap = document.createElement('div'),
-
-        headerHTML = `<div class="table-of-content-header">
+  const tableOfContentWrap = document.createElement("div"),
+    headerHTML = `<div class="table-of-content-header">
                         Table of Content
                         <a href="https://github.com/jawil" 
                         class="table-of-content-auth" target="_blank">
                         by jawil
                     </a>
                      </div>`,
-        toggleBtnHTML = `<a class="table-of-content-btn"></a>`,
-        containerHTML = `<div class="table-of-content-wrap" toggle="on">
+    toggleBtnHTML = `<a class="table-of-content-btn"></a>`,
+    containerHTML = `<div class="table-of-content-wrap" toggle="on">
                         ${toggleBtnHTML}
                         ${headerHTML}
-                    </div>`
+                    </div>`;
 
-    tableOfContentWrap.className = 'table-of-content-wrap'
-    tableOfContentWrap.attr('toggle', 'on')
+  tableOfContentWrap.className = "table-of-content-wrap";
+  tableOfContentWrap.attr("toggle", "on");
 
-    tableOfContentWrap.innerHTML = `${toggleBtnHTML}${headerHTML}`
-    tableOfContentWrap.appendChild(root)
-    document.body.appendChild(tableOfContentWrap)
+  tableOfContentWrap.innerHTML = `${toggleBtnHTML}${headerHTML}`;
+  tableOfContentWrap.appendChild(root);
+  document.body.appendChild(tableOfContentWrap);
 
-    return function(str, parent) {
-        let h = str[1] - 1,
-            reg = [
-                /h1.*?(?=(h1)|\b)/g,
-                /h2.*?(?=(h2)|\b)/g,
-                /h3.*?(?=(h3)|\b)/g,
-                /h4.*?(?=(h4)|\b)/g,
-                /h5.*?(?=(h5)|\b)/g,
-                /h6.*?(?=(h6)|\b)/g
-            ][h]
+  return function(str, parent) {
+    let h = str[1] - 1,
+      reg = [
+        /h1.*?(?=(h1)|\b)/g,
+        /h2.*?(?=(h2)|\b)/g,
+        /h3.*?(?=(h3)|\b)/g,
+        /h4.*?(?=(h4)|\b)/g,
+        /h5.*?(?=(h5)|\b)/g,
+        /h6.*?(?=(h6)|\b)/g
+      ][h];
 
-        let titleGroup = str.match(reg)
+    let titleGroup = str.match(reg);
 
-        titleGroup.forEach(item => {
-            let outLi = document.createElement('li')
-            let oSpan = document.createElement('span')
+    titleGroup.forEach(item => {
+      let outLi = document.createElement("li");
+      let oSpan = document.createElement("span");
 
-            oSpan.textContent = titleArr[count].textContent
-            oSpan.attr('index', count)
+      oSpan.textContent = titleArr[count].textContent;
+      oSpan.attr("index", count);
 
-            outLi.appendChild(oSpan)
-            count++
-            parent.appendChild(outLi)
-            let ele = item.substr(2)
+      outLi.appendChild(oSpan);
+      count++;
+      parent.appendChild(outLi);
+      let ele = item.substr(2);
 
-            if (ele.length === 0) {
-                return
-            } else {
-
-                let oUl = document.createElement('ul')
-                let oLi = document.createElement('li')
-                outLi.appendChild(oUl)
-                parent.appendChild(outLi)
-                arguments.callee(ele, oUl, root)
-
-            }
-        })
-    }
+      if (ele.length === 0) {
+        return;
+      } else {
+        let oUl = document.createElement("ul");
+        let oLi = document.createElement("li");
+        outLi.appendChild(oUl);
+        parent.appendChild(outLi);
+        arguments.callee(ele, oUl, root);
+      }
+    });
+  };
 }
 
-export { sideBarContainerHTML, tableOfContentHTML }
+export { sideBarContainerHTML, tableOfContentHTML };

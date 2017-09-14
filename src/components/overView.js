@@ -1,23 +1,22 @@
-import { $, $$ } from 'utils/getDom'
+import { $, $$ } from "utils/getDom";
 module.exports = function() {
+  const logoAvatar = $(".header-logo-invertocat"),
+    userAvatarEle = $(".avatar"),
+    isLogined = $(".text-bold");
 
-    const logoAvatar = $('.header-logo-invertocat'),
-        userAvatarEle = $('.avatar'),
-        isLogined = $('.text-bold')
+  let overViewUrl;
 
-    let overViewUrl
+  if (isLogined && isLogined.textConten === "Sign in") {
+    overViewUrl = `https://github.com`;
+  } else {
+    const userName = userAvatarEle.getAttribute("alt").slice(1);
+    overViewUrl = `https://github.com/${userName}`;
+  }
 
-    if (isLogined && isLogined.textConten === 'Sign in') {
-        overViewUrl = `https://github.com`
-    } else {
-        const userName = userAvatarEle.getAttribute('alt').slice(1)
-        overViewUrl = `https://github.com/${userName}`
-    }
-
-    let overViewHTML = `
+  let overViewHTML = `
     <a class="header-logo-invertocat HeaderNavlink" href=${overViewUrl}  aria-label="Homepage" style="line-height:32px;">
     Overview
-    </a>`
+    </a>`;
 
-    logoAvatar.parentNode.innerHTML += overViewHTML
-}
+  logoAvatar.parentNode.innerHTML += overViewHTML;
+};
