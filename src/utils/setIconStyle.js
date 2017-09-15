@@ -125,6 +125,7 @@ const toggleBtn = function() {
         react = contentMain.getBoundingClientRect().left,
         onoff = sideBarWrap.attr("toggle") === "off" ? "on" : "off";
 
+      rootHtml.attr("off", true);
       if (onoff == "on") {
         rootHtml.style.marginLeft = Math.max(370 - react, 0) + "px";
       } else {
