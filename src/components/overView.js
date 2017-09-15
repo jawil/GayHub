@@ -1,4 +1,4 @@
-import { $, $$ } from "utils/getDom";
+import { $, attr } from "utils/getDom";
 module.exports = function() {
   const logoAvatar = $(".header-logo-invertocat"),
     userAvatarEle = $(".avatar"),
@@ -9,7 +9,7 @@ module.exports = function() {
   if (isLogined && isLogined.textConten === "Sign in") {
     overViewUrl = `https://github.com`;
   } else {
-    const userName = userAvatarEle.getAttribute("alt").slice(1);
+    const userName = userAvatarEle.attr("alt").slice(1);
     overViewUrl = `https://github.com/${userName}`;
   }
 
