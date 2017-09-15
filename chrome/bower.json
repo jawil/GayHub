@@ -1,6 +1,6 @@
 {
     "name": "github",
-    "version": "1.5.1",
+    "version": "1.5.2",
     "dependencies": {
         "axios": "^0.16.2",
         "clipboard": "^1.7.1",

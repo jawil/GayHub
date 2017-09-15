@@ -6,17 +6,15 @@ Raven.config(
   "https://fefe8b39c6984f56bcff4562caf28740@sentry.io/214908"
 ).install();
 
-if ($(".repository-content")) {
-  let contentMain = $(".repository-content"),
-    offsetLeft = contentMain.getBoundingClientRect().left,
-    htmlNode = $("html");
-  htmlNode.style.marginLeft = `${Math.max(370 - offsetLeft, 0)}px`;
-}
-
 /* 侧边栏功能 */
 const fileWrap = document.$$(".file-wrap,.file");
 
 if (fileWrap.length) {
+  let contentMain = $(".repository-content"),
+    offsetLeft = contentMain.getBoundingClientRect().left,
+    htmlNode = $("html");
+  htmlNode.style.marginLeft = `${Math.max(370 - offsetLeft, 0)}px`;
+
   const sidebarNav = require("components/sidebarNav");
   sidebarNav();
 }
