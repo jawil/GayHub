@@ -171,14 +171,16 @@ export default function TOC(container) {
     let sideBarWrap = $(".side-bar-wrap");
 
     if (onoff === "off") {
-      TOCWrap.style.cssText = `right:${-right}px;display:block;`;
+      TOCWrap.style.cssText = `right:${-right}px;
+                               display:block;`;
       oBtn.style.cssText = `left:-${right - 200}px;`;
 
       if (sideBarWrap && sideBarWrap.attr("toggle") === "off") {
         $("html").style.marginLeft = 0 + "px";
       }
     } else {
-      TOCWrap.style.cssText = "right:3%;display:block;";
+      TOCWrap.style.cssText = `right:3%;
+                               display:block;`;
       oBtn.style.cssText = `left:10px;`;
 
       let contentMain = $(".repository-content");

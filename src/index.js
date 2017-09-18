@@ -9,7 +9,7 @@ Raven.config(
 /* 侧边栏功能 */
 const fileWrap = document.$$(".file-wrap,.file");
 
-if (fileWrap.length) {
+if (fileWrap.length && !$(".js-code-editor")) {
   let contentMain = $(".repository-content"),
     offsetLeft = contentMain.getBoundingClientRect().left,
     htmlNode = $("html");
