@@ -15,6 +15,7 @@
     color: #0366d6;
     background-color: #fafbfc;
     width: 250px;
+    height: 100%;
     transition: all 0.3s ease-out;
 }
 
