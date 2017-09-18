@@ -28,7 +28,7 @@
 
 截图：对于微软的VScode和TypeScript这种大型开源，10000+文件的解析起来也毫无压力，稍等片刻即可打开，颜值与性能并存。
 
-![](https://ws3.sinaimg.cn/large/006tNc79gy1fjfyqib2edj30zg0l3dtx.jpg)
+![](http://opb6zkmf0.bkt.clouddn.com/006tNc79gy1fjfyqib2edj30zg0l3dtx.jpg)
 
  温馨提示：不要打开`Linux`这种巨无霸的开源，因为从`GitHub`接口拉取所有目录文件名数据都需要几分钟。。。
  
@@ -38,7 +38,7 @@
   
   截图：不管你嵌套多少层，解析不出来算我输。
   
- ![](http://opb6zkmf0.bkt.clouddn.com/006tNc79gy1fjfyqib2edj30zg0l3dtx.jpg)
+ ![](https://ws1.sinaimg.cn/large/006tNc79gy1fjc8ic7g3fj30zd0kzk8d.jpg)
  
  - **夜间暗色主题：**  
  
