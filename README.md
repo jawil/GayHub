@@ -38,7 +38,7 @@
   
   截图：不管你嵌套多少层，解析不出来算我输。
   
- ![](https://ws1.sinaimg.cn/large/006tNc79gy1fjc8ic7g3fj30zd0kzk8d.jpg)
+ ![](http://opb6zkmf0.bkt.clouddn.com/006tNc79gy1fjfyqib2edj30zg0l3dtx.jpg)
  
  - **夜间暗色主题：**  
  
@@ -91,7 +91,7 @@
 
 如果 `GayHub` 可以解决你在浏览 `GitHub` 上痛点，提升`GitHub` 在 `Web` 端的阅读体验，可以请我喝杯咖啡，想必也是非常愉悦的事情。 😂 
 
-![支付](https://ws4.sinaimg.cn/large/006tNc79gy1fjh35sgnbyj30dw09ygmw.jpg)
+![支付](http://opb6zkmf0.bkt.clouddn.com/006tNc79gy1fjh35sgnbyj30dw09ygmw.jpg)
 
 ### 许可：
 [![license-badge]][license-link]
