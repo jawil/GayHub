@@ -19,7 +19,7 @@
  */
 
 import { ZoomImage } from "./zoom-image.js";
-import { windowWidth, windowHeight } from "./utils.js";
+import { getWindowWidth, getWindowHeight } from "./utils.js";
 
 var current = null;
 var offset = 80;
@@ -40,7 +40,7 @@ var prepareZoom = e => {
         return;
     }
 
-    if (e.target.width >= windowWidth() - offset) {
+    if (e.target.width >= getWindowWidth() - offset) {
         return;
     }
 

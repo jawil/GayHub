@@ -1,4 +1,4 @@
-import { elemOffset, once, windowWidth, windowHeight } from "./utils.js";
+import { elemOffset, once, getWindowWidth, getWindowHeight } from "./utils.js";
 
 class Size {
     constructor(w, h) {
@@ -17,7 +17,7 @@ export class ZoomImage {
     }
 
     forceRepaint() {
-        var _ = this.img.offsetWidth; 
+        var _ = this.img.offsetWidth;
         return;
     }
 
@@ -48,8 +48,8 @@ export class ZoomImage {
     calculateScale(size) {
         var maxScaleFactor = size.w / this.img.width;
 
-        var viewportWidth = (windowWidth() - this.offset);
-        var viewportHeight = (windowHeight() - this.offset);
+        var viewportWidth = (getWindowWidth() - this.offset);
+        var viewportHeight = (getWindowHeight() - this.offset);
         var imageAspectRatio = size.w / size.h;
         var viewportAspectRatio = viewportWidth / viewportHeight;
 
@@ -66,8 +66,8 @@ export class ZoomImage {
         var imageOffset = elemOffset(this.img);
         var scrollTop = window.pageYOffset;
 
-        var viewportX = (windowWidth() / 2);
-        var viewportY = scrollTop + (windowHeight() / 2);
+        var viewportX = (getWindowWidth() / 2);
+        var viewportY = scrollTop + (getWindowHeight() / 2);
 
         var imageCenterX = imageOffset.left + (this.img.width / 2);
         var imageCenterY = imageOffset.top + (this.img.height / 2);

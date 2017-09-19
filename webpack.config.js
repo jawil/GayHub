@@ -40,7 +40,6 @@ module.exports = {
     alias: {
       components: path.resolve(APP_PATH, "./components"),
       utils: path.resolve(APP_PATH, "./utils"),
-      components: path.resolve(APP_PATH, "./components"),
       libs: path.resolve(APP_PATH, "./libs")
     }
   },

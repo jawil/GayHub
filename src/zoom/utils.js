@@ -1,22 +1,24 @@
-var windowWidth = () => document.documentElement.clientWidth;
-var windowHeight = () => document.documentElement.clientHeight;
+export function getWindowWidth() {
+  return document.documentElement.clientWidth;
+}
+export function getWindowHeight() {
+  return document.documentElement.clientHeight;
+}
 
-var elemOffset = elem => {
-    var rect = elem.getBoundingClientRect();
-    var docElem = document.documentElement;
-    var win = window;
-    return {
-        top: rect.top + win.pageYOffset - docElem.clientTop,
-        left: rect.left + win.pageXOffset - docElem.clientLeft
-    };
-};
+export function elemOffset(elem) {
+  const rect = elem.getBoundingClientRect();
+  const docElem = document.documentElement;
+  const win = window;
+  return {
+    top: rect.top + win.pageYOffset - docElem.clientTop,
+    left: rect.left + win.pageXOffset - docElem.clientLeft
+  };
+}
 
-var once = (elem, type, handler) => {
-    var fn = e => {
-        e.target.removeEventListener(type, fn);
-        handler();
-    };
-    elem.addEventListener(type, fn);
-};
-
-export { windowWidth, windowHeight, elemOffset, once };
+export function once(elem, type, handler) {
+  const fn = e => {
+    e.target.removeEventListener(type, fn);
+    handler();
+  };
+  elem.addEventListener(type, fn);
+}
