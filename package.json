@@ -25,6 +25,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "cross-env": "^5.0.5",
+    "prettier": "^1.7.0",
     "webpack": "^3.5.5",
     "webpack-sentry-plugin": "^1.13.0"
   },
@@ -34,7 +35,6 @@
     "imagesloaded": "^4.1.3",
     "monaco-editor": "^0.10.0",
     "pjax": "^0.2.4",
-    "prettier": "^1.7.0",
     "raven-js": "^3.17.0",
     "wolfy-eventemitter": "^0.1.0"
   }
