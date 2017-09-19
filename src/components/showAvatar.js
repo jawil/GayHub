@@ -6,7 +6,7 @@ module.exports = function showAvatar() {
     element = document.$$(".title"),
     filterEle = Array.from(element).filter((ele, current) => {
       return (
-        /\b(starred|forked|created)\b/g.test(ele.textContent) &&
+        /\b(starred|forked|created|added)\b/g.test(ele.textContent) &&
         current >= index
       );
     });
