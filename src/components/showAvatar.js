@@ -27,7 +27,7 @@ module.exports = function showAvatar() {
       return prevUserArr.indexOf(ele) === -1;
     });
 
-    fetch(generateUrl(data, 500), {
+    fetch(generateUrl(data, 100), {
       method: "get"
     })
       .then(response => {
