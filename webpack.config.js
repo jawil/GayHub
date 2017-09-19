@@ -7,12 +7,12 @@ const APP_PATH = path.resolve(ROOT_PATH, 'src');
 const BUILD_PATH = path.resolve(ROOT_PATH, 'chrome/scripts');
 
 //获取环境
-const env = process.env.NODE_ENV;
+const env = process.env;
+const isProduction = env.NODE_ENV === 'production';
 
 module.exports = {
   /* source-map */
-  devtool:
-    env === 'production' ? 'hidden-source-map' : 'cheap-module-eval-source-map',
+  devtool: isProduction ? 'hidden-source-map' : 'cheap-module-eval-source-map',
   entry: {
     app: './src/index.js'
   },
@@ -43,11 +43,23 @@ module.exports = {
       libs: path.resolve(APP_PATH, './libs')
     }
   },
-  plugins: [],
-  watch: env === 'development'
+  plugins: [
+    new webpack.DefinePlugin(
+      (() => {
+        const result = { 'process.env.NODE_ENV': '"development"' };
+        for (let key in env) {
+          if (env.hasOwnProperty(key)) {
+            result['process.env.' + key] = JSON.stringify(process.env[key]);
+          }
+        }
+        return result;
+      })()
+    )
+  ],
+  watch: !isProduction
 };
 
-switch (env) {
+switch (env.NODE_ENV) {
   case 'production':
     module.exports.plugins = (module.exports.plugins || []).concat([
       new webpack.optimize.UglifyJsPlugin({
