@@ -44,7 +44,7 @@ module.exports = {
     }
   },
   plugins: [],
-  watch: env === "development" ? true : false
+  watch: env === "development"
 };
 
 switch (env) {
