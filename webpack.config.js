@@ -30,7 +30,7 @@ module.exports = {
         options: {
           cacheDirectory: true,
           presets: ['es2015'],
-          plugins: [['transform-runtime']]
+          plugins: ['transform-runtime']
         }
       }
     ]
