@@ -5,9 +5,15 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack  --progress",
-    "dist": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "dist": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "format": "prettier --single-quote -l --write '{src,chrome}/**/*.{js,json,css}'"
   },
-  "keywords": ["gayhub", "github", "chrome", "extension"],
+  "keywords": [
+    "gayhub",
+    "github",
+    "chrome",
+    "extension"
+  ],
   "author": "jawil",
   "license": "ISC",
   "devDependencies": {
@@ -28,6 +34,7 @@
     "imagesloaded": "^4.1.3",
     "monaco-editor": "^0.10.0",
     "pjax": "^0.2.4",
+    "prettier": "^1.7.0",
     "raven-js": "^3.17.0",
     "wolfy-eventemitter": "^0.1.0"
   }
