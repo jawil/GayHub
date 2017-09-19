@@ -1,8 +1,10 @@
 import { $, $$ } from "utils/getDom";
+let index = 0,
+  prevUserArr = [],
+  userAvatar = {};
+
 module.exports = function showAvatar() {
-  let index = 0,
-    userArr = [],
-    userAvatar = {},
+  let userArr = [],
     element = document.$$(".title"),
     filterEle = Array.from(element).filter((ele, current) => {
       return (
@@ -20,7 +22,12 @@ module.exports = function showAvatar() {
       userArr.push(userName);
     });
     let uniqueUser = [...new Set(userArr)];
-    fetch(generateUrl(uniqueUser, 50), {
+
+    const data = uniqueUser.filter(ele => {
+      return prevUserArr.indexOf(ele) === -1;
+    });
+
+    fetch(generateUrl(data, 500), {
       method: "get"
     })
       .then(response => {
@@ -30,6 +37,7 @@ module.exports = function showAvatar() {
         data.items.forEach(ele => {
           userAvatar[ele.login] = ele.avatar_url;
         });
+        prevUserArr = JSON.parse(JSON.stringify(userArr));
         callback(userAvatar);
       });
   }
