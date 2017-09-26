@@ -24,7 +24,7 @@
 
 - **文件目录树：**
 
-给`github`插上翅膀，让你轻松切换文件，方便阅读，把`Vscode`的精美的侧边栏完美移植到`github`上，颜值颇高，`100`多种精美图标完美移植，加上`Pjax`的无刷新切换文件，体验颇佳。
+给 `github` 插上翅膀，让你轻松切换文件，方便阅读，把 `Vscode` 的精美的侧边栏完美移植到 `github` 上，颜值颇高，`100` 多种精美图标完美移植，加上`Pjax`的无刷新切换文件，体验颇佳。
 
 截图：对于微软的VScode和TypeScript这种大型开源，10000+文件的解析起来也毫无压力，稍等片刻即可打开，颜值与性能并存。
 
@@ -38,7 +38,7 @@
   
   截图：不管你嵌套多少层，解析不出来算我输。
   
- ![](https://ws1.sinaimg.cn/large/006tNc79gy1fjc8ic7g3fj30zd0kzk8d.jpg)
+![006tNc79gy1fjc8ic7g3fj30zd0kzk8d](http://opeokf4uk.bkt.clouddn.com/006tNc79gy1fjc8ic7g3fj30zd0kzk8d.jpg)
  
  - **夜间暗色主题：**  
  
@@ -76,7 +76,8 @@
 
 截图：
 
-![](https://ws2.sinaimg.cn/large/006tNc79gy1fjgjqeay4nj31hc0sq47z.jpg)
+![1](http://opeokf4uk.bkt.clouddn.com/1.jpg)
+
 
 ###  说明
 
@@ -107,5 +108,3 @@
 [offline-link]:     http://ksria.com/simpread/crx/1.0.3/simpread.crx
 [license-badge]:    https://img.shields.io/github/license/mashape/apistatus.svg
 [license-link]:     https://opensource.org/licenses/MIT
-
-
