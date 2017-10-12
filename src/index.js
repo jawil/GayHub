@@ -23,8 +23,8 @@ if (fileWrap.length && !$(".js-code-editor")) {
 const overView = require("components/overView");
 overView();
 
-/* 用户图像 */
-if (window.location.pathname === "/") {
+/* 用户图像 ,GitHub更新已经移除*/
+/* if (window.location.pathname === "/") {
   const showAvatar = require("components/showAvatar");
   showAvatar();
   $(".news").addEventListener(
@@ -45,7 +45,7 @@ if (window.location.pathname === "/") {
     },
     false
   );
-}
+} */
 
 /* 复制代码 */
 const copySnippet = require("components/copySnippet");
