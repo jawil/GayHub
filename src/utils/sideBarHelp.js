@@ -66,7 +66,7 @@ const getCurrentTreeFiles = function(fileTree, allFiles, cascad) {
     let current = allFiles[i].path.split("/").length;
 
     if (
-      new RegExp(`^${path}`).test(allFiles[i].path) &&
+      new RegExp(`^${path}(?=\/)`).test(allFiles[i].path) &&
       fileTree.path.split("/").shift() ===
         allFiles[i].path.split("/").shift() &&
       cascad + 1 === current
