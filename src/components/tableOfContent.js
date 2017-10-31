@@ -37,7 +37,8 @@ const styles = {
   childLi: `max-height: 26px;
                 transition: all 0.5s ease-out;`,
 
-  rootLi: `max-height: 600px;`
+  rootLi: `max-height: 600px;
+           overflow:scroll`
 };
 
 const selectorStr = (function(obj) {

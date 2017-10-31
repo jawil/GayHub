@@ -107,6 +107,7 @@
 .table-of-content li:hover {
     max-height: 600px;
     transition: all 3s ease-out;
+    overflow: scroll;
 }
 
 
