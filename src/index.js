@@ -20,8 +20,8 @@ if (fileWrap.length && !$(".js-code-editor")) {
 }
 
 /* 回到我的主页 */
-const overView = require("components/overView");
-overView();
+/* const overView = require("components/overView");
+overView(); */
 
 /* 用户图像 ,GitHub更新已经移除*/
 /* if (window.location.pathname === "/") {
